@@ -45,3 +45,9 @@
 *.idb
 *.ilk
 *.ipdb
+
+*.lib
+*.db
+*.suo
+*.lock
+*.vsidx
