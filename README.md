@@ -1,2 +1,2 @@
-# DirectX3D_Project
+# DirectX_3DProject
 refer to Assortrock
