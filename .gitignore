@@ -37,7 +37,7 @@
 *.log
 *.recipe
 *.user
-*.vcxproj
+
 *.filters
 *.res
 *.pdb
