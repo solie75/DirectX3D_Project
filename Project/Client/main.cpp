@@ -60,6 +60,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             // 프로그램 진행
+            CEngine::GetInst()->EngineProgress();
         }
     }
 
