@@ -3,6 +3,7 @@
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
+#include "CDevice.h"
 
 
 CEngine::CEngine()
@@ -30,6 +31,9 @@ int CEngine::EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight)
     CKeyMgr::GetInst()->KeyMgrInit();
     CTimeMgr::GetInst()->TimeMgrInit();
 
+    // Device Init
+    CDevice::GetInst()->DeviceInit(m_hWnd, m_vResolution.x, m_vResolution.y);
+
     return S_OK;
 }
 
@@ -50,6 +54,7 @@ void CEngine::EngineTick()
 void CEngine::EngineRender()
 {
     CTimeMgr::GetInst()->TimeMgrRender();
+    CDevice::GetInst()->ClearTarget();
 }
 
 

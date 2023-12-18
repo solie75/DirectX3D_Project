@@ -26,7 +26,7 @@ public:
 	{
 		if (nullptr != m_Res)
 		{
-			m_Res = Release();
+			m_Res->Release();
 		}
 		m_Res = _Res.m_Res;
 		
@@ -38,7 +38,7 @@ public:
 
 	bool operator == (T* _Other)
 	{
-		return m_Res = _Other;
+		return m_Res == _Other;
 	}
 
 	bool operator != (T* _Other)
@@ -46,12 +46,12 @@ public:
 		return m_Res != _Other;
 	}
 
-	bool operator == (T* _Other)
+	bool operator == (const Ptr<T>& _Other)
 	{
 		return m_Res == _Other.m_Res;
 	}
 
-	bool operator != (T* _Other)
+	bool operator != (const Ptr<T>& _Other)
 	{
 		return m_Res != _Other.m_Res;
 	}
