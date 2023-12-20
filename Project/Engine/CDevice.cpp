@@ -60,32 +60,32 @@ HRESULT CDevice::DeviceInit(HWND _hWnd, UINT _width, UINT _height)
     m_Context->RSSetViewports(1, &m_ViewPort);
 
     // ResterizerState 생성
-    if (FAILED(CreateRasterizerState()))
-    {
-        MessageBox(nullptr, L"Rasterizer State 생성 실패", L"Device 초기화 오류", MB_OK);
-        return E_FAIL;
-    }
+    //if (FAILED(CreateRasterizerState()))
+    //{
+    //    MessageBox(nullptr, L"Rasterizer State 생성 실패", L"Device 초기화 오류", MB_OK);
+    //    return E_FAIL;
+    //}
 
-    // DepthStencilState 생성
-    if (FAILED(CreateDepthStencilState()))
-    {
-        MessageBox(nullptr, L"DepthStencil State 생성 실패", L"Device 초기화 오류", MB_OK);
-        return E_FAIL;
-    }
+    //// DepthStencilState 생성
+    //if (FAILED(CreateDepthStencilState()))
+    //{
+    //    MessageBox(nullptr, L"DepthStencil State 생성 실패", L"Device 초기화 오류", MB_OK);
+    //    return E_FAIL;
+    //}
 
-    // BlendState 생성
-    if (FAILED(CreateBlendState()))
-    {
-        MessageBox(nullptr, L"Blend State 생성 실패", L"Device 초기화 오류", MB_OK);
-        return E_FAIL;
-    }
+    //// BlendState 생성
+    //if (FAILED(CreateBlendState()))
+    //{
+    //    MessageBox(nullptr, L"Blend State 생성 실패", L"Device 초기화 오류", MB_OK);
+    //    return E_FAIL;
+    //}
 
-    // Sampler 생성
-    if (FAILED(CreateSampler()))
-    {
-        MessageBox(nullptr, L"Sampler 생성 실패", L"Device 초기화 오류", MB_OK);
-        return E_FAIL;
-    }
+    //// Sampler 생성
+    //if (FAILED(CreateSampler()))
+    //{
+    //    MessageBox(nullptr, L"Sampler 생성 실패", L"Device 초기화 오류", MB_OK);
+    //    return E_FAIL;
+    //}
 
     return S_OK;
 }
@@ -97,7 +97,9 @@ void CDevice::ClearTarget()
     m_Context->ClearRenderTargetView(m_RTV.Get(), bgColor);
     m_Context->ClearDepthStencilView(m_DSV.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-    m_Context->OMSetRenderTargets(1, m_RTV.GetAddressOf(), m_DSV.Get());
+    m_Context->OMSet
+        
+        RenderTargets(1, m_RTV.GetAddressOf(), m_DSV.Get());
 
     m_SwapChain->Present(0,0);
 }
@@ -179,22 +181,22 @@ HRESULT CDevice::CreateView()
     return S_OK;
 }
 
-HRESULT CDevice::CreateRasterizerState()
-{
-    return E_NOTIMPL;
-}
-
-HRESULT CDevice::CreateDepthStencilState()
-{
-    return E_NOTIMPL;
-}
-
-HRESULT CDevice::CreateBlendState()
-{
-    return E_NOTIMPL;
-}
-
-HRESULT CDevice::CreateSampler()
-{
-    return E_NOTIMPL;
-}
+//HRESULT CDevice::CreateRasterizerState()
+//{
+//    return E_NOTIMPL;
+//}
+//
+//HRESULT CDevice::CreateDepthStencilState()
+//{
+//    return E_NOTIMPL;
+//}
+//
+//HRESULT CDevice::CreateBlendState()
+//{
+//    return E_NOTIMPL;
+//}
+//
+//HRESULT CDevice::CreateSampler()
+//{
+//    return E_NOTIMPL;
+//}
