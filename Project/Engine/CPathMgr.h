@@ -10,6 +10,6 @@ private:
 public:
 	void PathMgrInit();
 public:
-	const wchar_t* GetContextPath() { return m_szContentPath; }
+	const wchar_t* GetContentPath() { return m_szContentPath; }
 };
 

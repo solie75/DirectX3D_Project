@@ -1,8 +1,14 @@
 #pragma once
 
+
+
+#define DEVICE CDevice::GetInst()->GetDevice()
+#define CONTEXT CDevice::GetInst()->GetDeviceContext()
+
+#define CLONE(type) public: virtual type* Clone() {return new type(*this);}
+#define CLONE_DISABLE(type) public: virtual type* Clone() { return nullptr; assert(nullptr); }
+
 #define SINGLE(type) private: type(); ~type(); friend class CSingleton<type>;
-#define DEVICE CDevice::GetInst()->GetDevice();
-#define CONTEXT CDevice::GetInst()->GetDeviceContext();
 
 // Resource Type
 enum class RES_TYPE
@@ -37,5 +43,16 @@ enum class BS_TYPE
 	MASK,	// Alpha Coverage
 	ALPHA_BLEND,	// Alpha °è¼ö
 	ONE_ONE,	// 1 : 1 È¥ÇÕ
+	END,
+};
+
+enum class SHADER_STAGE
+{
+	VS, HS, DS, GS, PS, CS, End,
+};
+
+enum class CB_TYPE
+{
+	TRANSFORM,
 	END,
 };

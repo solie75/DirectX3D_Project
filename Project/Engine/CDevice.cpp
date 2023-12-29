@@ -96,12 +96,6 @@ void CDevice::ClearTarget()
 
     m_Context->ClearRenderTargetView(m_RTV.Get(), bgColor);
     m_Context->ClearDepthStencilView(m_DSV.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
-    m_Context->OMSet
-        
-        RenderTargets(1, m_RTV.GetAddressOf(), m_DSV.Get());
-
-    m_SwapChain->Present(0,0);
 }
 
 HRESULT CDevice::CreateSwapChain()
@@ -147,6 +141,7 @@ HRESULT CDevice::CreateView()
     // RenderTarget 용 텍스쳐 등록
     ComPtr<ID3D11Texture2D> tTex2D;
     m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)tTex2D.GetAddressOf());
+    m_RTTex = tTex2D;
     if (FAILED(m_Device->CreateRenderTargetView(tTex2D.Get(), nullptr, m_RTV.GetAddressOf())))
     {
         return E_FAIL;
@@ -172,7 +167,7 @@ HRESULT CDevice::CreateView()
     {
         return E_FAIL;
     }
-
+    m_DSTex = tTex2D;
     if (FAILED(m_Device->CreateDepthStencilView(tTex2D.Get(), nullptr, m_DSV.GetAddressOf())))
     {
         return E_FAIL;

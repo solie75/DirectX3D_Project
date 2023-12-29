@@ -26,5 +26,5 @@ void CPathMgr::PathMgrInit()
 		}
 	}
 
-	wcscat_s(m_szContentPath, L"\\bin\\content\\");
+	wcscat_s(m_szContentPath, L"\\bin\\Content\\");
 }
