@@ -31,7 +31,6 @@
 *.out
 *.app
 
-*.txt
 *.lastbuildstate
 *.1.tlog
 *.log
