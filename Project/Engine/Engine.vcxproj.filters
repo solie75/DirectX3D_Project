@@ -52,9 +52,6 @@
     <Filter Include="Source\03.Manager\05.ResMgr">
       <UniqueIdentifier>{78f48c8a-ae0e-4c1c-af68-583db88b5f7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\03.Manager\07.Resource">
-      <UniqueIdentifier>{2c16d947-8179-4720-9cd6-1155ed44f49f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\07.Resource\2. Texture">
       <UniqueIdentifier>{54e33b2a-7e4e-4bef-9a2a-ffed6d7ff76a}</UniqueIdentifier>
     </Filter>

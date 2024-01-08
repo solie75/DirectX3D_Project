@@ -21,10 +21,6 @@ private:
 
 	Vec2 m_vResolution;
 
-	CMesh* m_RectMesh;
-
-	CShader* m_Shader;
-
 	Vec2 m_vPosition;
 
 	CConstBuffer* CB;
@@ -38,7 +34,7 @@ public:
 	int EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight);
 	void EngineProgress();
 
-	void CreateMesh();
+	//void CreateMesh();
 
 	//void SetPosition(Vec2 _pos);
 	void MovePosition();

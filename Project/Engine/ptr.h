@@ -9,6 +9,11 @@ private:
 public:
 	T* Get() const { return m_Res; }
 
+	T* operator -> () const
+	{
+		return m_Res;
+	}
+
 	void operator = (T* _Res)
 	{
 		if (nullptr != m_Res)
@@ -16,7 +21,7 @@ public:
 			m_Res->Release();
 		}
 		m_Res = _Res;
-		if(nullptr != m_Res)
+		if (nullptr != m_Res)
 		{
 			m_Res->AddRefCount();
 		}
@@ -58,7 +63,7 @@ public:
 
 	Ptr()
 		: m_Res(nullptr)
-	{};
+	{}
 
 	Ptr(T* _Res)
 		: m_Res(_Res)
@@ -82,8 +87,7 @@ public:
 	{
 		if (nullptr != m_Res)
 		{
-			delete m_Res;
-			m_Res = nullptr;
+			m_Res->Release();
 		}
-	};
+	}
 };

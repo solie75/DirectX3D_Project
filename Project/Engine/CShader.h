@@ -1,8 +1,10 @@
 #pragma once
+#include "CRes.h"
 class CShader
+	: public CRes
 {
 public:
-	CShader();
+	CShader(RES_TYPE _type);
 	~CShader();
 
 private:
@@ -17,10 +19,16 @@ private:
 	D3D11_PRIMITIVE_TOPOLOGY m_eTopology;
 
 public:
-	void ShaderInit();
+	//void ShaderInit();
 	void CreateVertexShader(const wstring& _strFileName, const string& _strFuncName);
 	void CreatePixelShader(const wstring& _strFileName, const string& _strFuncName);
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology);
 	void UpdateShaderDate();
+
+public:
+	virtual HRESULT SaveRes(const wstring& _strRelativePath) { return S_OK; }
+private:
+	virtual HRESULT LoadRes(const wstring& _strFilePath) { return S_OK; }
+
 };
 

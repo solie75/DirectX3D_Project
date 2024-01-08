@@ -4,6 +4,7 @@
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CDevice.h"
+#include "CResMgr.h"
 
 
 CEngine::CEngine()
@@ -27,21 +28,15 @@ int CEngine::EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight)
     SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
     ShowWindow(m_hWnd, true);
 
+    // Device Init
+    CDevice::GetInst()->DeviceInit(m_hWnd, m_vResolution.x, m_vResolution.y);
+
     // Manager Init
 
     CPathMgr::GetInst()->PathMgrInit();
     CKeyMgr::GetInst()->KeyMgrInit();
     CTimeMgr::GetInst()->TimeMgrInit();
-
-    // Device Init
-    CDevice::GetInst()->DeviceInit(m_hWnd, m_vResolution.x, m_vResolution.y);
-
-    // Shader Init
-    m_Shader = new CShader;
-    m_Shader->ShaderInit();
-
-    // Create Mesh
-    CreateMesh();
+    CResMgr::GetInst()->ResMgrInit();
 
     CB = new CConstBuffer(0);
     CB->CreateCB(sizeof(TransPos), 1);
@@ -53,45 +48,6 @@ void CEngine::EngineProgress()
 {
     EngineTick();
     EngineRender();
-}
-
-void CEngine::CreateMesh()
-{
-    vector<Vtx> vecVtx;
-    vector<UINT> vecIdx;
-    Vtx v;
-
-    // Set RectMesh
-    v.vPos = Vec3(-0.5f, 0.5f, 0.f);
-    v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-    vecVtx.push_back(v);
-
-    v.vPos = Vec3(0.5f, 0.5f, 0.f);
-    v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-    vecVtx.push_back(v);
-
-    v.vPos = Vec3(0.5f, -0.5f, 0.f);
-    v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-    vecVtx.push_back(v);
-
-    v.vPos = Vec3(-0.5f, -0.5f, 0.f);
-    v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-    vecVtx.push_back(v);
-
-    vecIdx.push_back(0);
-    vecIdx.push_back(2);
-    vecIdx.push_back(3);
-
-    vecIdx.push_back(0);
-    vecIdx.push_back(1);
-    vecIdx.push_back(2);
-
-    // Create Mesh
-    m_RectMesh = new CMesh;
-    m_RectMesh->CreateMesh(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
-
-    vecVtx.clear();
-    vecIdx.clear();
 }
 
 void CEngine::MovePosition()
@@ -125,7 +81,9 @@ void CEngine::EngineTick()
     CKeyMgr::GetInst()->KeyMgrTick();
     MovePosition();
     CB->UpdateCBData();
-    m_Shader->UpdateShaderDate();
+
+    Ptr<CShader> tempShader = CResMgr::GetInst()->FindRes<CShader>(L"Std2DShader");
+    tempShader->UpdateShaderDate();
 }
 
 void CEngine::EngineRender()
@@ -135,5 +93,6 @@ void CEngine::EngineRender()
 
     CDevice::GetInst()->OMSet();
 
-    m_RectMesh->RenderMesh();
+    Ptr<CMesh> tempMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
+    tempMesh->RenderMesh();
 }

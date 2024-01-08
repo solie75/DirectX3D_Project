@@ -1,30 +1,35 @@
 #include "pch.h"
 #include "CMesh.h"
 #include "CDevice.h"
-#include "define.h"
 
-CMesh::CMesh()
+CMesh::CMesh(bool _bEngine)
+	: CRes(RES_TYPE::MESH, _bEngine)
+	, m_tVBDesc{}
+	, m_tIBDesc{}
+	, m_IdxCount(0)
 {
 }
 
 CMesh::~CMesh()
 {
+
 }
 
 void CMesh::CreateMesh(void* _VtxSysMem, UINT _VtxCount, void* _IdxSysMem, UINT _IdxCount)
 {
-	m_VtxCount = _VtxCount;
 	m_IdxCount = _IdxCount;
 
 	// Vertex Buffer »ý¼º
 	m_tVBDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
 	m_tVBDesc.CPUAccessFlags = 0;
 	m_tVBDesc.Usage = D3D11_USAGE_DEFAULT;
-	m_tVBDesc.ByteWidth = sizeof(Vtx) * m_VtxCount;
+	m_tVBDesc.ByteWidth = sizeof(Vtx) * _VtxCount;
 	
 	D3D11_SUBRESOURCE_DATA tSub = {};
 	tSub.pSysMem = _VtxSysMem;
-	if (FAILED(DEVICE->CreateBuffer(&m_tVBDesc, &tSub, m_VB.GetAddressOf())))
+
+	HRESULT hr = DEVICE->CreateBuffer(&m_tVBDesc, &tSub, m_VB.GetAddressOf());
+	if (FAILED(hr))
 	{
 		assert(nullptr);
 	}

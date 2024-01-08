@@ -13,7 +13,10 @@
 // Resource Type
 enum class RES_TYPE
 {
+	MESH,
 	TEXTURE,
+	SHADER,
+
 	END,
 };
 
