@@ -64,6 +64,9 @@
     <Filter Include="Source\02.Device\ConstBuffer">
       <UniqueIdentifier>{87c1805c-792b-49d2-a921-b0dff734afe0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\07.Resource\03. Material">
+      <UniqueIdentifier>{849715fa-4ed5-4dd5-921f-2084de3065cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -124,6 +127,7 @@
     <ClInclude Include="CConstBuffer.h">
       <Filter>Source\02.Device\ConstBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="CMaterial.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -166,6 +170,7 @@
     <ClCompile Include="CConstBuffer.cpp">
       <Filter>Source\02.Device\ConstBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="CMaterial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

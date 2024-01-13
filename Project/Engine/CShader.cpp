@@ -39,7 +39,7 @@ void CShader::CreateVertexShader(const wstring& _strFileName, const string& _str
 		, nullptr, m_VS.GetAddressOf());
 
 	// Set Input Layout
-	D3D11_INPUT_ELEMENT_DESC LayoutDesc[2] = {};
+	D3D11_INPUT_ELEMENT_DESC LayoutDesc[3] = {};
 
 	LayoutDesc[0].SemanticName = "POSITION";
 	LayoutDesc[0].SemanticIndex = 0;
@@ -57,7 +57,15 @@ void CShader::CreateVertexShader(const wstring& _strFileName, const string& _str
 	LayoutDesc[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	LayoutDesc[1].InstanceDataStepRate = 0;
 
-	HRESULT hr = DEVICE->CreateInputLayout(LayoutDesc, 2
+	LayoutDesc[2].SemanticName = "TEXCOORD";
+	LayoutDesc[2].SemanticIndex = 0;
+	LayoutDesc[2].AlignedByteOffset = 28;
+	LayoutDesc[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+	LayoutDesc[2].InputSlot = 0;
+	LayoutDesc[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	LayoutDesc[2].InstanceDataStepRate = 0;
+
+	HRESULT hr = DEVICE->CreateInputLayout(LayoutDesc, 3
 		, m_VSBlob->GetBufferPointer(), m_VSBlob->GetBufferSize()
 		, m_Layout.GetAddressOf());
 

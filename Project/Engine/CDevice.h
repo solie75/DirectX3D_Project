@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ptr.h"
+#include "CTexture.h"
 
 class CDevice
 	: public CSingleton<CDevice>
@@ -17,9 +18,13 @@ private:
 	D3D11_VIEWPORT m_ViewPort;
 
 	// Texture, View
-	ComPtr<ID3D11Texture2D> m_RTTex;
+	ComPtr<ID3D11Texture2D> m_RTTex;  // 역할이 정해져 있는게 명확한 변수인데 모든 view 를 다 가지고 있는 CTexture 를 사용할 필요가 있나/
+
+	//Ptr<CTexture> m_RTTex;
+
 	ComPtr<ID3D11RenderTargetView> m_RTV;
 	ComPtr<ID3D11Texture2D> m_DSTex;
+	//Ptr<CTexture> m_DSTex;
 	ComPtr<ID3D11DepthStencilView> m_DSV;
 
 	//// Sampler

@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "CTexture.h"
+#include "CDevice.h"
 
 CTexture::CTexture(bool _bEngine)
     : CRes(RES_TYPE::TEXTURE, _bEngine)
-    , m_TexDesc{}
 {
 }
 
@@ -11,47 +11,62 @@ CTexture::~CTexture()
 {
 }
 
-HRESULT CTexture::Create(UINT _width, UINT _height, DXGI_FORMAT _pixelFormat, UINT _bindFlag, D3D11_USAGE _usage)
+HRESULT CTexture::LoadRes(const wstring& _strFilePath)
 {
-    // ID3D11Texture2D 생성
-    m_TexDesc.Format = _pixelFormat;
+    wchar_t szExt[50] = L"";
+    _wsplitpath_s(_strFilePath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, szExt, 50);
+    wstring strExt = szExt;
 
-    // render target 과 같은 해상도로 설정해야 한다.
-    m_TexDesc.Width = _width;
-    m_TexDesc.Height = _height;
-    m_TexDesc.BindFlags = _bindFlag;
-    m_TexDesc.Usage = _usage;
+    HRESULT hr = S_OK;
 
-    // CPU가 resource 의 Data 를 자주 수정하는 경우
-    if (D3D11_USAGE::D3D11_USAGE_DYNAMIC == _usage)
-    {
-        m_TexDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-    }
-    // CPU 가 Resource 의 복사복을 읽어야 할 때 (Resource 가 data 를 비디오 RAM 에서 시스템 RAM 으로 전송할 수 있어야 할 때)
-    else if (D3D11_USAGE::D3D11_USAGE_STAGING == _usage)
-    {
-        m_TexDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
-    }
+	if (L".dds" == strExt || L".DDS" == strExt)
+	{
+		// dds, DDS
+		hr = LoadFromDDSFile(_strFilePath.c_str(), DDS_FLAGS::DDS_FLAGS_NONE, nullptr, m_Image);
+	}
 
-    m_TexDesc.MipLevels = 1; // 원본만 생성한다.
-    m_TexDesc.SampleDesc.Count = 1;
-    m_TexDesc.SampleDesc.Quality = 0;
+	else if (L".tga" == strExt || L".TGA" == strExt)
+	{
+		// tga, TGA
+		hr = LoadFromTGAFile(_strFilePath.c_str(), nullptr, m_Image);
+	}
+
+	else
+	{
+		// png, jpg, jpeg, bmp
+		hr = LoadFromWICFile(_strFilePath.c_str(), WIC_FLAGS::WIC_FLAGS_NONE, nullptr, m_Image);
+	}
+
+	if (FAILED(hr))
+	{
+		MessageBox(nullptr, L"리소스 로딩 실패", L"텍스쳐 로딩 실패", MB_OK);
+		return E_FAIL;
+	}
+
+	hr = CreateShaderResourceView(DEVICE
+		, m_Image.GetImages()
+		, m_Image.GetImageCount()
+		, m_Image.GetMetadata()
+		, m_SRV.GetAddressOf());
+
+	if (FAILED(hr))
+	{
+		MessageBox(nullptr, L"ShaderResourceView 생성 실패", L"텍스쳐 로딩 실패", MB_OK);
+		return E_FAIL;
+	}
+
+	m_SRV->GetResource((ID3D11Resource**)m_Tex2D.GetAddressOf());
+	m_Tex2D->GetDesc(&m_Tex2DDesc);
 
     return S_OK;
 }
 
-HRESULT CTexture::Create(ComPtr<ID3D11Texture2D> _tex2D)
-{
-    return E_NOTIMPL;
-}
-
-HRESULT CTexture::LoadRes(const wstring& _strFilePath)
-{
-    return E_NOTIMPL;
-}
-
 HRESULT CTexture::SaveRes(const wstring& _strFilePath)
 {
-    return E_NOTIMPL;
+    return S_OK;
 }
 
+void CTexture::UpdateTexData(int _iRegisterNum)
+{
+	CONTEXT->PSSetShaderResources(_iRegisterNum, 1, m_SRV.GetAddressOf());
+}

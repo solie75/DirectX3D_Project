@@ -2,6 +2,7 @@
 #include "CResMgr.h"
 #include "CMesh.h"
 #include "CShader.h"
+#include "CPathMgr.h"
 
 CResMgr::CResMgr()
 {
@@ -15,6 +16,7 @@ void CResMgr::ResMgrInit()
 {
 	CreateDefaultMesh();
 	CreateDefaultShader();
+	LoadDefaultTexture();
 }
 
 void CResMgr::ResMgrTick()
@@ -150,6 +152,20 @@ void CResMgr::CreateDefaultShader()
 	Ptr<CShader> tempShader = nullptr;
 	tempShader = new CShader(RES_TYPE::SHADER);
 	tempShader = FindRes<CShader>(L"Std2DShader");
+}
+
+void CResMgr::LoadDefaultTexture()
+{
+	wstring strContent = CPathMgr::GetInst()->GetContentPath();
+	wstring strFilePath = strContent + L"Texture\\Fighter.bmp";
+	Ptr<CTexture> pRes = new CTexture;
+	pRes->SetRelativePath(L"Texture\\Fighter.bmp");
+	pRes->LoadRes(strFilePath);
+
+	AddRes(L"Fighter", pRes);
+
+	// 여기에서 렌더링 단계에 바인딩
+	((CTexture*)pRes.Get())->UpdateTexData(0);
 }
 
 void CResMgr::DeleteRes(RES_TYPE _type, const wstring& _strKey)

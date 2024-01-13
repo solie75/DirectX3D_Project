@@ -3,6 +3,7 @@
 #include "CRes.h"
 #include "CMesh.h"
 #include "CShader.h"
+#include "CTexture.h"
 
 class CResMgr
 	: public CSingleton<CResMgr>
@@ -20,6 +21,7 @@ public:
 private:
 	void CreateDefaultMesh();
 	void CreateDefaultShader();
+	void LoadDefaultTexture();
 
 public:
 	template<typename T>
@@ -41,6 +43,8 @@ RES_TYPE GetResType()
         return RES_TYPE::MESH;
     if (typeid(T).hash_code() == typeid(CShader).hash_code())
         return RES_TYPE::SHADER;
+	if (typeid(T).hash_code() == typeid(CTexture).hash_code())
+		return RES_TYPE::TEXTURE;
 
     return RES_TYPE::END;
 }
