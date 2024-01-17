@@ -25,4 +25,7 @@ struct tMtrlConst
 	Vec2 arrV2[4];
 	Vec4 arrV4[4];
 	Matrix arrMat[4];
+
+	// Texture setting bool
+	int arrTex[(UINT)MATERIAL_TEX_PARAM::TEX_END];
 };

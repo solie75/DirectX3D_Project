@@ -2,6 +2,7 @@
 
 #include "ptr.h"
 #include "CTexture.h"
+#include "CConstBuffer.h"
 
 class CDevice
 	: public CSingleton<CDevice>
@@ -42,11 +43,16 @@ private:
 	// 렌더타겟 해상도
 	Vec2 m_vRTResolution;
 
+	// 상수 버퍼
+	CConstBuffer* m_arrConstBuffer[(UINT)CB_TYPE::END];
+
 public:
 	HRESULT DeviceInit(HWND _hWnd, UINT _width, UINT _height);
 	void ClearTarget();
 	void OMSet() { m_Context->OMSetRenderTargets(1, m_RTV.GetAddressOf(), m_DSV.Get()); }
 	void Present() { m_SwapChain->Present(0, 0); }
+
+	CConstBuffer* GetConstBuffer(CB_TYPE _type);
 
 private:
 	HRESULT CreateSwapChain();
@@ -55,6 +61,7 @@ private:
 	//HRESULT CreateDepthStencilState();
 	//HRESULT CreateBlendState();
 	//HRESULT CreateSampler();
+	void CreateConstBuffers();
 
 public:
 	ID3D11Device* GetDevice() { return m_Device.Get(); }

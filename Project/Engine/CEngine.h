@@ -2,7 +2,7 @@
 
 #include "CMesh.h"
 #include "CShader.h"
-#include "CConstBuffer.h"
+//#include "CConstBuffer.h"
 
 //struct tConstantBuffer
 //{
@@ -21,11 +21,11 @@ private:
 
 	Vec2 m_vResolution;
 
-	Vec2 m_vPosition;
+	//Vec2 m_vPosition;
 
-	CConstBuffer* CB;
+	//CConstBuffer* CB;
 
-	float m_MovingDist;
+	//float m_MovingDist;
 public:
 	Vec2 GetWindowResolution() { return m_vResolution; }
 	HWND GetMainWindowHandle() { return m_hWnd; }
@@ -37,7 +37,7 @@ public:
 	//void CreateMesh();
 
 	//void SetPosition(Vec2 _pos);
-	void MovePosition();
+	//void MovePosition();
 
 private:
 	void EngineTick();

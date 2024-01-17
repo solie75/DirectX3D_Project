@@ -4,6 +4,7 @@
 #include "CMesh.h"
 #include "CShader.h"
 #include "CTexture.h"
+#include "CMaterial.h"
 
 class CResMgr
 	: public CSingleton<CResMgr>
@@ -13,7 +14,6 @@ private:
 	map<wstring, Ptr<CRes>> m_arrRes[(UINT)RES_TYPE::END];
 	//bool m_changed; // 이걸 어디에 쓰는 거지? -> ContentUI 에서 ResetContent() 를 호출하는 기준이된다. 일단은 주석처리
 
-
 public:
 	void ResMgrInit();
 	void ResMgrTick();
@@ -21,6 +21,7 @@ public:
 private:
 	void CreateDefaultMesh();
 	void CreateDefaultShader();
+	void CreateDefaultMaterial();
 	void LoadDefaultTexture();
 
 public:
@@ -45,6 +46,8 @@ RES_TYPE GetResType()
         return RES_TYPE::SHADER;
 	if (typeid(T).hash_code() == typeid(CTexture).hash_code())
 		return RES_TYPE::TEXTURE;
+	if (typeid(T).hash_code() == typeid(CMaterial).hash_code())
+		return RES_TYPE::MATERIAL;
 
     return RES_TYPE::END;
 }

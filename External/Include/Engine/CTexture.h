@@ -29,9 +29,13 @@ public:
     virtual HRESULT SaveRes(const wstring& _strFilePath) override;
 
     void UpdateTexData(int _iRegisterNum);
+
+    static void ClearTexRegister(int _iRegisterNum); // 왜 static 으로 선언했을까?
+    //void ClearAllTexRegister();
     
 public:
     CTexture(bool _bEngine = false);
     ~CTexture();
 };
 
+ 

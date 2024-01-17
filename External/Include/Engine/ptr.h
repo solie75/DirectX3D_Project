@@ -91,3 +91,15 @@ public:
 		}
 	}
 };
+
+template<typename T>
+bool operator == (void* _res, const Ptr<T>& _ptr)
+{
+	return _res == _ptr.Get();
+}
+
+template<typename T>
+bool operator != (void* _res, const Ptr<T>& _ptr)
+{
+	return _res != _ptr.Get();
+}

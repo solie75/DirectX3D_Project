@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 #define DEVICE CDevice::GetInst()->GetDevice()
 #define CONTEXT CDevice::GetInst()->GetDeviceContext()
 
@@ -17,7 +15,6 @@ enum class RES_TYPE
 	TEXTURE,
 	SHADER,
 	MATERIAL,
-
 	END,
 };
 
@@ -58,8 +55,21 @@ enum class SHADER_STAGE
 enum class CB_TYPE
 {
 	TRANSFORM,
+	MATERIAL,
 	END,
 };
+
+enum class COMPONENT_TYPE
+{
+	// update
+	TRNASFORM,
+
+	// render
+	MESHRENDER,
+
+	END,
+};
+
 
 enum MATERIAL_SCALAR_PARAM
 {

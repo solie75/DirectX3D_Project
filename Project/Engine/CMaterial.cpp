@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CMaterial.h"
 #include "CPathMgr.h"
+#include "CConstBuffer.h"
+#include "CDevice.h"
 
 CMaterial::CMaterial(bool _bEngine)
     : CRes(RES_TYPE::MATERIAL)
@@ -173,6 +175,23 @@ void CMaterial::UpdateMtrlData()
 	m_pShader->UpdateShaderDate();
 
 	// Texture Update
-	 
+	for (UINT i = 0; i < TEX_END; ++i)
+	{
+		if (nullptr == m_arrTex[i])
+		{
+			m_MtrlConst.arrTex[i] = 0;
+			CTexture::ClearTexRegister(i);
+			//continue; // 원래는 여기 continue 를 활성화 한다 왜지?
+		}
+		else
+		{
+			m_MtrlConst.arrTex[i] = 1;
+			m_arrTex[i]->UpdateTexData(i);
+		}
+	}
+
+	CConstBuffer* pMtrlConstBuffer = CDevice::GetInst()->GetConstBuffer(CB_TYPE::MATERIAL);
+	pMtrlConstBuffer->SetCBData(&m_MtrlConst);
+	pMtrlConstBuffer->UpdateCBData();
 }
 

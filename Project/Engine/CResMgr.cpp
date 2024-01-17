@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "CResMgr.h"
-#include "CMesh.h"
-#include "CShader.h"
 #include "CPathMgr.h"
 
 CResMgr::CResMgr()
@@ -17,6 +15,7 @@ void CResMgr::ResMgrInit()
 	CreateDefaultMesh();
 	CreateDefaultShader();
 	LoadDefaultTexture();
+	CreateDefaultMaterial();
 }
 
 void CResMgr::ResMgrTick()
@@ -154,6 +153,26 @@ void CResMgr::CreateDefaultShader()
 	tempShader = FindRes<CShader>(L"Std2DShader");
 }
 
+void CResMgr::CreateDefaultMaterial()
+{
+	// Create Material
+	Ptr<CMaterial> tempMtrl = nullptr;
+	tempMtrl = new CMaterial();
+
+	// Set Shader
+	Ptr<CShader> tempShader = nullptr;
+	tempShader = FindRes<CShader>(L"Std2DShader");
+	tempMtrl->SetShader(tempShader);
+
+	// Set Texture
+	Ptr<CTexture> tempTex = nullptr;
+	tempTex = FindRes<CTexture>(L"Fighter");
+	tempMtrl->SetMtrlTexParam(TEX_0, tempTex);
+
+	// Add Material to ResMgr
+	AddRes(L"DefaultMtrl", tempMtrl);
+}
+
 void CResMgr::LoadDefaultTexture()
 {
 	wstring strContent = CPathMgr::GetInst()->GetContentPath();
@@ -165,7 +184,7 @@ void CResMgr::LoadDefaultTexture()
 	AddRes(L"Fighter", pRes);
 
 	// 여기에서 렌더링 단계에 바인딩
-	((CTexture*)pRes.Get())->UpdateTexData(0);
+	//((CTexture*)pRes.Get())->UpdateTexData(0); // -> CMaterial의 UpdateMtrlData() 함수에서 진행된다.
 }
 
 void CResMgr::DeleteRes(RES_TYPE _type, const wstring& _strKey)

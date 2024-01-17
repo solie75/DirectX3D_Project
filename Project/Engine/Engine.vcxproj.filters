@@ -67,6 +67,12 @@
     <Filter Include="Source\07.Resource\03. Material">
       <UniqueIdentifier>{849715fa-4ed5-4dd5-921f-2084de3065cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\05.GameObject\Component">
+      <UniqueIdentifier>{b4bcdbfc-9dbd-41ae-9009-5a31d509d635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\05.GameObject\Component\RenderComponent">
+      <UniqueIdentifier>{7b422a2c-3f81-450d-b3e0-abb25b39af59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -127,7 +133,21 @@
     <ClInclude Include="CConstBuffer.h">
       <Filter>Source\02.Device\ConstBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="CMaterial.h" />
+    <ClInclude Include="CMaterial.h">
+      <Filter>Source\07.Resource\03. Material</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameObject.h">
+      <Filter>Source\05.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CComponent.h">
+      <Filter>Source\05.GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Source\00.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CRenderComponent.h">
+      <Filter>Source\05.GameObject\Component\RenderComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -170,7 +190,18 @@
     <ClCompile Include="CConstBuffer.cpp">
       <Filter>Source\02.Device\ConstBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="CMaterial.cpp" />
+    <ClCompile Include="CMaterial.cpp">
+      <Filter>Source\07.Resource\03. Material</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject.cpp">
+      <Filter>Source\05.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponent.cpp">
+      <Filter>Source\05.GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderComponent.cpp">
+      <Filter>Source\05.GameObject\Component\RenderComponent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

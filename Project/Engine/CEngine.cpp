@@ -9,8 +9,9 @@
 
 CEngine::CEngine()
     : m_hWnd(nullptr)
-    , m_vPosition(0.f, 0.f)
-    , m_MovingDist(0.2f)
+    , m_vResolution(0.f, 0.f)
+    //, m_vPosition(0.f, 0.f)
+    //, m_MovingDist(0.2f)
 {
 }
 
@@ -38,8 +39,9 @@ int CEngine::EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight)
     CTimeMgr::GetInst()->TimeMgrInit();
     CResMgr::GetInst()->ResMgrInit();
 
-    CB = new CConstBuffer(0);
-    CB->CreateCB(sizeof(TransPos), 1);
+
+    //CB = new CConstBuffer(0);
+    //CB->CreateCB(sizeof(TransPos), 1);
 
     return S_OK;
 }
@@ -50,40 +52,43 @@ void CEngine::EngineProgress()
     EngineRender();
 }
 
-void CEngine::MovePosition()
-{
-    if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::TAP)
-    {
-        m_vPosition.x -= m_MovingDist;
-    }
-    if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::TAP)
-    {
-        m_vPosition.x += m_MovingDist;
-    }
-    if (CKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::TAP)
-    {
-        m_vPosition.y += m_MovingDist;
-    }
-    if (CKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::TAP)
-    {
-        m_vPosition.y -= m_MovingDist;
-    }
-    TransPos transPos;
-    transPos.TransPosX = m_vPosition.x;
-    transPos.TransPosY = m_vPosition.y;
-    CB->SetCBData(&transPos);
-}
+//void CEngine::MovePosition()
+//{
+//    if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::TAP)
+//    {
+//        m_vPosition.x -= m_MovingDist;
+//    }
+//    if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::TAP)
+//    {
+//        m_vPosition.x += m_MovingDist;
+//    }
+//    if (CKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::TAP)
+//    {
+//        m_vPosition.y += m_MovingDist;
+//    }
+//    if (CKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::TAP)
+//    {
+//        m_vPosition.y -= m_MovingDist;
+//    }
+//    TransPos transPos;
+//    transPos.TransPosX = m_vPosition.x;
+//    transPos.TransPosY = m_vPosition.y;
+//    CB->SetCBData(&transPos);
+//}
 
 void CEngine::EngineTick()
 {
     // Manager Tick
     CTimeMgr::GetInst()->TimeMgrTick();
     CKeyMgr::GetInst()->KeyMgrTick();
-    MovePosition();
-    CB->UpdateCBData();
+    //MovePosition();
+    //CB->UpdateCBData();
 
-    Ptr<CShader> tempShader = CResMgr::GetInst()->FindRes<CShader>(L"Std2DShader");
-    tempShader->UpdateShaderDate();
+    Ptr<CMaterial> tempMaterial = CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl");
+    tempMaterial->UpdateMtrlData();
+
+   /* Ptr<CShader> tempShader = CResMgr::GetInst()->FindRes<CShader>(L"Std2DShader"); // -> CMaterial::UpdateMtrlData() 에서 진행한다.
+    tempShader->UpdateShaderDate();*/
 }
 
 void CEngine::EngineRender()

@@ -4,13 +4,14 @@
 CDevice::CDevice()
     : m_hWnd(nullptr)
     , m_ViewPort{}
+    , m_arrConstBuffer{}
 {
 
 }
 
 CDevice::~CDevice()
 {
-
+    Safe_Del_Array(m_arrConstBuffer);
 }
 
 HRESULT CDevice::DeviceInit(HWND _hWnd, UINT _width, UINT _height)
@@ -87,6 +88,9 @@ HRESULT CDevice::DeviceInit(HWND _hWnd, UINT _width, UINT _height)
     //    return E_FAIL;
     //}
 
+    // ConstantBuffer Init
+    CreateConstBuffers();
+
     return S_OK;
 }
 
@@ -96,6 +100,11 @@ void CDevice::ClearTarget()
 
     m_Context->ClearRenderTargetView(m_RTV.Get(), bgColor);
     m_Context->ClearDepthStencilView(m_DSV.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+}
+
+CConstBuffer* CDevice::GetConstBuffer(CB_TYPE _type)
+{
+    return m_arrConstBuffer[(UINT)_type];
 }
 
 HRESULT CDevice::CreateSwapChain()
@@ -174,6 +183,15 @@ HRESULT CDevice::CreateView()
     }
 
     return S_OK;
+}
+
+void CDevice::CreateConstBuffers()
+{
+    /*m_arrConstBuffer[(UINT)CB_TYPE::TRANSFORM] = new CConstBuffer((UINT)CB_TYPE::TRANSFORM);
+    m_arrConstBuffer[(UINT)CB_TYPE::TRANSFORM]->CreateCB(sizeof(tTransform), 1);*/
+
+    m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL] = new CConstBuffer((UINT)CB_TYPE::TRANSFORM);
+    m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL]->CreateCB(sizeof(tMtrlConst), 1);
 }
 
 //HRESULT CDevice::CreateRasterizerState()

@@ -100,3 +100,6 @@ bool operator == (void* _res, const Ptr<T>& _ptr)
 
 template<typename T>
 bool operator != (void* _res, const Ptr<T>& _ptr)
+{
+	return _res != _ptr.Get();
+}
