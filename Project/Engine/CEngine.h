@@ -2,6 +2,7 @@
 
 #include "CMesh.h"
 #include "CShader.h"
+#include "CGameObject.h"
 //#include "CConstBuffer.h"
 
 //struct tConstantBuffer
@@ -26,6 +27,8 @@ private:
 	//CConstBuffer* CB;
 
 	//float m_MovingDist;
+
+	CGameObject* m_pGameObj;
 public:
 	Vec2 GetWindowResolution() { return m_vResolution; }
 	HWND GetMainWindowHandle() { return m_hWnd; }

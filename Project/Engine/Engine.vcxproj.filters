@@ -73,6 +73,9 @@
     <Filter Include="Source\05.GameObject\Component\RenderComponent">
       <UniqueIdentifier>{7b422a2c-3f81-450d-b3e0-abb25b39af59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\05.GameObject\Component\RenderComponent\MeshRender">
+      <UniqueIdentifier>{82dea319-7a4a-4fb1-a47d-e73e94b00afb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -148,6 +151,9 @@
     <ClInclude Include="CRenderComponent.h">
       <Filter>Source\05.GameObject\Component\RenderComponent</Filter>
     </ClInclude>
+    <ClInclude Include="CMeshRender.h">
+      <Filter>Source\05.GameObject\Component\RenderComponent\MeshRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -201,6 +207,9 @@
     </ClCompile>
     <ClCompile Include="CRenderComponent.cpp">
       <Filter>Source\05.GameObject\Component\RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="CMeshRender.cpp">
+      <Filter>Source\05.GameObject\Component\RenderComponent\MeshRender</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 #define DEVICE CDevice::GetInst()->GetDevice()
 #define CONTEXT CDevice::GetInst()->GetDeviceContext()
 
@@ -60,6 +58,18 @@ enum class CB_TYPE
 	MATERIAL,
 	END,
 };
+
+enum class COMPONENT_TYPE
+{
+	// update
+	TRNASFORM,
+
+	// render
+	MESHRENDER,
+
+	END,
+};
+
 
 enum MATERIAL_SCALAR_PARAM
 {

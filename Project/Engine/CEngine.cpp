@@ -6,10 +6,13 @@
 #include "CDevice.h"
 #include "CResMgr.h"
 
+#include "CMeshRender.h"
+
 
 CEngine::CEngine()
     : m_hWnd(nullptr)
     , m_vResolution(0.f, 0.f)
+    , m_pGameObj(nullptr)
     //, m_vPosition(0.f, 0.f)
     //, m_MovingDist(0.2f)
 {
@@ -39,9 +42,15 @@ int CEngine::EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight)
     CTimeMgr::GetInst()->TimeMgrInit();
     CResMgr::GetInst()->ResMgrInit();
 
-
-    //CB = new CConstBuffer(0);
-    //CB->CreateCB(sizeof(TransPos), 1);
+    // GameObject Init
+    // CResMgr::ResMgrInit() 에서 생성된 Mesh 와 Material 을 가진 Mesh render 를 GameObject 에 추가한다.
+    m_pGameObj = new CGameObject;
+    CMeshRender* tempMeshRender = new CMeshRender;
+    Ptr<CMesh> tempMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
+    tempMeshRender->SetMesh(tempMesh);
+    Ptr<CMaterial> tempMaterial = CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl");
+    tempMeshRender->SetMaterial(tempMaterial);
+    m_pGameObj->AddComponent(tempMeshRender);
 
     return S_OK;
 }
@@ -84,8 +93,11 @@ void CEngine::EngineTick()
     //MovePosition();
     //CB->UpdateCBData();
 
-    Ptr<CMaterial> tempMaterial = CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl");
-    tempMaterial->UpdateMtrlData();
+   /* Ptr<CMaterial> tempMaterial = CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl");
+    tempMaterial->UpdateMtrlData();*/
+
+    // GameObject Tick
+    m_pGameObj->ObjTick();
 
    /* Ptr<CShader> tempShader = CResMgr::GetInst()->FindRes<CShader>(L"Std2DShader"); // -> CMaterial::UpdateMtrlData() 에서 진행한다.
     tempShader->UpdateShaderDate();*/
@@ -98,6 +110,8 @@ void CEngine::EngineRender()
 
     CDevice::GetInst()->OMSet();
 
-    Ptr<CMesh> tempMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
-    tempMesh->RenderMesh();
+   /* Ptr<CMesh> tempMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
+    tempMesh->RenderMesh();*/
+
+    m_pGameObj->ObjRender();
 }

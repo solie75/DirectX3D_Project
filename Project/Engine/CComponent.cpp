@@ -28,6 +28,11 @@ CGameObject* CComponent::GetOwnerObj()
 	return m_pOwner;
 }
 
+void CComponent::SetOwnerObj(CGameObject* _owner)
+{
+	m_pOwner = _owner;
+}
+
 void CComponent::CompBegin()
 {
 }

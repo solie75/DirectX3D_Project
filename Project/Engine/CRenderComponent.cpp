@@ -10,6 +10,11 @@ CRenderComponent::~CRenderComponent()
 {
 }
 
+void CRenderComponent::CompRender()
+{
+    return ;
+}
+
 void CRenderComponent::SetMesh(Ptr<CMesh> _mesh)
 {
     m_pMesh = _mesh;
