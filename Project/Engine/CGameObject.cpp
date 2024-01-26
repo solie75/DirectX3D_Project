@@ -25,7 +25,7 @@ CGameObject::~CGameObject()
     Safe_Del_Array(m_arrCom); // ...s)
 }
 
-void CGameObject::ObjBegin()
+void CGameObject::ObjInit()
 {
 }
 

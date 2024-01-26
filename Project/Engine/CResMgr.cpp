@@ -160,28 +160,46 @@ void CResMgr::CreateDefaultMaterial()
 	tempMtrl = new CMaterial();
 
 	// Set Shader
-	Ptr<CShader> tempShader = nullptr;
-	tempShader = FindRes<CShader>(L"Std2DShader");
-	tempMtrl->SetShader(tempShader);
+	//Ptr<CShader> tempShader = nullptr;
+	//tempShader = FindRes<CShader>(L"Std2DShader");
+	//tempMtrl->SetShader(tempShader);
+	tempMtrl->SetShader(FindRes<CShader>(L"Std2DShader"));
 
 	// Set Texture
-	Ptr<CTexture> tempTex = nullptr;
-	tempTex = FindRes<CTexture>(L"Fighter");
-	tempMtrl->SetMtrlTexParam(TEX_0, tempTex);
+	//Ptr<CTexture> tempTex = nullptr;
+	//tempTex = FindRes<CTexture>(L"Fighter");
+	//tempMtrl->SetMtrlTexParam(TEX_0, tempTex);
+	tempMtrl->SetMtrlTexParam(TEX_0, FindRes<CTexture>(L"Fighter"));
 
 	// Add Material to ResMgr
-	AddRes(L"DefaultMtrl", tempMtrl);
+	AddRes(L"DefaultMtrl1", tempMtrl);
+
+	Ptr<CMaterial> tempMtrl2 = nullptr;
+	tempMtrl2 = new CMaterial();
+
+	tempMtrl2->SetShader(FindRes<CShader>(L"Std2DShader"));
+	tempMtrl2->SetMtrlTexParam(TEX_1, FindRes<CTexture>(L"Link"));
+
+	AddRes(L"DefaultMtrl2", tempMtrl2);
 }
 
 void CResMgr::LoadDefaultTexture()
 {
 	wstring strContent = CPathMgr::GetInst()->GetContentPath();
-	wstring strFilePath = strContent + L"Texture\\Fighter.bmp";
-	Ptr<CTexture> pRes = new CTexture;
-	pRes->SetRelativePath(L"Texture\\Fighter.bmp");
-	pRes->LoadRes(strFilePath);
+	wstring strFilePath1 = strContent + L"Texture\\Fighter.bmp";
+	Ptr<CTexture> pRes1 = new CTexture;
+	pRes1->SetRelativePath(L"Texture\\Fighter.bmp");
+	pRes1->LoadRes(strFilePath1);
 
-	AddRes(L"Fighter", pRes);
+	AddRes(L"Fighter", pRes1);
+
+	Ptr<CTexture> pRes2 = new CTexture; // 여기에서 new CTexture 를 새로 지정하지 않으면 pRes1 에 Link 가 저장된다.
+
+	wstring strFilePath2 = strContent + L"Texture\\Link.png";
+	pRes2->SetRelativePath(L"Texture\\Link.png");
+	pRes2->LoadRes(strFilePath2);
+
+	AddRes(L"Link", pRes2);
 
 	// 여기에서 렌더링 단계에 바인딩
 	//((CTexture*)pRes.Get())->UpdateTexData(0); // -> CMaterial의 UpdateMtrlData() 함수에서 진행된다.

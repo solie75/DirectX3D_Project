@@ -76,6 +76,12 @@
     <Filter Include="Source\05.GameObject\Component\RenderComponent\MeshRender">
       <UniqueIdentifier>{82dea319-7a4a-4fb1-a47d-e73e94b00afb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\04.Level\01.Level_Test1">
+      <UniqueIdentifier>{ced9b446-81b9-453e-85f8-c9d47c1a0dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\04.Level\02.Level_Test2">
+      <UniqueIdentifier>{3ddd977d-ca6b-4ed4-8591-718c05501573}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -154,6 +160,21 @@
     <ClInclude Include="CMeshRender.h">
       <Filter>Source\05.GameObject\Component\RenderComponent\MeshRender</Filter>
     </ClInclude>
+    <ClInclude Include="CLevel.h">
+      <Filter>Source\04.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>Source\04.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelMgr.h">
+      <Filter>Source\03.Manager\04.LevelMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel_Test1.h">
+      <Filter>Source\04.Level\01.Level_Test1</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel_Test2.h">
+      <Filter>Source\04.Level\02.Level_Test2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -210,6 +231,21 @@
     </ClCompile>
     <ClCompile Include="CMeshRender.cpp">
       <Filter>Source\05.GameObject\Component\RenderComponent\MeshRender</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp">
+      <Filter>Source\04.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Source\04.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelMgr.cpp">
+      <Filter>Source\03.Manager\04.LevelMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel_Test1.cpp">
+      <Filter>Source\04.Level\01.Level_Test1</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel_Test2.cpp">
+      <Filter>Source\04.Level\02.Level_Test2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

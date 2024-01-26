@@ -70,6 +70,22 @@ enum class COMPONENT_TYPE
 	END,
 };
 
+enum class LEVEL_TYPE
+{
+	LEVEL_TYPE_TEST1,
+	LEVEL_TYPE_TEST2,
+
+	END,
+};
+
+enum class LAYER_TYPE
+{
+	LAYER_TYPE_TEST1,
+	LAYER_TYPE_TEST2,
+
+	END,
+};
+
 
 enum MATERIAL_SCALAR_PARAM
 {

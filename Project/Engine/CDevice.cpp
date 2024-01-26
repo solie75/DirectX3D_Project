@@ -190,7 +190,7 @@ void CDevice::CreateConstBuffers()
     /*m_arrConstBuffer[(UINT)CB_TYPE::TRANSFORM] = new CConstBuffer((UINT)CB_TYPE::TRANSFORM);
     m_arrConstBuffer[(UINT)CB_TYPE::TRANSFORM]->CreateCB(sizeof(tTransform), 1);*/
 
-    m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL] = new CConstBuffer((UINT)CB_TYPE::TRANSFORM);
+    m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL] = new CConstBuffer((UINT)CB_TYPE::MATERIAL);
     m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL]->CreateCB(sizeof(tMtrlConst), 1);
 }
 

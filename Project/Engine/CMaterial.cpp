@@ -177,13 +177,13 @@ void CMaterial::UpdateMtrlData()
 	// Texture Update
 	for (UINT i = 0; i < TEX_END; ++i)
 	{
-		if (nullptr == m_arrTex[i])
+		if (nullptr == m_arrTex[i]) // 텍스쳐가 존재하지 않는다면
 		{
 			m_MtrlConst.arrTex[i] = 0;
 			CTexture::ClearTexRegister(i);
 			//continue; // 원래는 여기 continue 를 활성화 한다 왜지?
 		}
-		else
+		else // 텍스쳐가 존재 한다면
 		{
 			m_MtrlConst.arrTex[i] = 1;
 			m_arrTex[i]->UpdateTexData(i);

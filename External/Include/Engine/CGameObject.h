@@ -17,7 +17,7 @@ public:
     CLONE(CGameObject);
 
 public:
-    void ObjBegin();
+    void ObjInit();
     void ObjTick();
     void ObjFinaltick();
     void ObjRender();

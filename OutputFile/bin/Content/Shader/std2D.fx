@@ -33,9 +33,26 @@ VS_OUT VS_Std2D(VS_IN _in)
 float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
     float4 outputColor;
+    
+    
 
-outputColor = g_tex_0.Sample(g_sam_0, _in.UV);
-
+    if (g_btex_0 != 0)
+    {
+        outputColor = g_tex_0.Sample(g_sam_0, _in.UV);
+    }
+    
+    if (g_btex_1 != 0)
+    {
+        outputColor = g_tex_1.Sample(g_sam_0, _in.UV);
+    }
+        
+    //else if (g_btex_1 == 1)
+    //{
+    //    outputColor = g_tex_1.Sample(g_sam_0, _in.UV);
+    //}
+    
+   // outputColor = g_tex_0.Sample(g_sam_0, _in.UV);
+    
  //   if (g_tex_0)
  //   {
  //       outputColor = g_tex_0.Sample(g_sam_0, _in.UV);
@@ -45,7 +62,7 @@ outputColor = g_tex_0.Sample(g_sam_0, _in.UV);
  //       outputColor = float4(1.f, 0.f, 0.f, 1.f);
  //}
 
-    return outputColor;
+        return outputColor;
 }
 
 #endif

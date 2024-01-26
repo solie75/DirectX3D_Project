@@ -12,7 +12,7 @@ CRenderComponent::~CRenderComponent()
 
 void CRenderComponent::CompRender()
 {
-    return ;
+    return;
 }
 
 void CRenderComponent::SetMesh(Ptr<CMesh> _mesh)

@@ -20,7 +20,7 @@ public:
     CGameObject* GetOwnerObj();
     void SetOwnerObj(CGameObject* _owner);
 
-    void CompBegin();
+    void CompInit();
     void CompTick();
     void CompFinalTick(); // 왜 Final tick 을 순수가상함수로 두는 걸까? 각자 필요에 따라 넣으면 되는거 아닌가?
     // 너무 기능을 Tick 말고 FinalTick() 에만 몰아 넣는것 아닌가?

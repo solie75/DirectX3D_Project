@@ -68,6 +68,7 @@ class CKeyMgr
 	: public CSingleton<CKeyMgr>
 {
 	SINGLE(CKeyMgr);
+
 private:
 	vector<tKeyInfo> m_vecKey;
 	Vec2 m_vMousePos;

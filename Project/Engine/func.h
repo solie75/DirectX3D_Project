@@ -13,7 +13,7 @@ void Safe_Del_Array(T* (&arr)[Size])
 	}
 }
 
-template<typename T, UINT Size>
+template<typename T>
 void Safe_Del_Vec(vector<T*>& _vec)
 {
 	for (size_t i = 0; i < _vec.size(); ++i)

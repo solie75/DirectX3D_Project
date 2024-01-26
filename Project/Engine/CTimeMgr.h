@@ -3,6 +3,7 @@ class CTimeMgr
 	: public CSingleton<CTimeMgr>
 {
 	SINGLE(CTimeMgr);
+
 private:
 	LARGE_INTEGER m_liPrevCount;
 	LARGE_INTEGER m_liCurCount;
