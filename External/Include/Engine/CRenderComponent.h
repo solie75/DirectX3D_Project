@@ -16,8 +16,8 @@ public:
     ~CRenderComponent();
 
 public:
-    //virtual void CompRender() = 0;
-    void CompRender() override;
+    virtual void CompRender() = 0;
+    //void CompRender() override;
 
 public:
     void SetMesh(Ptr<CMesh> _mesh);

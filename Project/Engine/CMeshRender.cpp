@@ -4,6 +4,7 @@
 CMeshRender::CMeshRender()
 	: CRenderComponent(COMPONENT_TYPE::MESHRENDER)
 {
+	SetName(L"MeshRender");
 }
 
 CMeshRender::~CMeshRender()

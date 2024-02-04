@@ -10,10 +10,10 @@ CRenderComponent::~CRenderComponent()
 {
 }
 
-void CRenderComponent::CompRender()
-{
-    return;
-}
+//void CRenderComponent::CompRender()
+//{
+//    return;
+//}
 
 void CRenderComponent::SetMesh(Ptr<CMesh> _mesh)
 {

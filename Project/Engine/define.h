@@ -62,7 +62,8 @@ enum class CB_TYPE
 enum class COMPONENT_TYPE
 {
 	// update
-	TRNASFORM,
+	TRANSFORM,
+	CAMERA,
 
 	// render
 	MESHRENDER,
@@ -80,10 +81,23 @@ enum class LEVEL_TYPE
 
 enum class LAYER_TYPE
 {
-	LAYER_TYPE_TEST1,
-	LAYER_TYPE_TEST2,
+	LAYER_TEXTURE,
+	LAYER_CAMERA,
 
 	END,
+};
+
+enum class PROJ_TYPE
+{
+	ORTHOGRAPHIC,
+	PERSPECTIVE,
+};
+
+enum class DIR_TYPE
+{
+	RIGHT,
+	UP,
+	FRONT,
 };
 
 

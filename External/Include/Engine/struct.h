@@ -29,3 +29,15 @@ struct tMtrlConst
 	// Texture setting bool
 	int arrTex[(UINT)MATERIAL_TEX_PARAM::TEX_END];
 };
+
+struct tTransform
+{
+	Matrix matWorld;
+	Matrix matView;
+	Matrix matProj;
+
+	Matrix matWV;
+	Matrix matWVP;
+};
+
+extern tTransform g_transform;

@@ -82,6 +82,12 @@
     <Filter Include="Source\04.Level\02.Level_Test2">
       <UniqueIdentifier>{3ddd977d-ca6b-4ed4-8591-718c05501573}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\05.GameObject\Component\01.Transform">
+      <UniqueIdentifier>{c6efc7e2-aba3-410c-ba37-96ffcf90fcc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\05.GameObject\Component\02.Camera">
+      <UniqueIdentifier>{66971385-bf60-4845-afe5-4bcd68072881}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -175,6 +181,12 @@
     <ClInclude Include="CLevel_Test2.h">
       <Filter>Source\04.Level\02.Level_Test2</Filter>
     </ClInclude>
+    <ClInclude Include="CTransform.h">
+      <Filter>Source\05.GameObject\Component\01.Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Source\05.GameObject\Component\02.Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -246,6 +258,15 @@
     </ClCompile>
     <ClCompile Include="CLevel_Test2.cpp">
       <Filter>Source\04.Level\02.Level_Test2</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform.cpp">
+      <Filter>Source\05.GameObject\Component\01.Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Source\05.GameObject\Component\02.Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="extern.cpp">
+      <Filter>Source\00.Header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

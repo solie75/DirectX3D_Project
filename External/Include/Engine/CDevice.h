@@ -66,5 +66,6 @@ private:
 public:
 	ID3D11Device* GetDevice() { return m_Device.Get(); }
 	ID3D11DeviceContext* GetDeviceContext() { return m_Context.Get(); }
+	Vec2 GetRTResolution() { return m_vRTResolution; }
 };
 

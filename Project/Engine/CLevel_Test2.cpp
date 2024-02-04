@@ -15,7 +15,7 @@ CLevel_Test2::~CLevel_Test2()
 void CLevel_Test2::LevelInit()
 {
     CGameObject* ObjTest2 = new CGameObject;
-    AddGameObj(ObjTest2, (UINT)LAYER_TYPE::LAYER_TYPE_TEST2);
+    AddGameObj(ObjTest2, (UINT)LAYER_TYPE::LAYER_CAMERA);
 
     CMeshRender* tempMeshRender = new CMeshRender;
     //Ptr<CMesh> tempMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
