@@ -2,12 +2,14 @@
 #ifndef _VALUE
 #define _VALUE
 
-cbuffer TRANSPOS : register(b0)
+cbuffer TRANSFORM : register(b0)
 {
-    float TransPosX;
-    float TransPosY;
-    float pad1;
-    float pad2;
+    row_major matrix g_matWorld;
+    row_major matrix g_matView;
+    row_major matrix g_matProj;
+
+    row_major matrix g_matWV;
+    row_major matrix g_matWVP;
 }
 
 cbuffer MATERIAL : register(b1)

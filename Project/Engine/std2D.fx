@@ -21,9 +21,7 @@ VS_OUT VS_Std2D(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
     
-    output.Position = float4(_in.LocalPos, 1.f);
-    output.Position.x += TransPosX;
-    output.Position.y += TransPosY;
+    output.Position = mul(float4(_in.LocalPos, 1.f), g_matWVP);
     output.UV = _in.UV;
 
     return output;

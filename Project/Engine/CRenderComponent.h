@@ -7,17 +7,16 @@
 class CRenderComponent :
     public CComponent
 {
+public:
+    CRenderComponent(COMPONENT_TYPE _type);
+    ~CRenderComponent();
+
 private:
     Ptr<CMesh> m_pMesh;
     Ptr<CMaterial> m_pMaterial;
 
 public:
-    CRenderComponent(COMPONENT_TYPE _type);
-    ~CRenderComponent();
-
-public:
     virtual void CompRender() = 0;
-    //void CompRender() override;
 
 public:
     void SetMesh(Ptr<CMesh> _mesh);

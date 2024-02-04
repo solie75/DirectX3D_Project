@@ -4,16 +4,12 @@
 CRenderComponent::CRenderComponent(COMPONENT_TYPE _type)
     : CComponent(_type)
 {
+    SetBoolRenderComp(true);
 }
 
 CRenderComponent::~CRenderComponent()
 {
 }
-
-//void CRenderComponent::CompRender()
-//{
-//    return;
-//}
 
 void CRenderComponent::SetMesh(Ptr<CMesh> _mesh)
 {

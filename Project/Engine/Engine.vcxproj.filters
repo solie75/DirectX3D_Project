@@ -67,25 +67,25 @@
     <Filter Include="Source\07.Resource\03. Material">
       <UniqueIdentifier>{849715fa-4ed5-4dd5-921f-2084de3065cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\05.GameObject\Component">
-      <UniqueIdentifier>{b4bcdbfc-9dbd-41ae-9009-5a31d509d635}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\05.GameObject\Component\RenderComponent">
-      <UniqueIdentifier>{7b422a2c-3f81-450d-b3e0-abb25b39af59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\05.GameObject\Component\RenderComponent\MeshRender">
-      <UniqueIdentifier>{82dea319-7a4a-4fb1-a47d-e73e94b00afb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\04.Level\01.Level_Test1">
       <UniqueIdentifier>{ced9b446-81b9-453e-85f8-c9d47c1a0dcc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\04.Level\02.Level_Test2">
       <UniqueIdentifier>{3ddd977d-ca6b-4ed4-8591-718c05501573}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\05.GameObject\Component\01.Transform">
+    <Filter Include="Source\06. Component">
+      <UniqueIdentifier>{b4bcdbfc-9dbd-41ae-9009-5a31d509d635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\RenderComponent">
+      <UniqueIdentifier>{7b422a2c-3f81-450d-b3e0-abb25b39af59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\RenderComponent\MeshRender">
+      <UniqueIdentifier>{82dea319-7a4a-4fb1-a47d-e73e94b00afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\01.Transform">
       <UniqueIdentifier>{c6efc7e2-aba3-410c-ba37-96ffcf90fcc3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\05.GameObject\Component\02.Camera">
+    <Filter Include="Source\06. Component\02.Camera">
       <UniqueIdentifier>{66971385-bf60-4845-afe5-4bcd68072881}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -155,16 +155,16 @@
       <Filter>Source\05.GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CComponent.h">
-      <Filter>Source\05.GameObject\Component</Filter>
+      <Filter>Source\06. Component</Filter>
     </ClInclude>
     <ClInclude Include="func.h">
       <Filter>Source\00.Header</Filter>
     </ClInclude>
     <ClInclude Include="CRenderComponent.h">
-      <Filter>Source\05.GameObject\Component\RenderComponent</Filter>
+      <Filter>Source\06. Component\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CMeshRender.h">
-      <Filter>Source\05.GameObject\Component\RenderComponent\MeshRender</Filter>
+      <Filter>Source\06. Component\RenderComponent\MeshRender</Filter>
     </ClInclude>
     <ClInclude Include="CLevel.h">
       <Filter>Source\04.Level</Filter>
@@ -182,10 +182,10 @@
       <Filter>Source\04.Level\02.Level_Test2</Filter>
     </ClInclude>
     <ClInclude Include="CTransform.h">
-      <Filter>Source\05.GameObject\Component\01.Transform</Filter>
+      <Filter>Source\06. Component\01.Transform</Filter>
     </ClInclude>
     <ClInclude Include="CCamera.h">
-      <Filter>Source\05.GameObject\Component\02.Camera</Filter>
+      <Filter>Source\06. Component\02.Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -236,13 +236,13 @@
       <Filter>Source\05.GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CComponent.cpp">
-      <Filter>Source\05.GameObject\Component</Filter>
+      <Filter>Source\06. Component</Filter>
     </ClCompile>
     <ClCompile Include="CRenderComponent.cpp">
-      <Filter>Source\05.GameObject\Component\RenderComponent</Filter>
+      <Filter>Source\06. Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CMeshRender.cpp">
-      <Filter>Source\05.GameObject\Component\RenderComponent\MeshRender</Filter>
+      <Filter>Source\06. Component\RenderComponent\MeshRender</Filter>
     </ClCompile>
     <ClCompile Include="CLevel.cpp">
       <Filter>Source\04.Level</Filter>
@@ -260,10 +260,10 @@
       <Filter>Source\04.Level\02.Level_Test2</Filter>
     </ClCompile>
     <ClCompile Include="CTransform.cpp">
-      <Filter>Source\05.GameObject\Component\01.Transform</Filter>
+      <Filter>Source\06. Component\01.Transform</Filter>
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
-      <Filter>Source\05.GameObject\Component\02.Camera</Filter>
+      <Filter>Source\06. Component\02.Camera</Filter>
     </ClCompile>
     <ClCompile Include="extern.cpp">
       <Filter>Source\00.Header</Filter>

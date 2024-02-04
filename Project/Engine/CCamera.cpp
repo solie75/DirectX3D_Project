@@ -85,16 +85,15 @@ void CCamera::CalViewMat()
 	// 카메라의 시점 방향을 z 축과 평행하게 만드는 회전 행렬
 	Matrix matRotForView = XMMatrixIdentity();
 
-	
 	Vec3 vRUF[3] = {};
 	for (int i = 0; i < 3; ++i)
 	{
 		vRUF[i] = GetOtherComp<CTransform>(COMPONENT_TYPE::TRANSFORM)->GetWorldDir((DIR_TYPE)i);
 	}
 
-	matRotForView._11 = vRUF->x;	matRotForView._12 = vRUF->x;	matRotForView._13 = vRUF->x;
-	matRotForView._21 = vRUF->y;	matRotForView._22 = vRUF->y;	matRotForView._23 = vRUF->y;
-	matRotForView._31 = vRUF->z;	matRotForView._32 = vRUF->z;	matRotForView._33 = vRUF->z;
+	matRotForView._11 = vRUF[0].x;	matRotForView._12 = vRUF[1].x;	matRotForView._13 = vRUF[2].x;
+	matRotForView._21 = vRUF[0].y;	matRotForView._22 = vRUF[1].y;	matRotForView._23 = vRUF[2].y;
+	matRotForView._31 = vRUF[0].z;	matRotForView._32 = vRUF[1].z;	matRotForView._33 = vRUF[2].z;
 
 	m_matView = matTransForView * matRotForView;
 }

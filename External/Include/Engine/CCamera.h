@@ -8,7 +8,6 @@ class CCamera :
 private:
     float m_fScale; // Orthographic 에서 사용하는 카메라 
     float m_fAspectRatio; // Perspective 에서 사용하는 카메라 종횡비
-    // m_fScale 과 m_fAspectRatio 가 하는 역할은 무엇인가?
 
 
     PROJ_TYPE m_ProjType;

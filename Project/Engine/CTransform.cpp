@@ -5,6 +5,7 @@
 
 CTransform::CTransform()
     : CComponent(COMPONENT_TYPE::TRANSFORM)
+    , m_vWorldPos(Vec3(0.f, 0.f, 0.f))
     , m_vWorldScale(Vec3(1.f, 1.f, 1.f))
     , m_vWorldDir{
         Vec3(1.f, 0.f, 0.f),
@@ -95,5 +96,13 @@ void CTransform::CompFinalTick()
 
 void CTransform::TransUpdateData()
 {
-    CConstBuffer* pTransfromBuffer = CDevice::GetInst()->GetConstBuffer(CB_TYPE::TRANSFORM);
+    // 위치 값 상수 버퍼에 대입 및 바인딩
+    CConstBuffer* pTransformBuffer = CDevice::GetInst()->GetConstBuffer(CB_TYPE::TRANSFORM);
+
+    g_transform.matWorld = m_matWorld;
+    g_transform.matWV = g_transform.matWorld * g_transform.matView;
+    g_transform.matWVP = g_transform.matWV * g_transform.matProj;
+
+    pTransformBuffer->SetCBData(&g_transform);
+    pTransformBuffer->UpdateCBData();
 }

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CMeshRender.h"
+#include "CTransform.h"
 
 CMeshRender::CMeshRender()
 	: CRenderComponent(COMPONENT_TYPE::MESHRENDER)
@@ -19,7 +20,8 @@ void CMeshRender::CompRender()
 	}
 
 	// Transform & Animation Update Part
-	// ...
+
+	GetOtherComp<CTransform>(COMPONENT_TYPE::TRANSFORM)->TransUpdateData();
 
 	// Material Update
 	GetMaterial()->UpdateMtrlData();

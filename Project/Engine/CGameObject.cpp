@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CGameObject.h"
+#include "CRenderComponent.h"
 
 CGameObject::CGameObject()
     : m_bDead(false)
@@ -44,18 +45,17 @@ void CGameObject::ObjTick()
 
 void CGameObject::ObjFinaltick()
 {  
+    for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
+    {
+        if (m_arrComp[i] != nullptr)
+        {
+            m_arrComp[i]->CompFinalTick();
+        }
+    }
 }
 
 void CGameObject::ObjRender()
 {
-    /*for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
-    {
-        if (m_arrComp[i] != nullptr)
-        {
-            m_arrComp[i]->CompRender();
-        }
-    }*/
-
     if (nullptr != m_pRenderComp)
     {
         m_pRenderComp->CompRender();
@@ -70,7 +70,7 @@ void CGameObject::AddComponent(CComponent* _component)
     assert(!m_arrComp[(UINT)_component->GetComponentType()]);
     
     // 전달된 인자가 보유하지 않은 컴포넌트인 경우
-    if (_Compoennt)
+    if(_component->IsRenderComp())
     {
         assert(!m_pRenderComp);
         m_pRenderComp = (CRenderComponent*)_component;
@@ -81,7 +81,3 @@ void CGameObject::AddComponent(CComponent* _component)
     }
 }
 
-//CComponent* CGameObject::GetComponent(COMPONENT_TYPE _type)
-//{
-//    return nullptr;
-//}
