@@ -6,7 +6,7 @@
 
 CCamera::CCamera()
 	: CComponent(COMPONENT_TYPE::CAMERA)
-	, m_ProjType(PROJ_TYPE::ORTHOGRAPHIC)
+	, m_ProjType(PROJ_TYPE::PERSPECTIVE)
 	, m_fScale(1.f)
 	, m_fAspectRatio(1.f)
 {
@@ -41,27 +41,35 @@ void CCamera::CompInit()
 
 void CCamera::CompTick()
 {
-	CTransform* tempTransform = GetOtherComp<CTransform>(COMPONENT_TYPE::TRANSFORM);
-	Vec3 tempPos = tempTransform->GetWorldPos();
+	//CTransform* tempTransform = GetOtherComp<CTransform>(COMPONENT_TYPE::TRANSFORM);
+	//Vec3 tempPos = tempTransform->GetWorldPos();
 
-	if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::TAP)
-	{
-		tempPos.x -= 0.2f;
-	}
-	if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::TAP)
-	{
-		tempPos.x += 0.2f;
-	}
-	if (CKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::TAP)
-	{
-		tempPos.y += 0.2f;
-	}
-	if (CKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::TAP)
-	{
-		tempPos.y -= 0.2f;
-	}
+	//if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::PRESSED)
+	//{
+	//	tempPos.x -= 0.2f;
+	//}
+	//if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::PRESSED)
+	//{
+	//	tempPos.x += 0.2f;
+	//}
+	//if (CKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::PRESSED)
+	//{
+	//	tempPos.y += 0.2f;
+	//}
+	//if (CKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::PRESSED)
+	//{
+	//	tempPos.y -= 0.2f;
+	//}
+	//if (CKeyMgr::GetInst()->GetKeyState(KEY::Q) == KEY_STATE::PRESSED)
+	//{
+	//	tempPos.z += 0.2f;
+	//}
+	//if (CKeyMgr::GetInst()->GetKeyState(KEY::W) == KEY_STATE::PRESSED)
+	//{
+	//	tempPos.z -= 0.2f;
+	//}
 
-	tempTransform->SetWorldPos(tempPos);
+	//tempTransform->SetWorldPos(tempPos);
 }
 
 void CCamera::CompFinalTick()
@@ -105,6 +113,7 @@ void CCamera::CalProjMat()
 	// =============================
 
 	m_matProj = XMMatrixIdentity();
+
 	if (PROJ_TYPE::ORTHOGRAPHIC == m_ProjType)
 	{
 		Vec2 vResolution = CDevice::GetInst()->GetRTResolution(); // GetRTResolution Ãß°¡

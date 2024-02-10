@@ -102,6 +102,10 @@ void CTransform::TransUpdateData()
     g_transform.matWorld = m_matWorld;
     g_transform.matWV = g_transform.matWorld * g_transform.matView;
     g_transform.matWVP = g_transform.matWV * g_transform.matProj;
+    //g_transform.matWVP._11 = 0.5f;
+    //g_transform.matWVP._22 = 0.5f;
+    //g_transform.matWVP._33 = 0.5f;
+    //g_transform.matWVP._43 = 0.f;
 
     pTransformBuffer->SetCBData(&g_transform);
     pTransformBuffer->UpdateCBData();

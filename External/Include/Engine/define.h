@@ -8,6 +8,13 @@
 
 #define SINGLE(type) private: type(); ~type(); friend class CSingleton<type>;
 
+#define DT CTimeMgr::GetInst()->GetDeltaTime()
+
+#define KEY_TAP(key) CKeyMgr::GetInst()->GetKeyState(key) == KEY_STATE::TAP
+#define KEY_PRESSED(key) CKeyMgr::GetInst()->GetKeyState(key) == KEY_STATE::PRESSED
+#define KEY_RELEASE(key) CKeyMgr::GetInst()->GetKeyState(key) == KEY_STATE::RELEASE
+
+
 // Resource Type
 enum class RES_TYPE
 {
@@ -68,6 +75,9 @@ enum class COMPONENT_TYPE
 	// render
 	MESHRENDER,
 
+	// script
+	SCRIPT,
+
 	END,
 };
 
@@ -98,6 +108,12 @@ enum class DIR_TYPE
 	RIGHT,
 	UP,
 	FRONT,
+};
+
+enum class SCRIPT_TYPE
+{
+	CAMERAMOVE_SCRIPT,
+	END,
 };
 
 

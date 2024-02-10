@@ -2,8 +2,6 @@
 #include "CEntity.h"
 #include "CGameObject.h"
 
-class CGameObject;
-
 #define GET_OTHER_COMPONENT(type) C##type* Get##type() (return m_pOwner->Get##type();)
 
 class CComponent :

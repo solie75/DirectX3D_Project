@@ -1,14 +1,9 @@
 #pragma once
 #include "CEntity.h"
-//#include "CComponent.h"
-//#include "CRenderComponent.h"
-
-//class CTransform;
-//class CCamera;
-//class CMeshRender;
 
 class CComponent;
 class CRenderComponent;
+class CScript;
 
 #define GET_COMPONENT(type, TYPE) C##type* Get##type() const {return (C##type*)m_arrComp[(UINT)COMPONENT_TYPE::TYPE]; }
 
@@ -20,6 +15,7 @@ private:
     bool m_bDead;
     CComponent* m_arrComp[(UINT)COMPONENT_TYPE::END]{};
     CRenderComponent* m_pRenderComp;
+    vector<CScript*> m_vecScript;
 
 public:
     CGameObject();

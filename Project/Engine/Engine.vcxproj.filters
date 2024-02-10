@@ -58,9 +58,6 @@
     <Filter Include="Source\07.Resource\1. Mesh">
       <UniqueIdentifier>{c5f02638-04e6-4f89-ae64-0ba7474de546}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\07.Resource\4. Shader">
-      <UniqueIdentifier>{71e06aff-1d08-4dde-a6d5-990c2e7074a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\02.Device\ConstBuffer">
       <UniqueIdentifier>{87c1805c-792b-49d2-a921-b0dff734afe0}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,24 @@
     </Filter>
     <Filter Include="Source\06. Component\02.Camera">
       <UniqueIdentifier>{66971385-bf60-4845-afe5-4bcd68072881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\Script">
+      <UniqueIdentifier>{77ae57bd-0a65-4b2e-a1b5-44e71b5c4203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\03.Manager\06.ScriptMgr">
+      <UniqueIdentifier>{0ef3c4d0-14be-42d6-9172-0abea31ed899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\Script\CameraMoveScript">
+      <UniqueIdentifier>{a7645bfa-1413-440b-8a87-1b365d18c88e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\03.Animation">
+      <UniqueIdentifier>{a83f5d83-990f-454e-b4fd-f8de2ef80c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\07.Resource\05. Animation">
+      <UniqueIdentifier>{fcb440e6-3f0c-46f6-9ef4-bb2d3342002b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\07.Resource\04. Shader">
+      <UniqueIdentifier>{71e06aff-1d08-4dde-a6d5-990c2e7074a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +157,7 @@
       <Filter>Source\00.Header</Filter>
     </ClInclude>
     <ClInclude Include="CShader.h">
-      <Filter>Source\07.Resource\4. Shader</Filter>
+      <Filter>Source\07.Resource\04. Shader</Filter>
     </ClInclude>
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CConstBuffer.h">
@@ -187,6 +202,19 @@
     <ClInclude Include="CCamera.h">
       <Filter>Source\06. Component\02.Camera</Filter>
     </ClInclude>
+    <ClInclude Include="CScript.h">
+      <Filter>Source\06. Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="CScriptMgr.h">
+      <Filter>Source\03.Manager\06.ScriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CCameraMoveScript.h">
+      <Filter>Source\06. Component\Script\CameraMoveScript</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator2D.h">
+      <Filter>Source\06. Component\03.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -223,7 +251,7 @@
       <Filter>Source\07.Resource</Filter>
     </ClCompile>
     <ClCompile Include="CShader.cpp">
-      <Filter>Source\07.Resource\4. Shader</Filter>
+      <Filter>Source\07.Resource\04. Shader</Filter>
     </ClCompile>
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CConstBuffer.cpp">
@@ -268,6 +296,19 @@
     <ClCompile Include="extern.cpp">
       <Filter>Source\00.Header</Filter>
     </ClCompile>
+    <ClCompile Include="CScript.cpp">
+      <Filter>Source\06. Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="CScriptMgr.cpp">
+      <Filter>Source\03.Manager\06.ScriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraMoveScript.cpp">
+      <Filter>Source\06. Component\Script\CameraMoveScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator2D.cpp">
+      <Filter>Source\06. Component\03.Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

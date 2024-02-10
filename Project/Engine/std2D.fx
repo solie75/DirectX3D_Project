@@ -6,7 +6,6 @@
 struct VS_IN
 {
     float3 LocalPos : POSITION;
-    float4 Color   : COLOR;
     float4 UV : TEXCOORD;
 };
 
@@ -29,7 +28,7 @@ VS_OUT VS_Std2D(VS_IN _in)
 
 float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
-    float4 outputColor;
+    float4 outputColor = (float4) 0.f;
     
     if (g_btex_0 != 0)
     {
@@ -41,7 +40,7 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
         outputColor = g_tex_1.Sample(g_sam_0, _in.UV);
     }
 
-        return outputColor;
+    return outputColor;
 }
 
 #endif
