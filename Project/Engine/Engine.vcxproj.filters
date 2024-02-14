@@ -214,7 +214,9 @@
     <ClInclude Include="CAnimator2D.h">
       <Filter>Source\06. Component\03.Animation</Filter>
     </ClInclude>
-    <ClInclude Include="CAnimation.h" />
+    <ClInclude Include="CAnimation2D.h">
+      <Filter>Source\07.Resource\05. Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -308,7 +310,9 @@
     <ClCompile Include="CAnimator2D.cpp">
       <Filter>Source\06. Component\03.Animation</Filter>
     </ClCompile>
-    <ClCompile Include="CAnimation.cpp" />
+    <ClCompile Include="CAnimation2D.cpp">
+      <Filter>Source\07.Resource\05. Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

@@ -4,6 +4,8 @@
 
 CTexture::CTexture(bool _bEngine)
     : CRes(RES_TYPE::TEXTURE, _bEngine)
+	, m_pImage(new ScratchImage)
+	, m_Tex2DDesc{}
 {
 }
 
@@ -22,19 +24,19 @@ HRESULT CTexture::LoadRes(const wstring& _strFilePath)
 	if (L".dds" == strExt || L".DDS" == strExt)
 	{
 		// dds, DDS
-		hr = LoadFromDDSFile(_strFilePath.c_str(), DDS_FLAGS::DDS_FLAGS_NONE, nullptr, m_Image);
+		hr = LoadFromDDSFile(_strFilePath.c_str(), DDS_FLAGS::DDS_FLAGS_NONE, nullptr, *m_pImage);
 	}
 
 	else if (L".tga" == strExt || L".TGA" == strExt)
 	{
 		// tga, TGA
-		hr = LoadFromTGAFile(_strFilePath.c_str(), nullptr, m_Image);
+		hr = LoadFromTGAFile(_strFilePath.c_str(), nullptr, *m_pImage);
 	}
 
 	else
 	{
 		// png, jpg, jpeg, bmp
-		hr = LoadFromWICFile(_strFilePath.c_str(), WIC_FLAGS::WIC_FLAGS_NONE, nullptr, m_Image);
+		hr = LoadFromWICFile(_strFilePath.c_str(), WIC_FLAGS::WIC_FLAGS_NONE, nullptr, *m_pImage);
 	}
 
 	if (FAILED(hr))
@@ -44,9 +46,9 @@ HRESULT CTexture::LoadRes(const wstring& _strFilePath)
 	}
 
 	hr = CreateShaderResourceView(DEVICE
-		, m_Image.GetImages()
-		, m_Image.GetImageCount()
-		, m_Image.GetMetadata()
+		, m_pImage->GetImages()
+		, m_pImage->GetImageCount()
+		, m_pImage->GetMetadata()
 		, m_SRV.GetAddressOf());
 
 	if (FAILED(hr))
@@ -81,6 +83,14 @@ void CTexture::ClearTexRegister(int _iRegisterNum)
 	CONTEXT->GSSetShaderResources(_iRegisterNum, 1, &pSRV);*/
 	CONTEXT->PSSetShaderResources(_iRegisterNum, 1, &pSRV);
 }
+
+//Vec2 CTexture::GetScratchImageSize()
+//{
+//	Vec2 tempV2;
+//	tempV2.x = m_Image.GetMetadata().width;
+//	tempV2.y = m_Image.GetMetadata().height;
+//	return tempV2;
+//}
 
 //void CTexture::ClearAllTexRegister()
 //{

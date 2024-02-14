@@ -71,6 +71,7 @@ enum class COMPONENT_TYPE
 	// update
 	TRANSFORM,
 	CAMERA,
+	ANIMATOR2D,
 
 	// render
 	MESHRENDER,

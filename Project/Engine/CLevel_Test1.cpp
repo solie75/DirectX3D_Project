@@ -4,6 +4,7 @@
 #include "CResMgr.h"
 #include "CCamera.h"
 #include "CTransform.h"
+#include "CAnimator2D.h"
 //#include "CGameObject.h"
 
 #include "CCameraMoveScript.h"
@@ -29,6 +30,13 @@ void CLevel_Test1::LevelInit()
     CMeshRender* tempMeshRender = new CMeshRender;
     tempMeshRender->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
     tempMeshRender->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl1"));
+    CAnimator2D* tempAnimator = new CAnimator2D;
+    ObjTest1->AddComponent(tempAnimator);
+    tAtlasData tempAtData;
+    tempAtData.SpriteNum = 10;
+    tempAtData.SpriteSize = Vec2(24, 41);
+    tempAtData.TimePerSprite = 1.f;
+    tempAnimator->CreateAnimation2D(L"Will_Idle_Down", tempAtData);
     
     ObjTest1->AddComponent(tempMeshRender);
 
