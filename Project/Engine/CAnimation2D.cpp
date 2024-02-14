@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CAnimation2D.h"
-//#include <wincodec.h>
+#include "CPathMgr.h"
 
 CAnimation2D::CAnimation2D(const wstring _ani2DName)
 	: m_AtlasTex(nullptr)
@@ -30,9 +30,10 @@ HRESULT CAnimation2D::FindAtlas(const wstring _atlasName)
 
 HRESULT CAnimation2D::FindSprite(const wstring _spriteName)
 {
-	std::filesystem::path Path = L"..\\OutputFile\\bin\\Content\\Sprite\\";
-	Path += _spriteName + L"\\";
-	Path += _spriteName + L"_1.png";
+	std::filesystem::path Path = CPathMgr::GetInst()->GetContentPath(); 
+	Path += L"Sprite\\" + _spriteName + L"\\" + _spriteName + L"_1.png";
+	/*Path += _spriteName + L"\\";
+	Path += _spriteName + L"_1.png";*/
 	CTexture* tempTex = new CTexture;
 	return tempTex->LoadRes(Path);
 }
@@ -50,9 +51,9 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 	//Ptr<CTexture> tempAtlasTex = new CTexture;
 	
 	// sprite file path
-	std::filesystem::path Path = L"..\\OutputFile\\bin\\Content\\Sprite\\";
-	Path += m_sAni2DName + L"\\" + m_sAni2DName; // "폴더명\\파일명"
-
+	std::filesystem::path Path = CPathMgr::GetInst()->GetContentPath();
+	Path += L"Sprite\\" + m_sAni2DName + L"\\" + m_sAni2DName; // "폴더명\\파일명"
+	//Path += m_sAni2DName + L"\\" + m_sAni2DName; 
 
 	//Ptr<ScratchImage> atlasImage;
 	Vec2 atlasSize = Vec2(0, 0);
@@ -66,16 +67,16 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 	for (int i = 0; true; ++i)
 	{
 		std::filesystem::path SpritePath = Path;
-		SpritePath += std::to_wstring(i + 1) + L".png";
+		SpritePath += L"_" + std::to_wstring(i + 1) + L".png";
 		HRESULT hr = tempSprite->LoadRes(SpritePath);
 		if (S_OK == hr)
 		{
 			spriteNum++;
+			spriteSize.x = tempSprite->GetScratchImage()->GetMetadata().width;
+			spriteSize.y = tempSprite->GetScratchImage()->GetMetadata().height;
 		}
 		else
 		{
-			spriteSize.x = tempSprite->GetScratchImage()->GetMetadata().width;
-			spriteSize.y = tempSprite->GetScratchImage()->GetMetadata().height;
 			break;
 		}
 	}
@@ -92,13 +93,13 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 	atlasSize.y = spriteSize.y * ((spriteNum-1)/ 10 + 1);
 
 	// atlas 이미지
-	//atlasImage->Initialize2D(DXGI_FORMAT_R8G8B8A8_UNORM, atlasSize.x, atlasSize.y, 1, 1);
+	// atlas scratch image init
 	m_AtlasTex->GetScratchImage()->Initialize2D(DXGI_FORMAT_R8G8B8A8_UNORM, atlasSize.x, atlasSize.y, 1, 1);
 
 	for (int i = 0; i < spriteNum; ++i)
 	{
 		std::filesystem::path SpritePath = Path;
-		SpritePath += std::to_wstring(i + 1) + L".png";
+		SpritePath += L"_" + std::to_wstring(i + 1) + L".png";
 		tempSprite->LoadRes(SpritePath);
 
 		CopyRectangle(
@@ -106,8 +107,8 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 			Rect(0, 0, spriteSize.x, spriteSize.y),
 			*(m_AtlasTex->GetScratchImage())->GetImages(),
 			TEX_FILTER_DEFAULT,
-			(spriteNum % 10 - 1) * spriteSize.x,
-			((spriteNum - 1) / 10) * spriteSize.y
+			(i % 10) * spriteSize.x, // 여기를 다시 생각해 볼것
+			((i - 1) / 10) * spriteSize.y
 		);
 	}
 
@@ -116,7 +117,8 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 
 void CAnimation2D::SaveAtlas()
 {
-	const wstring& AtlasPath = L"..\\OutputFile\\bin\\Content\\Atlas\\" + m_sAni2DName + L".png";
+	std::filesystem::path AtlasPath = CPathMgr::GetInst()->GetContentPath();
+	AtlasPath += L"Atlas\\" + m_sAni2DName + L".png";
 	HRESULT hr = SaveToWICFile(
 		*(m_AtlasTex->GetScratchImage()->GetImages()),
 		//m_AtlasTex->GetScratchImage()->GetImageCount(),  

@@ -41,7 +41,7 @@ HRESULT CTexture::LoadRes(const wstring& _strFilePath)
 
 	if (FAILED(hr))
 	{
-		MessageBox(nullptr, L"리소스 로딩 실패", L"텍스쳐 로딩 실패", MB_OK);
+		//MessageBox(nullptr, L"리소스 로딩 실패", L"텍스쳐 로딩 실패", MB_OK);
 		return E_FAIL;
 	}
 
