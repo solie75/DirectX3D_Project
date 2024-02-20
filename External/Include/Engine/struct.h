@@ -10,15 +10,15 @@ struct tVertex
 typedef tVertex Vtx;
 
 
-struct TransPos
-{
-	float TransPosX;
-	float TransPosY;
-	float Pad1 = 0.f;
-	float Pad2 = 0.f;
-};
+//struct TransPos
+//{
+//	float TransPosX;
+//	float TransPosY;
+//	float Pad1 = 0.f;
+//	float Pad2 = 0.f;
+//};
 
-struct tMtrlConst
+struct tMtrl_CB
 {
 	int arrInt[4];
 	float arrFloat[4];
@@ -30,7 +30,7 @@ struct tMtrlConst
 	int arrTex[(UINT)MATERIAL_TEX_PARAM::TEX_END];
 };
 
-struct tTransform
+struct tTransform_CB
 {
 	Matrix matWorld;
 	Matrix matView;
@@ -40,5 +40,14 @@ struct tTransform
 	Matrix matWVP;
 };
 
-extern tTransform g_transform;
+extern tTransform_CB g_transform;
 
+struct tAnimation_CB
+{
+	//Vector2 SpriteSize;
+	//Vector2 Offset;
+	UINT SpriteNum;
+	UINT CurSpriteNum;
+
+	int pad[2];
+};

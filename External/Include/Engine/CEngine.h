@@ -44,6 +44,7 @@ public:
 
 private:
 	void EngineTick();
+	void EngineFinalTick();
 	void EngineRender();
 };
 

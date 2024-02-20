@@ -13,7 +13,7 @@ private:
 public:
 	void LevelMgrInit();
 	void LevelMgrTick();
-	void LevelMgrFinaltick();
+	void LevelMgrFinalTick();
 	void LevelMgrRender();
 
 public:

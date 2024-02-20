@@ -188,10 +188,13 @@ HRESULT CDevice::CreateView()
 void CDevice::CreateConstBuffers()
 {
     m_arrConstBuffer[(UINT)CB_TYPE::TRANSFORM] = new CConstBuffer((UINT)CB_TYPE::TRANSFORM);
-    m_arrConstBuffer[(UINT)CB_TYPE::TRANSFORM]->CreateCB(sizeof(tTransform), 1);
+    m_arrConstBuffer[(UINT)CB_TYPE::TRANSFORM]->CreateCB(sizeof(tTransform_CB), 1);
 
     m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL] = new CConstBuffer((UINT)CB_TYPE::MATERIAL);
-    m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL]->CreateCB(sizeof(tMtrlConst), 1);
+    m_arrConstBuffer[(UINT)CB_TYPE::MATERIAL]->CreateCB(sizeof(tMtrl_CB), 1);
+
+    m_arrConstBuffer[(UINT)CB_TYPE::ANIMATION2D] = new CConstBuffer((UINT)CB_TYPE::ANIMATION2D);
+    m_arrConstBuffer[(UINT)CB_TYPE::ANIMATION2D]->CreateCB(sizeof(tAnimation_CB), 1);
 }
 
 //HRESULT CDevice::CreateRasterizerState()

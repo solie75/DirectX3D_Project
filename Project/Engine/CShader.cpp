@@ -13,13 +13,6 @@ CShader::~CShader()
 {
 }
 
-//void CShader::ShaderInit()
-//{
-//	CreateVertexShader(L"Shader\\std2D.fx", "VS_Std2D");
-//	CreatePixelShader(L"Shader\\std2D.fx", "PS_Std2D");
-//	this->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-//}
-
 void CShader::CreateVertexShader(const wstring& _strFileName, const string& _strFuncName)
 {
 	// Set Shader file Path

@@ -326,5 +326,8 @@
     <FxCompile Include="value.fx">
       <Filter>Source\08.ShaderCode</Filter>
     </FxCompile>
+    <FxCompile Include="Animation2D.fx">
+      <Filter>Source\08.ShaderCode</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

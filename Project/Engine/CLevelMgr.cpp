@@ -39,11 +39,11 @@ void CLevelMgr::LevelMgrTick()
 
     m_pCurLevel->LevelTick();
 
-    m_pCurLevel->LevelFinaltick();
 }
 
-void CLevelMgr::LevelMgrFinaltick()
+void CLevelMgr::LevelMgrFinalTick()
 {
+    m_pCurLevel->LevelFinaltick();
 }
 
 void CLevelMgr::LevelMgrRender()

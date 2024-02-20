@@ -2,6 +2,7 @@
 #include "CTexture.h"
 #include "CDevice.h"
 
+
 CTexture::CTexture(bool _bEngine)
     : CRes(RES_TYPE::TEXTURE, _bEngine)
 	, m_pImage(new ScratchImage)
@@ -101,3 +102,17 @@ void CTexture::ClearTexRegister(int _iRegisterNum)
 //	CONTEXT->GSSetShaderResources(m_iRecentNum, 1, &pSRV);
 //	CONTEXT->PSSetShaderResources(m_iRecentNum, 1, &pSRV);
 //}
+
+
+void CTexture::CreateSRV()
+{
+	CreateShaderResourceView(
+		DEVICE,
+		m_pImage->GetImages(),
+		m_pImage->GetImageCount(),
+		m_pImage->GetMetadata(),
+		m_SRV.GetAddressOf()
+	);
+
+	m_SRV->GetResource((ID3D11Resource**)m_Tex2D.GetAddressOf());
+}

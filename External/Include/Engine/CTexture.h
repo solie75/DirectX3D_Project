@@ -35,6 +35,8 @@ public:
     void SetScratchImage(ScratchImage* _pImage) { m_pImage = _pImage; }
     //Vec2 GetScratchImageSize();
 
+    void CreateSRV();
+
 public:
     CTexture(bool _bEngine = false);
     ~CTexture();

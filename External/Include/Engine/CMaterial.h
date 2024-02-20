@@ -10,7 +10,7 @@ class CMaterial :
 {
 private:
     Ptr<CShader> m_pShader;
-    tMtrlConst m_MtrlConst;
+    tMtrl_CB m_MtrlConst;
     Ptr<CTexture> m_arrTex[TEX_END];
 
 public:

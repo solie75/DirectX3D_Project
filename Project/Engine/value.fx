@@ -49,6 +49,14 @@ cbuffer MATERIAL : register(b1)
     int g_btex_7;
 }
 
+cbuffer ANIMATION2D : register(b2)
+{
+    //float2 SpriteSize;
+    //float2 Offset;
+    uint SpriteNum;
+    uint CurSpriteNum;
+}
+
 Texture2D g_tex_0 : register(t0);
 Texture2D g_tex_1 : register(t1);
 Texture2D g_tex_2 : register(t2);
@@ -58,6 +66,22 @@ Texture2D g_tex_5 : register(t5);
 Texture2D g_tex_6 : register(t6);
 Texture2D g_tex_7 : register(t7);
 
-SamplerState g_sam_0 : register(s0);
+Texture2D atlasTexture : register(t12);
 
+SamplerState g_sam_0 : register(s0);
+//SamplerState pointSampler : register(s0);
+//SamplerState anisotropicSampler : register(s1);
+
+struct VS_IN
+{
+    float3 LocalPos : POSITION;
+    float4 UV : TEXCOORD;
+};
+
+struct VS_OUT
+{
+    float4 Position : SV_POSITION;
+    float4 Color : COLOR;
+    float2 UV : TEXCOORD;
+};
 #endif

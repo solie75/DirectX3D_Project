@@ -14,8 +14,6 @@ CEngine::CEngine()
     : m_hWnd(nullptr)
     , m_vResolution(0.f, 0.f)
     , m_pGameObj(nullptr)
-    //, m_vPosition(0.f, 0.f)
-    //, m_MovingDist(0.2f)
 {
 }
 
@@ -53,32 +51,9 @@ int CEngine::EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight)
 void CEngine::EngineProgress()
 {
     EngineTick();
+    EngineFinalTick();
     EngineRender();
 }
-
-//void CEngine::MovePosition()
-//{
-//    if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::TAP)
-//    {
-//        m_vPosition.x -= m_MovingDist;
-//    }
-//    if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::TAP)
-//    {
-//        m_vPosition.x += m_MovingDist;
-//    }
-//    if (CKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::TAP)
-//    {
-//        m_vPosition.y += m_MovingDist;
-//    }
-//    if (CKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::TAP)
-//    {
-//        m_vPosition.y -= m_MovingDist;
-//    }
-//    TransPos transPos;
-//    transPos.TransPosX = m_vPosition.x;
-//    transPos.TransPosY = m_vPosition.y;
-//    CB->SetCBData(&transPos);
-//}
 
 void CEngine::EngineTick()
 {
@@ -86,18 +61,11 @@ void CEngine::EngineTick()
     CTimeMgr::GetInst()->TimeMgrTick();
     CKeyMgr::GetInst()->KeyMgrTick();
     CLevelMgr::GetInst()->LevelMgrTick();
+}
 
-    //MovePosition();
-    //CB->UpdateCBData();
-
-   /* Ptr<CMaterial> tempMaterial = CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl1");
-    tempMaterial->UpdateMtrlData();*/
-
-    // GameObject Tick
-    //m_pGameObj->ObjTick();
-
-   /* Ptr<CShader> tempShader = CResMgr::GetInst()->FindRes<CShader>(L"Std2DShader"); // -> CMaterial::UpdateMtrlData() 에서 진행한다.
-    tempShader->UpdateShaderDate();*/
+void CEngine::EngineFinalTick()
+{
+    CLevelMgr::GetInst()->LevelMgrFinalTick();
 }
 
 void CEngine::EngineRender()
@@ -106,9 +74,5 @@ void CEngine::EngineRender()
     CDevice::GetInst()->ClearTarget();
 
     CDevice::GetInst()->OMSet();
-
-   /* Ptr<CMesh> tempMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
-    tempMesh->RenderMesh();*/
     CLevelMgr::GetInst()->LevelMgrRender();
-    //m_pGameObj->ObjRender();
 }

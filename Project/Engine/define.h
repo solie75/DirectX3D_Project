@@ -63,6 +63,7 @@ enum class CB_TYPE
 {
 	TRANSFORM,
 	MATERIAL,
+	ANIMATION2D,
 	END,
 };
 

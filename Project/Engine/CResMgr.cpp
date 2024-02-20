@@ -148,9 +148,22 @@ void CResMgr::CreateDefaultShader()
 
 	AddRes(L"Std2DShader", pShader);
 
-	Ptr<CShader> tempShader = nullptr;
-	tempShader = new CShader(RES_TYPE::SHADER);
-	tempShader = FindRes<CShader>(L"Std2DShader");
+	//Ptr<CShader> tempShader = nullptr;
+	//tempShader = new CShader(RES_TYPE::SHADER);
+	//tempShader = FindRes<CShader>(L"Std2DShader");
+
+	// ============================
+	// Animation2D Shader
+	// RasterizerState      : None
+	// BlendState           : Mask
+	// DepthStencilState    : Less
+	// ============================
+
+	pShader = new CShader(RES_TYPE::SHADER);
+	pShader->CreateVertexShader(L"shader\\Animation2D.fx", "VS_Ani2D");
+	pShader->CreatePixelShader(L"shader\\Animation2D.fx", "PS_Ani2D");
+	
+	AddRes(L"Ani2DShader", pShader);
 }
 
 void CResMgr::CreateDefaultMaterial()
@@ -160,15 +173,9 @@ void CResMgr::CreateDefaultMaterial()
 	tempMtrl = new CMaterial();
 
 	// Set Shader
-	//Ptr<CShader> tempShader = nullptr;
-	//tempShader = FindRes<CShader>(L"Std2DShader");
-	//tempMtrl->SetShader(tempShader);
 	tempMtrl->SetShader(FindRes<CShader>(L"Std2DShader"));
 
 	// Set Texture
-	//Ptr<CTexture> tempTex = nullptr;
-	//tempTex = FindRes<CTexture>(L"Fighter");
-	//tempMtrl->SetMtrlTexParam(TEX_0, tempTex);
 	tempMtrl->SetMtrlTexParam(TEX_0, FindRes<CTexture>(L"Fighter"));
 
 	// Add Material to ResMgr
@@ -181,6 +188,11 @@ void CResMgr::CreateDefaultMaterial()
 	tempMtrl2->SetMtrlTexParam(TEX_1, FindRes<CTexture>(L"Link"));
 
 	AddRes(L"DefaultMtrl2", tempMtrl2);
+	
+	// Animation 2d Mtrl
+	tempMtrl = new CMaterial();
+	tempMtrl->SetShader(FindRes<CShader>(L"Ani2DShader"));
+	AddRes(L"Ain2DMtrl", tempMtrl);
 }
 
 void CResMgr::LoadDefaultTexture()

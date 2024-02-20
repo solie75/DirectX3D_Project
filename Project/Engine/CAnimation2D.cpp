@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CAnimation2D.h"
 #include "CPathMgr.h"
+#include "CTimeMgr.h"
+#include "CDevice.h"
 
 CAnimation2D::CAnimation2D(const wstring _ani2DName)
 	: m_AtlasTex(nullptr)
@@ -8,8 +10,11 @@ CAnimation2D::CAnimation2D(const wstring _ani2DName)
 	, m_fDurationPerSprite(0.f)
 	, m_bLoop(false)
 	, m_bLoopFinish(false)
-	, m_iCurSpriteNum(0)
+	//, m_iCurSpriteNum(0)
 	, m_sAni2DName(_ani2DName)
+	, m_fAccumulateTime(0.f)
+	//, m_SpriteSize(Vec2(0.f, 0.f))
+	, m_tAniCB{}
 {
 	m_AtlasTex = new CTexture;
 }
@@ -38,30 +43,29 @@ HRESULT CAnimation2D::FindSprite(const wstring _spriteName)
 	return tempTex->LoadRes(Path);
 }
 
-void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Size 도 그냥 가져와서 그 데이터 에서 알아내면 되는 것 아닌가?
+void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum, float _durationTime) // 여기에서 Size 도 그냥 가져와서 그 데이터 에서 알아내면 되는 것 아닌가?
 {
-	// 일단 Sprite 검색을 해보자.
+	// Set Duration Time
+	m_fDurationPerSprite = _durationTime;
+
+	// Find Sprite
 	if (S_OK != FindSprite(m_sAni2DName))
 	{
 		MessageBox(nullptr, L"Sprite 이미지가 없습니다.", L"Sprite 이미지 존재 여부", MB_OK);
 		return;
 	}
 
-	// Sprite 가 존재 한다면
-	//Ptr<CTexture> tempAtlasTex = new CTexture;
-	
 	// sprite file path
 	std::filesystem::path Path = CPathMgr::GetInst()->GetContentPath();
 	Path += L"Sprite\\" + m_sAni2DName + L"\\" + m_sAni2DName; // "폴더명\\파일명"
-	//Path += m_sAni2DName + L"\\" + m_sAni2DName; 
 
-	//Ptr<ScratchImage> atlasImage;
 	Vec2 atlasSize = Vec2(0, 0);
-	Vec2 spriteSize = Vec2(0, 0);
-
 	UINT spriteNum = 0;
 
 	CTexture* tempSprite = new CTexture;
+
+	// temp Sprite Size
+	Vec2 tempSpriteSize = Vec2(0.f, 0.f);
 
 	// Count Sprite Num
 	for (int i = 0; true; ++i)
@@ -72,8 +76,8 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 		if (S_OK == hr)
 		{
 			spriteNum++;
-			spriteSize.x = tempSprite->GetScratchImage()->GetMetadata().width;
-			spriteSize.y = tempSprite->GetScratchImage()->GetMetadata().height;
+			tempSpriteSize.x = tempSprite->GetScratchImage()->GetMetadata().width;
+			tempSpriteSize.y = tempSprite->GetScratchImage()->GetMetadata().height;
 		}
 		else
 		{
@@ -81,19 +85,20 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 		}
 	}
 
+	m_tAniCB.SpriteNum = spriteNum;
+
 	// Calculate Atlas Size
 	if (spriteNum > 9)
 	{
-		atlasSize.x = spriteSize.x * 10;
+		atlasSize.x = tempSpriteSize.x * 10;
 	}
 	else
 	{
-		atlasSize.x = spriteSize.x * spriteNum;
+		atlasSize.x = tempSpriteSize.x * spriteNum;
 	}
-	atlasSize.y = spriteSize.y * ((spriteNum-1)/ 10 + 1);
+	atlasSize.y = tempSpriteSize.y * ((spriteNum-1)/ 10 + 1);
 
-	// atlas 이미지
-	// atlas scratch image init
+	// Init atlas scratch image
 	m_AtlasTex->GetScratchImage()->Initialize2D(DXGI_FORMAT_R8G8B8A8_UNORM, atlasSize.x, atlasSize.y, 1, 1);
 
 	for (int i = 0; i < spriteNum; ++i)
@@ -104,24 +109,28 @@ void CAnimation2D::CreateAtlas(Vec2 _spriteSize, UINT _spriteNum) // 여기에서 Si
 
 		CopyRectangle(
 			*(tempSprite->GetScratchImage()->GetImages()),
-			Rect(0, 0, spriteSize.x, spriteSize.y),
+			Rect(0, 0, tempSpriteSize.x, tempSpriteSize.y),
 			*(m_AtlasTex->GetScratchImage())->GetImages(),
 			TEX_FILTER_DEFAULT,
-			(i % 10) * spriteSize.x, // 여기를 다시 생각해 볼것
-			((i - 1) / 10) * spriteSize.y
+			(i % 10) * tempSpriteSize.x,
+			(i / 10) * tempSpriteSize.y
 		);
 	}
 
+	// Save
 	SaveAtlas();
+
+	// Create SRV
+	m_AtlasTex->CreateSRV();
 }
 
 void CAnimation2D::SaveAtlas()
 {
+	// Atlas 폴더에 atlas 저장
 	std::filesystem::path AtlasPath = CPathMgr::GetInst()->GetContentPath();
 	AtlasPath += L"Atlas\\" + m_sAni2DName + L".png";
 	HRESULT hr = SaveToWICFile(
-		*(m_AtlasTex->GetScratchImage()->GetImages()),
-		//m_AtlasTex->GetScratchImage()->GetImageCount(),  
+		*(m_AtlasTex->GetScratchImage()->GetImages()),  
 		WIC_FLAGS_NONE,
 		GetWICCodec(WIC_CODEC_PNG),
 		AtlasPath.c_str()
@@ -131,4 +140,56 @@ void CAnimation2D::SaveAtlas()
 	{
 		MessageBox(nullptr, L"SaveToWICFile 실패", L"SaveAtlas", MB_OK);
 	}
+}
+
+void CAnimation2D::LoadAtlas()
+{
+
+}
+
+void CAnimation2D::Ani2DUpdate()
+{
+
+}
+
+void CAnimation2D::Ani2DLateUpdate()
+{
+	// Animation
+	m_fAccumulateTime += CTimeMgr::GetInst()->GetDeltaTime();
+
+	if (m_fAccumulateTime > m_fDurationPerSprite)
+	{
+		// 마지막 sprite 가 유지 시간이 다 된 경우 처음 sprite 로 되돌아 간다.
+		if (m_tAniCB.CurSpriteNum == m_tAniCB.SpriteNum -1)
+		{
+			m_tAniCB.CurSpriteNum = 0;
+		}
+		else
+		{
+			m_tAniCB.CurSpriteNum++;
+		}
+
+		m_fAccumulateTime = 0.f;
+	}
+
+	Ani2DBind();
+}
+
+void CAnimation2D::Ani2DBind()
+{
+	m_AtlasTex->UpdateTexData(12);
+
+	CConstBuffer* tempAni2DCB = CDevice::GetInst()->GetConstBuffer(CB_TYPE::ANIMATION2D);
+	tempAni2DCB->SetCBData(&m_tAniCB);
+	tempAni2DCB->UpdateCBData();
+}
+
+Ptr<CTexture> CAnimation2D::GetAtlasTex()
+{
+	return m_AtlasTex;
+}
+
+void CAnimation2D::SetBoolLoop(bool _b)
+{
+	m_bLoop = _b;
 }

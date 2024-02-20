@@ -3,19 +3,6 @@
 
 #include "value.fx"
 
-struct VS_IN
-{
-    float3 LocalPos : POSITION;
-    float4 UV : TEXCOORD;
-};
-
-struct VS_OUT
-{
-    float4 Position : SV_POSITION;
-    float4 Color : COLOR;
-    float2 UV : TEXCOORD;
-};
-
 VS_OUT VS_Std2D(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
