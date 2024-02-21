@@ -32,7 +32,8 @@ public:
     HRESULT FindSprite(const wstring _spriteName);
     void CreateAtlas(Vec2 _spriteSize, UINT _spriteNum, float _durationTime);
     void SaveAtlas();
-    void LoadAtlas();
+    void LoadAtlas(const wstring& _atlasName);
+    void LoadAnimationData(const wstring& _aniName);
     void Ani2DUpdate();
     void Ani2DLateUpdate();
     void Ani2DBind();

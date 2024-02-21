@@ -34,18 +34,15 @@ void CAnimator2D::CreateAni2D(const wstring& _strAniName, tAtlasData _atlasData)
 	{
 		CAnimation2D* tempAni2D = new CAnimation2D(_strAniName);
 
-		/*if (S_OK == tempAni2D->FindAtlas(_strAniName))
+		if (S_OK == tempAni2D->FindAtlas(_strAniName))
 		{
 
 		}
 		else
 		{
 			tempAni2D->CreateAtlas(_atlasData.SpriteSize, _atlasData.SpriteNum, _atlasData.TimePerSprite);
-		}*/
+		}
 
-		tempAni2D->CreateAtlas(_atlasData.SpriteSize, _atlasData.SpriteNum, _atlasData.TimePerSprite);
-
-		
 		m_mapAni2D.insert(make_pair(_strAniName, tempAni2D));
 		tempAni2D->SetAnimatorOwner(this);
 	}

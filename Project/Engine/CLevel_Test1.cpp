@@ -38,7 +38,7 @@ void CLevel_Test1::LevelInit()
         tAtlasData tempAtData;
         tempAtData.SpriteNum = 10;
         tempAtData.SpriteSize = Vec2(24, 41);
-        tempAtData.TimePerSprite = 1.f;
+        tempAtData.TimePerSprite = 0.1f;
         tempAnimator->CreateAni2D(L"Will_Idle_Down", tempAtData);
         ObjTest1->AddComponent(tempAnimator);
 

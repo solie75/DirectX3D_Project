@@ -25,11 +25,16 @@ CAnimation2D::~CAnimation2D()
 
 HRESULT CAnimation2D::FindAtlas(const wstring _atlasName)
 {
-	std::filesystem::path Path = L"..\\OutputFile\\bin\\Content\\Atlas\\";
-	Path += _atlasName + L"\\";
-	Path += _atlasName;
-	Path += L".png";
-	
+	std::filesystem::path Path = CPathMgr::GetInst()->GetContentPath();
+	Path += L"Atlas\\" + _atlasName + L".png";
+
+	if (S_OK == m_AtlasTex->LoadRes(Path))
+	{
+		//m_tAniCB.SpriteNum = m_AtlasTex->GetScratchImage()->GetMetadata().width();
+		m_tAniCB.SpriteNum = 10;
+		m_fDurationPerSprite = 0.1f;
+	}
+
 	return m_AtlasTex->LoadRes(Path);
 }
 
@@ -142,9 +147,23 @@ void CAnimation2D::SaveAtlas()
 	}
 }
 
-void CAnimation2D::LoadAtlas()
+void CAnimation2D::LoadAtlas(const wstring& _atlasName)
 {
 
+}
+
+void CAnimation2D::LoadAnimationData(const wstring& _aniName)
+{
+	std::filesystem::path Path = CPathMgr::GetInst()->GetContentPath();
+	Path += L"Data\\AnimationData.json";
+
+	std::wifstream DataFile(Path);
+
+	// 해당 파일이 존재하는 경우
+	if (DataFile.is_open())
+	{
+
+	}
 }
 
 void CAnimation2D::Ani2DUpdate()
