@@ -34,9 +34,10 @@ void CAnimator2D::CreateAni2D(const wstring& _strAniName, tAtlasData _atlasData)
 	{
 		CAnimation2D* tempAni2D = new CAnimation2D(_strAniName);
 
+		tempAni2D->LoadAnimationData(_strAniName);
 		if (S_OK == tempAni2D->FindAtlas(_strAniName))
 		{
-
+			tempAni2D->LoadAtlas(_strAniName);
 		}
 		else
 		{

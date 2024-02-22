@@ -1,12 +1,9 @@
 {
-    "Will": 
-    [
-        {
-            "name": "Will_Idle_Down",
-            "spriteNumber": [10],
-            "renderingMode": [1],
-            "size": [24, 41],
-            "duration": [100]
-        }
-    ]
+    "Will_Idle_Down":
+    {
+        "spriteNumber": [10],
+        "renderingMode": [1],
+        "spriteSize": [24, 41],
+        "durationTime": [100]
+    }
 }

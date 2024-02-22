@@ -94,14 +94,14 @@
     <Filter Include="Source\06. Component\Script\CameraMoveScript">
       <UniqueIdentifier>{a7645bfa-1413-440b-8a87-1b365d18c88e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\06. Component\03.Animation">
-      <UniqueIdentifier>{a83f5d83-990f-454e-b4fd-f8de2ef80c6b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\07.Resource\05. Animation">
       <UniqueIdentifier>{fcb440e6-3f0c-46f6-9ef4-bb2d3342002b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\07.Resource\04. Shader">
       <UniqueIdentifier>{71e06aff-1d08-4dde-a6d5-990c2e7074a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\03.Animator">
+      <UniqueIdentifier>{a83f5d83-990f-454e-b4fd-f8de2ef80c6b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -212,7 +212,7 @@
       <Filter>Source\06. Component\Script\CameraMoveScript</Filter>
     </ClInclude>
     <ClInclude Include="CAnimator2D.h">
-      <Filter>Source\06. Component\03.Animation</Filter>
+      <Filter>Source\06. Component\03.Animator</Filter>
     </ClInclude>
     <ClInclude Include="CAnimation2D.h">
       <Filter>Source\07.Resource\05. Animation</Filter>
@@ -308,7 +308,7 @@
       <Filter>Source\06. Component\Script\CameraMoveScript</Filter>
     </ClCompile>
     <ClCompile Include="CAnimator2D.cpp">
-      <Filter>Source\06. Component\03.Animation</Filter>
+      <Filter>Source\06. Component\03.Animator</Filter>
     </ClCompile>
     <ClCompile Include="CAnimation2D.cpp">
       <Filter>Source\07.Resource\05. Animation</Filter>

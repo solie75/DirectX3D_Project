@@ -20,9 +20,6 @@ private:
     float m_fAccumulateTime;
     bool m_bLoop;
     bool m_bLoopFinish;
-    //UINT m_iCurSpriteNum;
-    //UINT m_iSpriteNum;
-    //Vec2 m_SpriteSize;
     tAnimation_CB m_tAniCB;
     const wstring m_sAni2DName;
      
@@ -31,6 +28,7 @@ public:
     HRESULT FindAtlas(const wstring _atlasName);
     HRESULT FindSprite(const wstring _spriteName);
     void CreateAtlas(Vec2 _spriteSize, UINT _spriteNum, float _durationTime);
+    //void CreateAtlas();
     void SaveAtlas();
     void LoadAtlas(const wstring& _atlasName);
     void LoadAnimationData(const wstring& _aniName);

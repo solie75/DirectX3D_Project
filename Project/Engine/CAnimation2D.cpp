@@ -149,7 +149,9 @@ void CAnimation2D::SaveAtlas()
 
 void CAnimation2D::LoadAtlas(const wstring& _atlasName)
 {
-
+	std::filesystem::path Path = CPathMgr::GetInst()->GetContentPath();
+	Path += L"Atlas\\" + _atlasName + L".png";
+	m_AtlasTex->LoadRes(Path);
 }
 
 void CAnimation2D::LoadAnimationData(const wstring& _aniName)
@@ -162,7 +164,58 @@ void CAnimation2D::LoadAnimationData(const wstring& _aniName)
 	// 해당 파일이 존재하는 경우
 	if (DataFile.is_open())
 	{
+		std::wstring line;
+		//std::wstring tempAniName = L"\"" + _aniName + L"\":";
+		while (true)
+		{
+			std::getline(DataFile, line);
+			if (line.find(_aniName) != std::string::npos)
+			{
+				while (true)
+				{
+					std::getline(DataFile, line);
+					if (line.find(L"spriteNumber") != std::string::npos)
+					{
+						break;
+					}
+				}
 
+				//if (line.find(L"\"spriteNumber\": ") != std::string::npos)
+				if (line.find(L"spriteNumber") != std::string::npos)
+				{
+					size_t startPos = line.find(L"[") + 1;
+					size_t endPos = line.find(L"]");
+					std::wstring numStr = line.substr(startPos, endPos - startPos);
+
+					swscanf_s(numStr.c_str(), L"%d", &(m_tAniCB.SpriteNum));
+				}
+				std::getline(DataFile, line);
+				if(line.find(L"renderingMode") != std::string::npos)
+				{
+
+				}
+				std::getline(DataFile, line);
+				if (line.find(L"spriteSize") != std::string::npos)
+				{
+
+				}
+				std::getline(DataFile, line);
+				if (line.find(L"durationTime") != std::string::npos)
+				{
+					size_t startPos = line.find(L"[") + 1;
+					size_t endPos = line.find(L"]");
+					std::wstring numStr = line.substr(startPos, endPos - startPos);
+
+					int tempNum = 0;
+					swscanf_s(numStr.c_str(), L"%d", &(tempNum));
+					m_fDurationPerSprite = tempNum * 1.f;
+
+
+					return;
+				}
+			
+			}
+		}
 	}
 }
 
