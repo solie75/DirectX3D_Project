@@ -142,15 +142,14 @@ void CResMgr::CreateDefaultShader()
 	// DepthStencilState    : Less
 	// ============================
 	pShader = new CShader(RES_TYPE::SHADER);
-	//pShader->SetKey(L"Std2DShader");
 	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Std2D");
 	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D");
 
-	AddRes(L"Std2DShader", pShader);
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::MASK);
 
-	//Ptr<CShader> tempShader = nullptr;
-	//tempShader = new CShader(RES_TYPE::SHADER);
-	//tempShader = FindRes<CShader>(L"Std2DShader");
+	AddRes(L"Std2DShader", pShader);
 
 	// ============================
 	// Animation2D Shader
@@ -163,6 +162,10 @@ void CResMgr::CreateDefaultShader()
 	pShader->CreateVertexShader(L"shader\\Animation2D.fx", "VS_Ani2D");
 	pShader->CreatePixelShader(L"shader\\Animation2D.fx", "PS_Ani2D");
 	
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::MASK);
+
 	AddRes(L"Ani2DShader", pShader);
 }
 

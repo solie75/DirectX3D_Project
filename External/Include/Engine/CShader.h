@@ -18,6 +18,10 @@ private:
 	ComPtr<ID3D11InputLayout> m_Layout;
 	D3D11_PRIMITIVE_TOPOLOGY m_eTopology;
 
+	RS_TYPE m_RSType;
+	DS_TYPE m_DSType;
+	BS_TYPE m_BSType;
+
 public:
 	//void ShaderInit();
 	void CreateVertexShader(const wstring& _strFileName, const string& _strFuncName);
@@ -25,10 +29,13 @@ public:
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology);
 	void UpdateShaderDate();
 
+	void SetRSType(RS_TYPE _Type) { m_RSType = _Type; }
+	void SetDSType(DS_TYPE _Type) { m_DSType = _Type; }
+	void SetBSType(BS_TYPE _Type) { m_BSType = _Type; }
+
 public:
 	virtual HRESULT SaveRes(const wstring& _strRelativePath) { return S_OK; }
 private:
 	virtual HRESULT LoadRes(const wstring& _strFilePath) { return S_OK; }
-
 };
 

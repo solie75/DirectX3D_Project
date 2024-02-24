@@ -47,7 +47,7 @@ enum class DS_TYPE
 
 enum class BS_TYPE
 {
-	DEFUALT,	// No Blending
+	DEFAULT,	// No Blending
 	MASK,	// Alpha Coverage
 	ALPHA_BLEND,	// Alpha °è¼ö
 	ONE_ONE,	// 1 : 1 È¥ÇÕ

@@ -31,14 +31,14 @@ private:
 	//// Sampler
 	//ComPtr<ID3D11SamplerState> m_Sampler[2]; // 왜 2개? RT 와 DS 용으로 두개인가?
 
-	//// RasterizerState
-	//ComPtr<ID3D11RasterizerState> m_RState[(UINT)RS_TYPE::END];
+	// RasterizerState
+	ComPtr<ID3D11RasterizerState> m_RSState[(UINT)RS_TYPE::END];
 
-	//// DepthStencilState
-	//ComPtr<ID3D11DepthStencilState> m_DSState[(UINT)DS_TYPE::END];
+	// DepthStencilState
+	ComPtr<ID3D11DepthStencilState> m_DSState[(UINT)DS_TYPE::END];
 
-	//// BlendState
-	//ComPtr<ID3D11BlendState> m_BState[(UINT)BS_TYPE::END];
+	// BlendState
+	ComPtr<ID3D11BlendState> m_BState[(UINT)BS_TYPE::END];
 
 	// 렌더타겟 해상도
 	Vec2 m_vRTResolution;
@@ -57,15 +57,18 @@ public:
 private:
 	HRESULT CreateSwapChain();
 	HRESULT CreateView();
-	//HRESULT CreateRasterizerState();
-	//HRESULT CreateDepthStencilState();
-	//HRESULT CreateBlendState();
-	//HRESULT CreateSampler();
+	HRESULT CreateRasterizerState();
+	HRESULT CreateDepthStencilState();
+	HRESULT CreateBlendState();
 	void CreateConstBuffers();
 
 public:
 	ID3D11Device* GetDevice() { return m_Device.Get(); }
 	ID3D11DeviceContext* GetDeviceContext() { return m_Context.Get(); }
 	Vec2 GetRTResolution() { return m_vRTResolution; }
+
+	ComPtr<ID3D11RasterizerState> GetRSState(RS_TYPE _Type) { return m_RSState[(UINT)_Type]; }
+	ComPtr<ID3D11DepthStencilState> GetDSState(DS_TYPE _Type) { return m_DSState[(UINT)_Type]; }
+	ComPtr<ID3D11BlendState> GetBState(BS_TYPE _Type) { return m_BState[(UINT)_Type]; }
 };
 

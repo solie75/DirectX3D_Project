@@ -6,6 +6,9 @@
 CShader::CShader(RES_TYPE _type)
 	: CRes(_type)
 	, m_eTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+	, m_RSType(RS_TYPE::CULL_FRONT)
+	, m_DSType(DS_TYPE::LESS)
+	, m_BSType(BS_TYPE::MASK)
 {
 }
 
@@ -99,4 +102,8 @@ void CShader::UpdateShaderDate()
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
+
+	CONTEXT->RSSetState(CDevice::GetInst()->GetRSState(m_RSType).Get());
+	CONTEXT->OMSetDepthStencilState(CDevice::GetInst()->GetDSState(m_DSType).Get(), 10);
+	CONTEXT->OMSetBlendState(CDevice::GetInst()->GetBState(m_BSType).Get(), Vec4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 }
