@@ -10,6 +10,6 @@ public:
 	void LevelInit() override;
 	void LevelTick() override;
 	void LevelFinaltick() override;
-	void LevelRender() override;
+	//void LevelRender() override;
 };
 

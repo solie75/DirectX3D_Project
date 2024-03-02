@@ -39,7 +39,7 @@ void CLevel_Test2::LevelFinaltick()
     CLevel::LevelFinaltick();
 }
 
-void CLevel_Test2::LevelRender()
-{
-    CLevel::LevelRender();
-}
+//void CLevel_Test2::LevelRender()
+//{
+//    CLevel::LevelRender();
+//}

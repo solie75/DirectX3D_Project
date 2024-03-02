@@ -3,12 +3,16 @@
 #include "CTransform.h"
 #include "CDevice.h"
 #include "CKeyMgr.h"
+//#include "CLevel.h"
+#include "CLevelMgr.h"
+#include "CRenderComponent.h"
 
 CCamera::CCamera()
 	: CComponent(COMPONENT_TYPE::CAMERA)
 	, m_ProjType(PROJ_TYPE::PERSPECTIVE)
 	, m_fScale(1.f)
 	, m_fAspectRatio(1.f)
+	, m_iLayerMask(0)
 {
 	SetName(L"Camera");
 
@@ -21,6 +25,7 @@ CCamera::CCamera(const CCamera& _other)
 	, m_ProjType(_other.m_ProjType)
 	, m_fScale(_other.m_fScale)
 	, m_fAspectRatio(_other.m_fAspectRatio)
+	, m_iLayerMask(_other.m_iLayerMask)
 {
 }
 
@@ -33,6 +38,11 @@ void CCamera::CameraRender()
 	// Matrix Update
 	g_transform.matView = m_matView;
 	g_transform.matProj = m_matProj;
+
+	render_opaque();
+	render_mask();
+	render_transparent();
+	render_ui();
 }
 
 void CCamera::CompInit()
@@ -41,35 +51,6 @@ void CCamera::CompInit()
 
 void CCamera::CompTick()
 {
-	//CTransform* tempTransform = GetOtherComp<CTransform>(COMPONENT_TYPE::TRANSFORM);
-	//Vec3 tempPos = tempTransform->GetWorldPos();
-
-	//if (CKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::PRESSED)
-	//{
-	//	tempPos.x -= 0.2f;
-	//}
-	//if (CKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::PRESSED)
-	//{
-	//	tempPos.x += 0.2f;
-	//}
-	//if (CKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::PRESSED)
-	//{
-	//	tempPos.y += 0.2f;
-	//}
-	//if (CKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::PRESSED)
-	//{
-	//	tempPos.y -= 0.2f;
-	//}
-	//if (CKeyMgr::GetInst()->GetKeyState(KEY::Q) == KEY_STATE::PRESSED)
-	//{
-	//	tempPos.z += 0.2f;
-	//}
-	//if (CKeyMgr::GetInst()->GetKeyState(KEY::W) == KEY_STATE::PRESSED)
-	//{
-	//	tempPos.z -= 0.2f;
-	//}
-
-	//tempTransform->SetWorldPos(tempPos);
 }
 
 void CCamera::CompFinalTick()
@@ -122,5 +103,121 @@ void CCamera::CalProjMat()
 	else
 	{
 		m_matProj = XMMatrixPerspectiveFovLH(XM_PI / 2.f, m_fAspectRatio, 1.f, 10000.f);
+	}
+}
+
+void CCamera::SortObject()
+{
+	// 이전 프레임의 분류된 정보 삭제
+	ClearObject();
+
+	CLevel* tempCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+	for (UINT i = 0; i < (UINT)LAYER_TYPE::END; ++i)
+	{
+		if (m_iLayerMask & (1 << i))
+		{
+			CLayer* tempLayer = tempCurLevel->GetLayer(i);
+			const vector<CGameObject*>& vecTempObject = tempLayer->GetObjs();
+
+			for (size_t j = 0; j < vecTempObject.size(); ++j)
+			{
+				CRenderComponent* tempRenderComp = vecTempObject[j]->GetRenderComponent();
+
+				// exclude Object without RenderingComp
+				if (nullptr == tempRenderComp
+					|| nullptr == tempRenderComp->GetMaterial()
+					|| nullptr == tempRenderComp->GetMaterial()->GetShader())
+				{
+					continue;
+				}
+
+				// sort by domain type
+				DOMAIN_TYPE eDomain = tempRenderComp->GetMaterial()->GetShader()->GetDomainType();
+				switch(eDomain)
+				{
+				case DOMAIN_TYPE::DOMAIN_OPAQUE:
+					m_vecOpaque.push_back(vecTempObject[j]);
+					break;
+				case DOMAIN_TYPE::DOMAIN_MASK:
+					m_vecMask.push_back(vecTempObject[j]);
+					break;
+				case DOMAIN_TYPE::DOMAIN_TRANSPARENT:
+					m_vecTransparent.push_back(vecTempObject[j]);
+					break;
+				case DOMAIN_TYPE::DOMAIN_UI:
+					m_vecUI.push_back(vecTempObject[j]);
+					break;
+				}
+			}
+		}
+	}
+}
+
+void CCamera::ClearObject()
+{
+	m_vecOpaque.clear();
+	m_vecMask.clear();
+	m_vecTransparent.clear();
+	m_vecUI.clear();
+}
+
+void CCamera::SetLayerMask(int _iLayer, bool _visible)
+{
+	if (_visible)
+	{
+		m_iLayerMask |= 1 << _iLayer;
+	}
+	else
+	{
+		m_iLayerMask &= ~(1 << _iLayer);
+	}
+}
+
+void CCamera::SetLayerMaskAll(bool _visible)
+{
+	if (_visible)
+	{
+		m_iLayerMask = 0xffffffff;
+	}
+	else
+	{
+		m_iLayerMask = 0;
+	}
+}
+
+void CCamera::SetCameraType(CAMERA_TYPE _type)
+{
+	m_CamType = _type;
+}
+
+void CCamera::render_opaque()
+{
+	for (int i = 0; i < m_vecOpaque.size(); ++i)
+	{
+		m_vecOpaque[i]->ObjRender();
+	}
+}
+
+void CCamera::render_mask()
+{
+	for (int i = 0; i < m_vecMask.size(); ++i)
+	{
+		m_vecMask[i]->ObjRender();
+	}
+}
+
+void CCamera::render_transparent()
+{
+	for (int i = 0; i < m_vecTransparent.size(); ++i)
+	{
+		m_vecTransparent[i]->ObjRender();
+	}
+}
+
+void CCamera::render_ui()
+{
+	for (int i = 0; i < m_vecUI.size(); ++i)
+	{
+		m_vecUI[i]->ObjRender();
 	}
 }

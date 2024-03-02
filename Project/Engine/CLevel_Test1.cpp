@@ -11,7 +11,7 @@
 
 CLevel_Test1::CLevel_Test1()
     : CLevel(LEVEL_TYPE::LEVEL_TYPE_TEST1)
-    , m_pCamera(nullptr)
+    //, m_pCamera(nullptr)
 {
 }
 
@@ -32,13 +32,14 @@ void CLevel_Test1::LevelInit()
         CMeshRender* tempMeshRender = new CMeshRender;
         tempMeshRender->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
         tempMeshRender->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Ain2DMtrl"));
+        tempMeshRender->GetMaterial()->GetShader()->SetDomain(DOMAIN_TYPE::DOMAIN_MASK);
         ObjTest1->AddComponent(tempMeshRender);
 
         CAnimator2D* tempAnimator = new CAnimator2D;
         tAtlasData tempAtData;
-        tempAtData.SpriteNum = 10;
+        /*tempAtData.SpriteNum = 10;
         tempAtData.SpriteSize = Vec2(24, 41);
-        tempAtData.TimePerSprite = 0.1f;
+        tempAtData.TimePerSprite = 10.f;*/
         tempAnimator->CreateAni2D(L"Will_Idle_Down", tempAtData);
         ObjTest1->AddComponent(tempAnimator);
 
@@ -46,15 +47,21 @@ void CLevel_Test1::LevelInit()
 
         tempAnimator->PlayAni2D(L"Will_Idle_Down", true);
     }
+    {   // UI Object
+        CGameObject* ObjTest2 = new CGameObject;
+        CTransform* tempTransform = new CTransform;
+        tempTransform->SetWorldPos(Vec3(100.f, 0.f, 250.f));
+        tempTransform->SetWorldScale(Vec3(200.f, 200.f, 1.f));
+        ObjTest2->AddComponent(tempTransform);
 
-    {   // Main Camera
-        CGameObject* CameraObj = new CGameObject;
-        CameraObj->SetName(L"CameraObj");
-        AddGameObj(CameraObj, (UINT)LAYER_TYPE::LAYER_TEXTURE);
-        m_pCamera = new CCamera;
-        CameraObj->AddComponent(m_pCamera);
-        CameraObj->AddComponent(new CTransform);
-        CameraObj->AddComponent(new CCameraMoveScript);
+        CMeshRender* tempMeshRender = new CMeshRender;
+        tempMeshRender->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+        tempMeshRender->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl1"));
+        tempMeshRender->GetMaterial()->GetShader()->SetDomain(DOMAIN_TYPE::DOMAIN_UI);
+        //tempMeshRender->GetMaterial()->
+        ObjTest2->AddComponent(tempMeshRender);
+
+        AddGameObj(ObjTest2, (UINT)LAYER_TYPE::LAYER_UI);
     }
 }
 
@@ -68,8 +75,8 @@ void CLevel_Test1::LevelFinaltick()
     CLevel::LevelFinaltick();
 }
 
-void CLevel_Test1::LevelRender()
-{
-    CLevel::LevelRender();
-    m_pCamera->CameraRender();
-}
+//void CLevel_Test1::LevelRender()
+//{
+//    CLevel::LevelRender();
+//    m_pCamera->CameraRender();
+//}

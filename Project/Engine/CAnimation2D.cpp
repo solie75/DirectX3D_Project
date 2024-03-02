@@ -14,7 +14,7 @@ CAnimation2D::CAnimation2D(const wstring _ani2DName)
 	, m_sAni2DName(_ani2DName)
 	, m_fAccumulateTime(0.f)
 	//, m_SpriteSize(Vec2(0.f, 0.f))
-	, m_tAniCB{}
+	, m_tAniCB{0, 1}
 {
 	m_AtlasTex = new CTexture;
 }
@@ -30,9 +30,8 @@ HRESULT CAnimation2D::FindAtlas(const wstring _atlasName)
 
 	if (S_OK == m_AtlasTex->LoadRes(Path))
 	{
-		//m_tAniCB.SpriteNum = m_AtlasTex->GetScratchImage()->GetMetadata().width();
-		m_tAniCB.SpriteNum = 10;
-		m_fDurationPerSprite = 0.1f;
+		//m_tAniCB.SpriteNum = 10;
+		//m_fDurationPerSprite = 0.1f;
 	}
 
 	return m_AtlasTex->LoadRes(Path);
@@ -208,7 +207,7 @@ void CAnimation2D::LoadAnimationData(const wstring& _aniName)
 
 					int tempNum = 0;
 					swscanf_s(numStr.c_str(), L"%d", &(tempNum));
-					m_fDurationPerSprite = tempNum * 1.f;
+					m_fDurationPerSprite = tempNum * 0.01f;
 
 
 					return;
@@ -231,14 +230,12 @@ void CAnimation2D::Ani2DLateUpdate()
 
 	if (m_fAccumulateTime > m_fDurationPerSprite)
 	{
+		m_tAniCB.CurSpriteNum++;
+
 		// 마지막 sprite 가 유지 시간이 다 된 경우 처음 sprite 로 되돌아 간다.
-		if (m_tAniCB.CurSpriteNum == m_tAniCB.SpriteNum -1)
+		if (m_tAniCB.CurSpriteNum == (m_tAniCB.SpriteNum+1))
 		{
-			m_tAniCB.CurSpriteNum = 0;
-		}
-		else
-		{
-			m_tAniCB.CurSpriteNum++;
+			m_tAniCB.CurSpriteNum = 1;
 		}
 
 		m_fAccumulateTime = 0.f;

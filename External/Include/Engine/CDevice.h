@@ -28,8 +28,8 @@ private:
 	//Ptr<CTexture> m_DSTex;
 	ComPtr<ID3D11DepthStencilView> m_DSV;
 
-	//// Sampler
-	//ComPtr<ID3D11SamplerState> m_Sampler[2]; // 왜 2개? RT 와 DS 용으로 두개인가?
+	// Sampler
+	ComPtr<ID3D11SamplerState> m_Sampler[2];
 
 	// RasterizerState
 	ComPtr<ID3D11RasterizerState> m_RSState[(UINT)RS_TYPE::END];
@@ -60,6 +60,7 @@ private:
 	HRESULT CreateRasterizerState();
 	HRESULT CreateDepthStencilState();
 	HRESULT CreateBlendState();
+	HRESULT CreateSampler();
 	void CreateConstBuffers();
 
 public:

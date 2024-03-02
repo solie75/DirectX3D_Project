@@ -46,14 +46,14 @@ void CLevelMgr::LevelMgrFinalTick()
     m_pCurLevel->LevelFinaltick();
 }
 
-void CLevelMgr::LevelMgrRender()
-{
-    m_pCurLevel->LevelRender();
-}
+//void CLevelMgr::LevelMgrRender()
+//{
+//    m_pCurLevel->LevelRender();
+//}
 
 CLevel* CLevelMgr::GetCurLevel()
 {
-    return nullptr;
+    return m_pCurLevel;
 }
 
 void CLevelMgr::ChangeLevel(CLevel* _nextLevel)

@@ -6,6 +6,7 @@
 #include "CDevice.h"
 #include "CResMgr.h"
 #include "CLevelMgr.h"
+#include "CCameraMgr.h"
 
 #include "CMeshRender.h"
 
@@ -41,6 +42,7 @@ int CEngine::EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight)
     CTimeMgr::GetInst()->TimeMgrInit();
     CResMgr::GetInst()->ResMgrInit();
     CLevelMgr::GetInst()->LevelMgrInit();
+    CCameraMgr::GetInst()->CameraMgrInit();
 
     // GameObject Init
     // CResMgr::ResMgrInit() 에서 생성된 Mesh 와 Material 을 가진 Mesh render 를 GameObject 에 추가한다.
@@ -61,11 +63,13 @@ void CEngine::EngineTick()
     CTimeMgr::GetInst()->TimeMgrTick();
     CKeyMgr::GetInst()->KeyMgrTick();
     CLevelMgr::GetInst()->LevelMgrTick();
+    CCameraMgr::GetInst()->CameraMgrTick();
 }
 
 void CEngine::EngineFinalTick()
 {
     CLevelMgr::GetInst()->LevelMgrFinalTick();
+    CCameraMgr::GetInst()->CameraMgrFinalTick();
 }
 
 void CEngine::EngineRender()
@@ -74,5 +78,6 @@ void CEngine::EngineRender()
     CDevice::GetInst()->ClearTarget();
 
     CDevice::GetInst()->OMSet();
-    CLevelMgr::GetInst()->LevelMgrRender();
+    //CLevelMgr::GetInst()->LevelMgrRender();
+    CCameraMgr::GetInst()->CameraMgrRender();
 }

@@ -4,6 +4,20 @@
         "spriteNumber": [10],
         "renderingMode": [1],
         "spriteSize": [24, 41],
-        "durationTime": [100]
+        "durationTime": [50]
+    },
+    "Will_Idle_Down2":
+    {
+        "spriteNumber": [20],
+        "renderingMode": [1],
+        "spriteSize": [24, 41],
+        "durationTime": [50]
+    },
+    "Will_Idle_Down3":
+    {
+        "spriteNumber": [8],
+        "renderingMode": [1],
+        "spriteSize": [24, 41],
+        "durationTime": [50]
     }
 }

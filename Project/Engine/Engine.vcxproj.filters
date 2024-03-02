@@ -103,6 +103,9 @@
     <Filter Include="Source\06. Component\03.Animator">
       <UniqueIdentifier>{a83f5d83-990f-454e-b4fd-f8de2ef80c6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\03.Manager\07. CameraMgr">
+      <UniqueIdentifier>{3ee523b0-6c52-48b4-99d1-b48c2e0a172d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -217,6 +220,9 @@
     <ClInclude Include="CAnimation2D.h">
       <Filter>Source\07.Resource\05. Animation</Filter>
     </ClInclude>
+    <ClInclude Include="CCameraMgr.h">
+      <Filter>Source\03.Manager\07. CameraMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -312,6 +318,9 @@
     </ClCompile>
     <ClCompile Include="CAnimation2D.cpp">
       <Filter>Source\07.Resource\05. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraMgr.cpp">
+      <Filter>Source\03.Manager\07. CameraMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -81,6 +81,13 @@ HRESULT CDevice::DeviceInit(HWND _hWnd, UINT _width, UINT _height)
         return E_FAIL;
     }
 
+    // Sampler 생성
+    if (FAILED(CreateSampler()))
+    {
+        MessageBox(nullptr, L"Sampler 생성 실패", L"Sampler 초기화 오류", MB_OK);
+        return E_FAIL;
+    }
+
     // ConstantBuffer Init
     CreateConstBuffers();
 
@@ -298,6 +305,31 @@ HRESULT CDevice::CreateBlendState()
 
     Desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
     DEVICE->CreateBlendState(&Desc, m_BState[(UINT)BS_TYPE::ONE_ONE].GetAddressOf());
+
+    return S_OK;
+}
+
+HRESULT CDevice::CreateSampler()
+{
+    D3D11_SAMPLER_DESC tSamDesc = {};
+
+    tSamDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+    tSamDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+    tSamDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+    tSamDesc.Filter = D3D11_FILTER_ANISOTROPIC; // 축소시, 확대시, 밉맵간에 필터 처리를 전부 Anisotropic
+    DEVICE->CreateSamplerState(&tSamDesc, m_Sampler[0].GetAddressOf());
+
+    tSamDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+    tSamDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+    tSamDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+    tSamDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT; // 축소시, 확대시, 밉맵간 필터처리 전부 point
+    DEVICE->CreateSamplerState(&tSamDesc, m_Sampler[1].GetAddressOf());
+
+    CONTEXT->VSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+    CONTEXT->PSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+
+    CONTEXT->VSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
+    CONTEXT->PSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
 
     return S_OK;
 }

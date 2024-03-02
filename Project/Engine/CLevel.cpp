@@ -20,7 +20,7 @@ void CLevel::LevelInit()
 {
 	for (int i = 0; i < (UINT)LAYER_TYPE::END; ++i)
 	{
-		m_arrLayer[i]->LayerInit();
+		m_arrLayer[i]->LayerInit((LAYER_TYPE)i);
 	}
 }
 
@@ -40,13 +40,13 @@ void CLevel::LevelFinaltick()
 	}
 }
 
-void CLevel::LevelRender()
-{
-	for (int i = 0; i < (UINT)LAYER_TYPE::END; ++i)
-	{
-		m_arrLayer[i]->LayerRender();
-	}
-}
+//void CLevel::LevelRender()
+//{
+//	/*for (int i = 0; i < (UINT)LAYER_TYPE::END; ++i)
+//	{
+//		m_arrLayer[i]->LayerRender();
+//	}*/
+//}
 
 void CLevel::AddGameObj(CGameObject* _Object, int _iLayerIdx)
 {
@@ -61,6 +61,11 @@ void CLevel::ChangeLevel(LEVEL_TYPE _type)
 LEVEL_TYPE CLevel::GetLevelType()
 {
 	return m_CurLevelType;
+}
+
+CLayer* CLevel::GetLayer(int _iLayerType)
+{
+	return m_arrLayer[_iLayerType];
 }
 
 void CLevel::ClearObj()

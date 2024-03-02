@@ -19,12 +19,12 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
     
     if (g_btex_0 != 0)
     {
-        outputColor = g_tex_0.Sample(g_sam_0, _in.UV);
+        outputColor = g_tex_0.Sample(anisotropicSampler, _in.UV);
     }
     
     if (g_btex_1 != 0)
     {
-        outputColor = g_tex_1.Sample(g_sam_0, _in.UV);
+        outputColor = g_tex_1.Sample(anisotropicSampler, _in.UV);
     }
 
     return outputColor;

@@ -18,13 +18,14 @@ public:
 	virtual void LevelInit();
 	virtual void LevelTick();
 	virtual void LevelFinaltick();
-	virtual void LevelRender();
+	//virtual void LevelRender();
 
 public:
 	void AddGameObj(CGameObject* _Object, int _iLayerIdx);
 
 	void ChangeLevel(LEVEL_TYPE _type);
 	LEVEL_TYPE GetLevelType();
+	CLayer* GetLayer(int _iLayerType);
 
 private:
 	void ClearObj();

@@ -68,9 +68,8 @@ Texture2D g_tex_7 : register(t7);
 
 Texture2D atlasTexture : register(t12);
 
-SamplerState g_sam_0 : register(s0);
-//SamplerState pointSampler : register(s0);
-//SamplerState anisotropicSampler : register(s1);
+SamplerState pointSampler : register(s0);
+SamplerState anisotropicSampler : register(s1);
 
 struct VS_IN
 {

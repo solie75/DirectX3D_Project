@@ -14,7 +14,7 @@ public:
 	void LevelMgrInit();
 	void LevelMgrTick();
 	void LevelMgrFinalTick();
-	void LevelMgrRender();
+	//void LevelMgrRender();
 
 public:
 	CLevel* GetCurLevel();

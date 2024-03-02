@@ -12,8 +12,9 @@ CLayer::~CLayer()
     Safe_Del_Vec(m_vecObj);
 }
 
-void CLayer::LayerInit()
+void CLayer::LayerInit(LAYER_TYPE _type)
 {
+    m_LayerType = _type;
     for (size_t i = 0; i < m_vecObj.size(); ++i)
     {
         m_vecObj[i]->ObjInit();
@@ -36,13 +37,13 @@ void CLayer::LayerFinaltick()
     }
 }
 
-void CLayer::LayerRender()
-{
-    for (size_t i = 0; i < m_vecObj.size(); ++i)
-    {
-        m_vecObj[i]->ObjRender();
-    }
-}
+//void CLayer::LayerRender()
+//{
+//    for (size_t i = 0; i < m_vecObj.size(); ++i)
+//    {
+//        m_vecObj[i]->ObjRender();
+//    }
+//}
 
 void CLayer::AddGameObj(CGameObject* _obj)
 {

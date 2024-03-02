@@ -17,10 +17,10 @@ public:
     CLONE(CLayer);
 
 public:
-    void LayerInit();
+    void LayerInit(LAYER_TYPE _type);
     void LayerTick();
     void LayerFinaltick();
-    void LayerRender();
+    //void LayerRender();
 
 public:
     void AddGameObj(CGameObject* _obj);
