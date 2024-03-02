@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Client.h"
 #include <crtdbg.h>
+#include <Engine/CDevice.h>
 
 #define MAX_LOADSTRING 100
 
@@ -61,6 +62,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             // 프로그램 진행
             CEngine::GetInst()->EngineProgress();
+
+            // 렌더링 종료
+            CDevice::GetInst()->Present();
         }
     }
 

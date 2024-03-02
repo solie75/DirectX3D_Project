@@ -58,7 +58,7 @@ void CLevel_Test1::LevelInit()
         tempMeshRender->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
         tempMeshRender->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl1"));
         tempMeshRender->GetMaterial()->GetShader()->SetDomain(DOMAIN_TYPE::DOMAIN_UI);
-        //tempMeshRender->GetMaterial()->
+
         ObjTest2->AddComponent(tempMeshRender);
 
         AddGameObj(ObjTest2, (UINT)LAYER_TYPE::LAYER_UI);

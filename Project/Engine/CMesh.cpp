@@ -60,5 +60,4 @@ void CMesh::RenderMesh()
 {
 	UpdateMeshData();
 	CONTEXT->DrawIndexed(m_IdxCount, 0, 0);
-	CDevice::GetInst()->Present();
 }
