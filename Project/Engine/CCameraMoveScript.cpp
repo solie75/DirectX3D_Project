@@ -35,11 +35,11 @@ void CCameraMoveScript::ScriptTick()
 	{
 		tempPos.y -= 0.2f;
 	}
-	if (KEY_PRESSED(KEY::Q))
+	if (KEY_PRESSED(KEY::Z))
 	{
 		tempPos.z += 0.2f;
 	}
-	if (KEY_PRESSED(KEY::W))
+	if (KEY_PRESSED(KEY::X))
 	{
 		tempPos.z -= 0.2f;
 	}

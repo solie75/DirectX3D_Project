@@ -109,7 +109,7 @@ enum class LEVEL_TYPE
 
 enum class LAYER_TYPE
 {
-	LAYER_TEXTURE,
+	LAYER_PLAYER,
 	LAYER_CAMERA,
 	LAYER_UI,
 	END,
@@ -130,6 +130,7 @@ enum class DIR_TYPE
 
 enum class SCRIPT_TYPE
 {
+	PLAYER_SCRIPT,
 	CAMERAMOVE_SCRIPT,
 	END,
 };
@@ -138,6 +139,15 @@ enum class CAMERA_TYPE
 {
 	MAIN,
 	UI,
+	END,
+};
+
+enum class DIRECTION_TYPE
+{
+	RIGHT,
+	DOWN,
+	LEFT,
+	UP,
 	END,
 };
 

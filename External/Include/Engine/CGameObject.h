@@ -25,10 +25,10 @@ public:
     CLONE(CGameObject);
 
 public:
-    void ObjInit();
-    void ObjTick();
-    void ObjFinaltick();
-    void ObjRender();
+    virtual void ObjInit();
+    virtual void ObjTick();
+    virtual void ObjFinaltick();
+    virtual void ObjRender();
 
     void AddComponent(CComponent* _component);
     CComponent* GetComponent(COMPONENT_TYPE _type) { return m_arrComp[(UINT)_type]; }

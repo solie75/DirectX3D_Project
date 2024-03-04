@@ -15,6 +15,7 @@ public:
     SCRIPT_TYPE GetScriptType() { return m_iScriptType; }
 
 public:
+    virtual void ScriptInit() {};
     virtual void ScriptTick() {};
     virtual void ScriptFinalTick() {};
 };

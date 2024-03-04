@@ -51,7 +51,9 @@ void CCameraMgr::CameraMgrInit()
     // Main Camera
     CGameObject* tempCam = new CGameObject;
     tempCam->SetName(L"Main_Camera");
-    tempCam->AddComponent(new CTransform);
+    CTransform* tempTF = new CTransform;
+    tempTF->SetWorldPos(Vec3(0.f, 0.f, -500.f));
+    tempCam->AddComponent(tempTF);
     CCamera* camComp = new CCamera;
     
     camComp->SetCameraType(CAMERA_TYPE::MAIN);
@@ -66,7 +68,10 @@ void CCameraMgr::CameraMgrInit()
     // UI Camera
     tempCam = new CGameObject;
     tempCam->SetName(L"UI_Camera");
-    tempCam->AddComponent(new CTransform);
+    tempTF = new CTransform;
+    tempTF->SetWorldPos(Vec3(0.f, 0.f, -500.f));
+    tempCam->AddComponent(tempTF);
+
     camComp = new CCamera;
     camComp->SetCameraType(CAMERA_TYPE::UI);
     camComp->SetLayerMask((UINT)LAYER_TYPE::LAYER_UI, true);

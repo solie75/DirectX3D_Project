@@ -38,6 +38,18 @@ CGameObject::~CGameObject()
 
 void CGameObject::ObjInit()
 {
+    for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
+    {
+        if (m_arrComp[i] != nullptr)
+        {
+            m_arrComp[i]->CompInit();
+        }
+    }
+
+    for (size_t i = 0; i < m_vecScript.size(); ++i)
+    {
+        m_vecScript[i]->ScriptInit();
+    }
 }
 
 void CGameObject::ObjTick()

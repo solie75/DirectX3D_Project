@@ -106,6 +106,12 @@
     <Filter Include="Source\03.Manager\07. CameraMgr">
       <UniqueIdentifier>{3ee523b0-6c52-48b4-99d1-b48c2e0a172d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\05.GameObject\01.Player">
+      <UniqueIdentifier>{1813e951-8664-4bc6-8078-b8e549fc34f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\Script\PlayerScript">
+      <UniqueIdentifier>{58a51fe4-203e-499f-8aec-9d8fe3f3f1c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -223,6 +229,12 @@
     <ClInclude Include="CCameraMgr.h">
       <Filter>Source\03.Manager\07. CameraMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Source\05.GameObject\01.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerScript.h">
+      <Filter>Source\06. Component\Script\PlayerScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -321,6 +333,12 @@
     </ClCompile>
     <ClCompile Include="CCameraMgr.cpp">
       <Filter>Source\03.Manager\07. CameraMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Source\05.GameObject\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerScript.cpp">
+      <Filter>Source\06. Component\Script\PlayerScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
