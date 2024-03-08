@@ -11,6 +11,30 @@ public:
     CAnimation2D(const wstring _ani2DName);
     ~CAnimation2D();
 
+    struct Ani2D_Event
+    {
+        std::function<void()> mEvent; // 반환형이 void, 받을 인자가 없는 함수를 받는다.
+
+        void operator=(std::function<void()> _func)
+        {
+            mEvent = std::move(_func);
+        }
+
+        void operator()()
+        {
+            if (mEvent)
+            {
+                mEvent();
+            }
+        }
+    };
+
+    enum class ANI2D_EVENT_TYPE
+    {
+        START,
+        COMPLETE,
+        END,
+    };
 
 private:
     CAnimator2D* m_pOwner;
@@ -23,6 +47,9 @@ private:
     tAnimation_CB m_tAniCB;
     const wstring m_sAni2DName;
      
+
+    std::vector<Ani2D_Event> m_Events[(UINT)ANI2D_EVENT_TYPE::END];
+
 public:
     bool IsAnimFinish() { return m_bLoopFinish; }
     HRESULT FindAtlas(const wstring _atlasName);

@@ -4,20 +4,55 @@
         "spriteNumber": [10],
         "renderingMode": [1],
         "spriteSize": [24, 41],
-        "durationTime": [50]
+        "durationTime": [10]
     },
-    "Will_Idle_Down2":
+    "Will_Idle_Right":
     {
-        "spriteNumber": [20],
+        "spriteNumber": [10],
         "renderingMode": [1],
-        "spriteSize": [24, 41],
-        "durationTime": [50]
+        "spriteSize": [32, 42],
+        "durationTime": [10]
     },
-    "Will_Idle_Down3":
+    "Will_Idle_Left":
+    {
+        "spriteNumber": [10],
+        "renderingMode": [1],
+        "spriteSize": [32, 42],
+        "durationTime": [10]
+    },
+    "Will_Idle_Up":
+    {
+        "spriteNumber": [10],
+        "renderingMode": [1],
+        "spriteSize": [25, 42],
+        "durationTime": [10]
+    },
+    "Will_Walk_Down":
     {
         "spriteNumber": [8],
         "renderingMode": [1],
-        "spriteSize": [24, 41],
-        "durationTime": [50]
+        "spriteSize": [25, 38],
+        "durationTime": [10]
+    },
+    "Will_Walk_Up":
+    {
+        "spriteNumber": [8],
+        "renderingMode": [1],
+        "spriteSize": [25, 43],
+        "durationTime": [10]
+    },
+    "Will_Walk_Right":
+    {
+        "spriteNumber": [8],
+        "renderingMode": [1],
+        "spriteSize": [35, 40],
+        "durationTime": [10]
+    },
+    "Will_Walk_Left":
+    {
+        "spriteNumber": [8],
+        "renderingMode": [1],
+        "spriteSize": [35, 40],
+        "durationTime": [10]
     }
 }

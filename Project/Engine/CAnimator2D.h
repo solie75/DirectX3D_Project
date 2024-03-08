@@ -17,9 +17,14 @@ public:
     ~CAnimator2D();
 
     CLONE(CAnimator2D);
+
+
+
 private:
     map <std::wstring, CAnimation2D*> m_mapAni2D;
     CAnimation2D* m_pCurAni2D;
+
+
 
 public:
     //HRESULT FindAtlasFIle(const wstring& _strName);

@@ -151,7 +151,6 @@ enum class DIRECTION_TYPE
 	END,
 };
 
-
 enum MATERIAL_SCALAR_PARAM
 {
 	INT_0,

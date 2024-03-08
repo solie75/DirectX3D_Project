@@ -5,11 +5,21 @@ class CPlayer :
     public CGameObject
 {
 public:
+    enum class PLAYER_STATE
+    {
+        IDLE,
+        WALK,
+        ATTACK,
+        END,
+    };
+
+public:
     CPlayer();
     ~CPlayer();
 
 private:
     DIRECTION_TYPE m_directionType;
+    PLAYER_STATE m_curState;
     
 public:
     void ObjInit() override;

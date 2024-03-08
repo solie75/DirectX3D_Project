@@ -19,7 +19,7 @@ VS_OUT VS_Ani2D(VS_IN _in)
 
 float4 PS_Ani2D(VS_OUT _in) : SV_TARGET
 {
-    float4 color = (float4) 1.0f;
+    float4 color = (float4) 0.f;
 
     float2 modifiedTexcoord = _in.UV;
     
@@ -37,8 +37,7 @@ float4 PS_Ani2D(VS_OUT _in) : SV_TARGET
         modifiedTexcoord.x += ((CurSpriteNum - 1) % SpriteNum) * (1.f / SpriteNum);
     }
     
-    color = atlasTexture.Sample(anisotropicSampler, modifiedTexcoord);
-	
+    color = atlasTexture.Sample(pointSampler, modifiedTexcoord);
     return color;
 }
 
