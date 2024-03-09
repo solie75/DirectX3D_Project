@@ -67,7 +67,12 @@ void CAnimator2D::PlayAni2D(const wstring& _aniName, bool _bLoop)
 	// Set Texture of current Animation into MeshRender's member Texture
 	CRenderComponent* tempMR = GetOwnerObj()->GetRenderComponent();
 	Ptr<CMaterial> tempMT = tempMR->GetMaterial();
-	tempMT->SetMtrlTexParam(MATERIAL_TEX_PARAM::TEX_0, m_pCurAni2D->GetAtlasTex());
+
+	// 현재는 하나의 애니메이션이 하나의 Ani Data 와 Atlas Texture 를 가지고 있다.
+	// 따라서 플레이 하고자 하는 애니메이션에 대해서 Ani Data 와 Atlas Texture 를 그에 맞게 변경해주어야한다.
+	// 이는 애니메이션의 종류가 변경될 때마다 변경 연상이 필요하게 된다. 이것이 자원을 많이 잡아먹는다고 판단되면 
+	// Atlas Texture 를 모두 Animatino 이 std::map 으로 가지고 있는 방법을 생각해 볼것
+	tempMT->SetMtrlTexParam(MATERIAL_TEX_PARAM::TEX_0, m_pCurAni2D->ChangeAtlasTex(_aniName));
 }
 
 void CAnimator2D::CompInit()

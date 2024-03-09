@@ -89,6 +89,7 @@ enum class COMPONENT_TYPE
 	TRANSFORM,
 	CAMERA,
 	ANIMATOR2D,
+	STATE,
 
 	// render
 	MESHRENDER,

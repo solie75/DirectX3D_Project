@@ -258,6 +258,13 @@ Ptr<CTexture> CAnimation2D::GetAtlasTex()
 	return m_AtlasTex;
 }
 
+Ptr<CTexture> CAnimation2D::ChangeAtlasTex(const wstring& _aniName)
+{
+	LoadAnimationData(_aniName);
+	LoadAtlas(_aniName);
+	return m_AtlasTex;
+}
+
 void CAnimation2D::SetBoolLoop(bool _b)
 {
 	m_bLoop = _b;

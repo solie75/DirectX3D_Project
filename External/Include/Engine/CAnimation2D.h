@@ -11,6 +11,12 @@ public:
     CAnimation2D(const wstring _ani2DName);
     ~CAnimation2D();
 
+    enum class ANI2D_EVENT_TYPE
+    {
+        START,
+        COMPLETE,
+        END,
+    };
 
 private:
     CAnimator2D* m_pOwner;
@@ -20,9 +26,9 @@ private:
     float m_fAccumulateTime;
     bool m_bLoop;
     bool m_bLoopFinish;
-    tAnimation_CB m_tAniCB;
     const wstring m_sAni2DName;
-     
+    tAnimation_CB m_tAniCB;
+
 public:
     bool IsAnimFinish() { return m_bLoopFinish; }
     HRESULT FindAtlas(const wstring _atlasName);

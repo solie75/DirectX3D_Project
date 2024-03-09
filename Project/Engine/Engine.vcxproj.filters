@@ -112,6 +112,9 @@
     <Filter Include="Source\06. Component\Script\PlayerScript">
       <UniqueIdentifier>{58a51fe4-203e-499f-8aec-9d8fe3f3f1c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\06. Component\04.State">
+      <UniqueIdentifier>{4b849b56-d9aa-4f84-a6eb-481d04892fdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -235,6 +238,9 @@
     <ClInclude Include="CPlayerScript.h">
       <Filter>Source\06. Component\Script\PlayerScript</Filter>
     </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Source\06. Component\04.State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -339,6 +345,9 @@
     </ClCompile>
     <ClCompile Include="CPlayerScript.cpp">
       <Filter>Source\06. Component\Script\PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Source\06. Component\04.State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
