@@ -44,12 +44,20 @@ void CPlayer::ObjInit()
 	CAnimator2D* tempANI = new CAnimator2D;
 	tAtlasData tempAtData;
 	tempANI->CreateAni2D(L"Will_Idle_Down", tempAtData);
+	tempANI->CreateAni2D(L"Will_Idle_Right", tempAtData);
+	tempANI->CreateAni2D(L"Will_Idle_Left", tempAtData);
+	tempANI->CreateAni2D(L"Will_Idle_Up", tempAtData);
+	tempANI->CreateAni2D(L"Will_Walk_Right", tempAtData);
+	tempANI->CreateAni2D(L"Will_Walk_Left", tempAtData);
+	tempANI->CreateAni2D(L"Will_Walk_Up", tempAtData);
+	tempANI->CreateAni2D(L"Will_Walk_Down", tempAtData);
 	AddComponent(tempANI);
 
 	tempANI->PlayAni2D(L"Will_Idle_Down", true);
 
 	// State
-	AddComponent(new CState((UINT)PLAYER_STATE::IDLE, DIRECTION_TYPE::DOWN));
+	AddComponent(new CState((UINT)OBJECT_STATE::IDLE, DIRECTION_TYPE::DOWN));
+	
 }
 
 void CPlayer::ObjTick()

@@ -42,6 +42,7 @@ public:
     void Ani2DLateUpdate();
     void Ani2DBind();
     Ptr<CTexture> GetAtlasTex();
+    Ptr<CTexture> ChangeAtlasTex(const wstring& _aniName);
     void SetBoolLoop(bool _b);
     void SetAnimatorOwner(CAnimator2D* _animator) { m_pOwner = _animator; }
 };

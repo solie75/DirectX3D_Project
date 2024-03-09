@@ -152,6 +152,16 @@ enum class DIRECTION_TYPE
 	END,
 };
 
+enum class OBJECT_STATE
+{
+	IDLE,
+	WALK,
+	ATTACK,
+	HIT,
+	ROLL,
+	END,
+};
+
 enum MATERIAL_SCALAR_PARAM
 {
 	INT_0,

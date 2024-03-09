@@ -89,6 +89,7 @@ enum class COMPONENT_TYPE
 	TRANSFORM,
 	CAMERA,
 	ANIMATOR2D,
+	STATE,
 
 	// render
 	MESHRENDER,
@@ -148,6 +149,16 @@ enum class DIRECTION_TYPE
 	DOWN,
 	LEFT,
 	UP,
+	END,
+};
+
+enum class OBJECT_STATE
+{
+	IDLE,
+	WALK,
+	ATTACK,
+	HIT,
+	ROLL,
 	END,
 };
 
