@@ -20,12 +20,9 @@ void CPlayerScript::ScriptInit()
 
 void CPlayerScript::ScriptTick()
 {
-	int iPressedCount = 0;
-
 	CAnimator2D* tempAni2D = GetOwnerObj()->GetComponent<CAnimator2D>(COMPONENT_TYPE::ANIMATOR2D);
 	CState* tempState = GetOwnerObj()->GetComponent<CState>(COMPONENT_TYPE::STATE);
 
-	
 	CTransform* tempTransform = GetOtherComp<CTransform>(COMPONENT_TYPE::TRANSFORM);
 	Vec3 WorldPos = tempTransform->GetWorldPos();
 
@@ -35,7 +32,6 @@ void CPlayerScript::ScriptTick()
 	{
 		if (tempState->GetCurDirectionType() != DIRECTION_TYPE::RIGHT)
 		{
-			iPressedCount++;
 			tempPos.x -= 0.1f;
 		}
 	}
@@ -43,7 +39,6 @@ void CPlayerScript::ScriptTick()
 	{
 		if (tempState->GetCurDirectionType() != DIRECTION_TYPE::LEFT)
 		{
-			iPressedCount++;
 			tempPos.x += 0.1f;
 		}
 	}
@@ -51,7 +46,6 @@ void CPlayerScript::ScriptTick()
 	{
 		if (tempState->GetCurDirectionType() != DIRECTION_TYPE::DOWN)
 		{
-			iPressedCount++;
 			tempPos.y += 0.1f;
 		}
 	}
@@ -59,12 +53,11 @@ void CPlayerScript::ScriptTick()
 	{
 		if (tempState->GetCurDirectionType() != DIRECTION_TYPE::UP)
 		{
-			iPressedCount++;
 			tempPos.y -= 0.1f;
 		}
 	}
 
-	if (iPressedCount > 1)
+	if (m_vecDir.size() > 1)
 	{
 		// 대각 선으로 이동할 때의 속도 조절
 		tempPos *= Vec2(0.7f);
@@ -73,103 +66,117 @@ void CPlayerScript::ScriptTick()
 	WorldPos.x += tempPos.x;
 	WorldPos.y += tempPos.y;
 
+	tempTransform->SetWorldPos(WorldPos);
+
 	// TAP
 	if (KEY_TAP(KEY::A))
 	{
-		if (iPressedCount < 3)
-		{
 			tempAni2D->PlayAni2D(L"Will_Walk_Left", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::WALK, DIRECTION_TYPE::LEFT);
-		}
+			m_vecDir.push_back(DIRECTION_TYPE::LEFT);
 	}
 	if (KEY_TAP(KEY::D))
 	{
-		if (iPressedCount < 3)
-		{
 			tempAni2D->PlayAni2D(L"Will_Walk_Right", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::WALK, DIRECTION_TYPE::RIGHT);
-		}
+			m_vecDir.push_back(DIRECTION_TYPE::RIGHT);
 	}
 	if (KEY_TAP(KEY::W))
 	{
-		if (iPressedCount < 3)
-		{
 			tempAni2D->PlayAni2D(L"Will_Walk_Up", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::WALK, DIRECTION_TYPE::UP);
-		}
+			m_vecDir.push_back(DIRECTION_TYPE::UP);
 	}
 	if (KEY_TAP(KEY::S))
 	{
-		if (iPressedCount < 3)
-		{
 			tempAni2D->PlayAni2D(L"Will_Walk_Down", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::WALK, DIRECTION_TYPE::DOWN);
-		}
+			m_vecDir.push_back(DIRECTION_TYPE::DOWN);
 	}
 
 	// RELEASE
-	if (KEY_RELEASE(KEY::A) && tempState->GetCurDirectionType() == DIRECTION_TYPE::LEFT)
+	if (KEY_RELEASE(KEY::A))
 	{
-		if (iPressedCount >= 1)
+		if (m_vecDir.size() > 1 )
 		{
-			PlayWalkAniWithPrevDir();
+			EraseDir(DIRECTION_TYPE::LEFT);
+			if (tempState->GetCurDirectionType() == DIRECTION_TYPE::LEFT)
+			{
+				PlayWalkAniWithPrevDir(DIRECTION_TYPE::LEFT);
+			}
 		}
-		else
+		else if(m_vecDir.size() == 1)
 		{
+			m_vecDir.clear();
 			tempAni2D->PlayAni2D(L"Will_Idle_Left", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::IDLE);
 		}
 	}
-	if (KEY_RELEASE(KEY::D) && tempState->GetCurDirectionType() == DIRECTION_TYPE::RIGHT)
+	if (KEY_RELEASE(KEY::D))
 	{
-		if (iPressedCount >= 1)
+		if (m_vecDir.size() > 1)
 		{
-			PlayWalkAniWithPrevDir();
+			EraseDir(DIRECTION_TYPE::RIGHT);
+			if (tempState->GetCurDirectionType() == DIRECTION_TYPE::RIGHT)
+			{
+				PlayWalkAniWithPrevDir(DIRECTION_TYPE::RIGHT);
+			}
 		}
-		else
+		else  if (m_vecDir.size() == 1)
 		{
+			m_vecDir.clear();
 			tempAni2D->PlayAni2D(L"Will_Idle_Right", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::IDLE);
 		}
 	}
-	if (KEY_RELEASE(KEY::W) && tempState->GetCurDirectionType() == DIRECTION_TYPE::UP)
+	if (KEY_RELEASE(KEY::W))
 	{
-		if (iPressedCount >= 1)
+		if (m_vecDir.size() > 1)
 		{
-			PlayWalkAniWithPrevDir();
+			EraseDir(DIRECTION_TYPE::UP);
+			if (tempState->GetCurDirectionType() == DIRECTION_TYPE::UP)
+			{
+				PlayWalkAniWithPrevDir(DIRECTION_TYPE::UP);
+			}
 		}
-		else
+		else if (m_vecDir.size() == 1)
 		{
+			m_vecDir.clear();
 			tempAni2D->PlayAni2D(L"Will_Idle_Up", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::IDLE);
 		}
 	}
-	if (KEY_RELEASE(KEY::S) && tempState->GetCurDirectionType() == DIRECTION_TYPE::DOWN)
+	if (KEY_RELEASE(KEY::S))
 	{
-		if (iPressedCount >= 1)
+		if (m_vecDir.size() > 1)
 		{
-			PlayWalkAniWithPrevDir();
+			EraseDir(DIRECTION_TYPE::DOWN);
+			if (tempState->GetCurDirectionType() == DIRECTION_TYPE::DOWN)
+			{
+				PlayWalkAniWithPrevDir(DIRECTION_TYPE::DOWN);
+			}
 		}
-		else
+		else if (m_vecDir.size() == 1)
 		{
+			m_vecDir.clear();
 			tempAni2D->PlayAni2D(L"Will_Idle_Down", true);
 			tempState->SetCurState((UINT)OBJECT_STATE::IDLE);
 		}
 	}
-
-	tempTransform->SetWorldPos(WorldPos);
 }
 
 void CPlayerScript::ScriptFinalTick()
 {
 }
 
-void CPlayerScript::PlayWalkAniWithPrevDir()
+void CPlayerScript::PlayWalkAniWithPrevDir(DIRECTION_TYPE _type)
 {
 	CAnimator2D* tempAni2D = GetOwnerObj()->GetComponent<CAnimator2D>(COMPONENT_TYPE::ANIMATOR2D);
 	CState* tempState = GetOwnerObj()->GetComponent<CState>(COMPONENT_TYPE::STATE);
+	std::vector<DIRECTION_TYPE>::iterator iter = m_vecDir.end();
+	iter--; // m_vecDir 의 맨 마지막 요소를 가리킨다.
 
-	switch (tempState->GetPrevDirectionType())
+	switch (*iter)
 	{
 	case DIRECTION_TYPE::RIGHT :
 		tempAni2D->PlayAni2D(L"Will_Walk_Right", true);
@@ -187,5 +194,18 @@ void CPlayerScript::PlayWalkAniWithPrevDir()
 		tempAni2D->PlayAni2D(L"Will_Walk_Up", true);
 		tempState->SetDirectionType(DIRECTION_TYPE::UP);
 		break;
+	}
+}
+
+void CPlayerScript::EraseDir(DIRECTION_TYPE _type)
+{
+	vector<DIRECTION_TYPE>::iterator iter = m_vecDir.begin();
+	for (; iter != m_vecDir.end(); iter++)
+	{
+		if (*iter == _type)
+		{
+			m_vecDir.erase(iter);
+			return;
+		}
 	}
 }

@@ -57,7 +57,6 @@ void CPlayer::ObjInit()
 
 	// State
 	AddComponent(new CState((UINT)OBJECT_STATE::IDLE, DIRECTION_TYPE::DOWN));
-	
 }
 
 void CPlayer::ObjTick()
