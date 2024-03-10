@@ -103,9 +103,6 @@
     <Filter Include="Source\06. Component\03.Animator">
       <UniqueIdentifier>{a83f5d83-990f-454e-b4fd-f8de2ef80c6b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\03.Manager\07. CameraMgr">
-      <UniqueIdentifier>{3ee523b0-6c52-48b4-99d1-b48c2e0a172d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\05.GameObject\01.Player">
       <UniqueIdentifier>{1813e951-8664-4bc6-8078-b8e549fc34f6}</UniqueIdentifier>
     </Filter>
@@ -114,6 +111,12 @@
     </Filter>
     <Filter Include="Source\06. Component\04.State">
       <UniqueIdentifier>{4b849b56-d9aa-4f84-a6eb-481d04892fdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\03.Manager\07.CameraMgr">
+      <UniqueIdentifier>{3ee523b0-6c52-48b4-99d1-b48c2e0a172d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\03.Manager\08.EditObjMgr">
+      <UniqueIdentifier>{45cac1c4-8d2b-492d-8c45-253002614a94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -230,7 +233,7 @@
       <Filter>Source\07.Resource\05. Animation</Filter>
     </ClInclude>
     <ClInclude Include="CCameraMgr.h">
-      <Filter>Source\03.Manager\07. CameraMgr</Filter>
+      <Filter>Source\03.Manager\07.CameraMgr</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
       <Filter>Source\05.GameObject\01.Player</Filter>
@@ -240,6 +243,9 @@
     </ClInclude>
     <ClInclude Include="CState.h">
       <Filter>Source\06. Component\04.State</Filter>
+    </ClInclude>
+    <ClInclude Include="CEditObjMgr.h">
+      <Filter>Source\03.Manager\08.EditObjMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -338,7 +344,7 @@
       <Filter>Source\07.Resource\05. Animation</Filter>
     </ClCompile>
     <ClCompile Include="CCameraMgr.cpp">
-      <Filter>Source\03.Manager\07. CameraMgr</Filter>
+      <Filter>Source\03.Manager\07.CameraMgr</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>Source\05.GameObject\01.Player</Filter>
@@ -348,6 +354,9 @@
     </ClCompile>
     <ClCompile Include="CState.cpp">
       <Filter>Source\06. Component\04.State</Filter>
+    </ClCompile>
+    <ClCompile Include="CEditObjMgr.cpp">
+      <Filter>Source\03.Manager\08.EditObjMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

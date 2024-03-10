@@ -162,6 +162,15 @@ enum class OBJECT_STATE
 	END,
 };
 
+enum class SHAPE_TYPE
+{
+	RECT,
+	CIRCLE,
+	CUBE,
+	SPHERE,
+	END,
+};
+
 enum MATERIAL_SCALAR_PARAM
 {
 	INT_0,
@@ -203,3 +212,4 @@ enum MATERIAL_TEX_PARAM
 
 	TEX_END,
 };
+
