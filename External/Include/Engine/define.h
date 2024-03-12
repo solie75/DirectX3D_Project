@@ -90,6 +90,7 @@ enum class COMPONENT_TYPE
 	CAMERA,
 	ANIMATOR2D,
 	STATE,
+	COLLIDER2D,
 
 	// render
 	MESHRENDER,
@@ -113,6 +114,17 @@ enum class LAYER_TYPE
 	LAYER_PLAYER,
 	LAYER_CAMERA,
 	LAYER_UI,
+	LAYER_EDITOR,
+	END,
+};
+
+enum class COLLIDER_TYPE
+{
+	PLAYER,
+	MONSTER,
+	PLAYER_PROJECTILE,
+	MONSTER_PROJECTILE,
+	BACKGROUND,
 	END,
 };
 
@@ -140,6 +152,7 @@ enum class CAMERA_TYPE
 {
 	MAIN,
 	UI,
+	EDITOR,
 	END,
 };
 
@@ -159,6 +172,15 @@ enum class OBJECT_STATE
 	ATTACK,
 	HIT,
 	ROLL,
+	END,
+};
+
+enum class SHAPE_TYPE
+{
+	RECT,
+	CIRCLE,
+	CUBE,
+	SPHERE,
 	END,
 };
 
@@ -203,3 +225,4 @@ enum MATERIAL_TEX_PARAM
 
 	TEX_END,
 };
+

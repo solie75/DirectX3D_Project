@@ -6,6 +6,7 @@
 #include "CResMgr.h"
 #include "CPlayerScript.h"
 #include "CState.h"
+#include "CCollider2D.h"
 
 CPlayer::CPlayer()
 	: CGameObject()
@@ -57,6 +58,13 @@ void CPlayer::ObjInit()
 
 	// State
 	AddComponent(new CState((UINT)OBJECT_STATE::IDLE, DIRECTION_TYPE::DOWN));
+
+	// CCollider2D
+	CCollider2D* tempCD = new CCollider2D;
+	// 절대적인 위치나 크기가 아니라 캐릭터에 대해 비례적으로 적용된다.
+	tempCD->SetOffsetPos(Vec2(1.f, 1.f));
+	tempCD->SetOffsetScale(Vec2(0.5f, 0.5f));
+	AddComponent(tempCD);
 }
 
 void CPlayer::ObjTick()

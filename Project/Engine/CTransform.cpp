@@ -54,7 +54,12 @@ Vec3 CTransform::GetWorldDir(DIR_TYPE _type)
     return m_vWorldDir[(UINT)_type];
 }
 
-void CTransform::SetWordMat(const Matrix& _mat)
+const Matrix& CTransform::GetWorldMat()
+{
+    return m_matWorld;
+}
+
+void CTransform::SetWorldMat(const Matrix& _mat)
 {
     m_matWorld = _mat;
 }

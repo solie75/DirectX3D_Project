@@ -1,6 +1,5 @@
 #pragma once
 #include "CLevel.h"
-#include "CSingleton.h"
 
 class CLevelMgr :
 	public CSingleton<CLevelMgr>

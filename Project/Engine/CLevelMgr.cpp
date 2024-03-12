@@ -38,7 +38,6 @@ void CLevelMgr::LevelMgrTick()
     }
 
     m_pCurLevel->LevelTick();
-
 }
 
 void CLevelMgr::LevelMgrFinalTick()

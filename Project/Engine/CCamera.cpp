@@ -6,6 +6,7 @@
 //#include "CLevel.h"
 #include "CLevelMgr.h"
 #include "CRenderComponent.h"
+#include "CEditObjMgr.h"
 
 CCamera::CCamera()
 	: CComponent(COMPONENT_TYPE::CAMERA)
@@ -38,6 +39,11 @@ void CCamera::CameraRender()
 	// Matrix Update
 	g_transform.matView = m_matView;
 	g_transform.matProj = m_matProj;
+
+	if (m_CamType == CAMERA_TYPE::MAIN)
+	{
+		CEditObjMgr::GetInst()->SetMainCamData(g_transform);
+	}
 
 	render_opaque();
 	render_mask();

@@ -7,6 +7,7 @@
 #include "CResMgr.h"
 #include "CLevelMgr.h"
 #include "CCameraMgr.h"
+#include "CEditObjMgr.h"
 
 #include "CMeshRender.h"
 
@@ -43,6 +44,7 @@ int CEngine::EngineInit(HWND _hWnd, UINT _iWidth, UINT _iHeight)
     CResMgr::GetInst()->ResMgrInit();
     CLevelMgr::GetInst()->LevelMgrInit();
     CCameraMgr::GetInst()->CameraMgrInit();
+    CEditObjMgr::GetInst()->EditObjMgrInit();
 
     // GameObject Init
     // CResMgr::ResMgrInit() 에서 생성된 Mesh 와 Material 을 가진 Mesh render 를 GameObject 에 추가한다.
@@ -64,12 +66,13 @@ void CEngine::EngineTick()
     CKeyMgr::GetInst()->KeyMgrTick();
     CLevelMgr::GetInst()->LevelMgrTick();
     CCameraMgr::GetInst()->CameraMgrTick();
+    //CEditObjMgr::GetInst()->EditObjMgrProgress()
 }
 
 void CEngine::EngineFinalTick()
 {
-    CLevelMgr::GetInst()->LevelMgrFinalTick();
-    CCameraMgr::GetInst()->CameraMgrFinalTick();
+    CLevelMgr::GetInst()->LevelMgrFinalTick(); // Game Object의 FinalTick
+    CCameraMgr::GetInst()->CameraMgrFinalTick(); // Camera Object의 FinalTick 및 Sort Object
 }
 
 void CEngine::EngineRender()
@@ -80,4 +83,5 @@ void CEngine::EngineRender()
     CDevice::GetInst()->OMSet();
     //CLevelMgr::GetInst()->LevelMgrRender();
     CCameraMgr::GetInst()->CameraMgrRender();
+    CEditObjMgr::GetInst()->EditObjMgrRender();
 }

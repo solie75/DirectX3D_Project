@@ -1,5 +1,6 @@
 #pragma once
 #include "CComponent.h"
+
 class CTransform :
     public CComponent
 {
@@ -30,8 +31,9 @@ public:
     Vec3 GetWorldScale() const;
     Vec3 GetWorldRot() const;
     Vec3 GetWorldDir(DIR_TYPE _type);
+    const Matrix& GetWorldMat();
 
-    void SetWordMat(const Matrix& _mat);
+    void SetWorldMat(const Matrix& _mat);
 
 public:
     void CompInit() override;

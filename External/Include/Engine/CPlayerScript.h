@@ -19,6 +19,5 @@ public:
     
     void PlayWalkAniWithPrevDir(DIRECTION_TYPE _type);
     void EraseDir(DIRECTION_TYPE _type);
-    
 };
 

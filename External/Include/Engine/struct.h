@@ -51,3 +51,13 @@ struct tAnimation_CB
 
 	int pad[2];
 };
+
+struct tDebugShapeInfo
+{
+	SHAPE_TYPE eShape;
+	Matrix matWorld;
+	Vec3 vWorldPos;
+	Vec3 vWorldScale;
+	Vec3 vWorldRotation;
+	Vec4 vColor;
+};

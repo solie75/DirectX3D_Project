@@ -40,6 +40,6 @@ typedef Vector4 Vec4;
 
 #include "define.h"
 #include "struct.h"
+#include "CSingleton.h"
 #include "func.h"
 
-#include "CSingleton.h"

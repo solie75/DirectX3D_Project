@@ -77,6 +77,18 @@ void CCameraMgr::CameraMgrInit()
     camComp->SetLayerMask((UINT)LAYER_TYPE::LAYER_UI, true);
     tempCam->AddComponent(camComp);
     m_mapCam.insert(make_pair(L"UI_Camera", tempCam));
+
+    // Editor Camera
+    //m_EditCam = new CGameObject;
+    //tempCam->SetName(L"Editor_Camera");
+    //tempTF = new CTransform;
+    //tempTF->SetWorldPos(Vec3(0.f, 0.f, -500.f)); // UI 카메라와 위치는 같아야 하지 않을까
+    //tempCam->AddComponent(tempTF);
+
+    //camComp = new CCamera;
+    //camComp->SetCameraType(CAMERA_TYPE::EDITOR);
+    //camComp->SetLayerMask((UINT)COLLIDER_TYPE::LAYER_EDITOR, true);
+    //tempCam->AddComponent(camComp);
 }
 
 void CCameraMgr::CameraMgrTick()
@@ -93,7 +105,7 @@ void CCameraMgr::CameraMgrFinalTick()
     map<wstring, CGameObject*>::iterator iter = m_mapCam.begin();
     for (; iter != m_mapCam.end(); ++iter)
     {
-        iter->second->ObjFinaltick();
+        iter->second->ObjFinaltick(); // Camera 객체의 FinalTick
         CCamera* tempCam = iter->second->GetComponent<CCamera>(COMPONENT_TYPE::CAMERA);
         tempCam->SortObject();
     }
@@ -106,7 +118,11 @@ void CCameraMgr::CameraMgrRender()
     {
         CCamera* tempCam = iter->second->GetComponent<CCamera>(COMPONENT_TYPE::CAMERA);
         tempCam->CameraRender();
-        int a = 0;
     }
 }
+
+//void CCameraMgr::SetEditCam(CGameObject* _editCam)
+//{
+//    m_EditCam = _editCam;
+//}
 

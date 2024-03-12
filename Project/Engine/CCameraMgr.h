@@ -1,5 +1,4 @@
 #pragma once
-#include "CSingleton.h"
 #include "CGameObject.h"
 
 class CCameraMgr
@@ -9,6 +8,7 @@ class CCameraMgr
 
 private:
 	map<std::wstring, CGameObject*> m_mapCam;
+	//CGameObject* m_EditCam;
 
 public:
 	const CGameObject* GetCamera(const wstring& _camName);
@@ -18,4 +18,6 @@ public:
 	void CameraMgrTick();
 	void CameraMgrFinalTick();
 	void CameraMgrRender();
+
+	//void SetEditCam(CGameObject* _editCam);
 };

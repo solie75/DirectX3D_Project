@@ -118,6 +118,9 @@
     <Filter Include="Source\03.Manager\08.EditObjMgr">
       <UniqueIdentifier>{45cac1c4-8d2b-492d-8c45-253002614a94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\06. Component\05.Collider2D">
+      <UniqueIdentifier>{8aeba2a0-dbfb-4dbb-9046-6ef7f2b1d053}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -247,6 +250,9 @@
     <ClInclude Include="CEditObjMgr.h">
       <Filter>Source\03.Manager\08.EditObjMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider2D.h">
+      <Filter>Source\06. Component\05.Collider2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -358,6 +364,12 @@
     <ClCompile Include="CEditObjMgr.cpp">
       <Filter>Source\03.Manager\08.EditObjMgr</Filter>
     </ClCompile>
+    <ClCompile Include="CCollider2D.cpp">
+      <Filter>Source\06. Component\05.Collider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Source\00.Header</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -372,6 +384,9 @@
       <Filter>Source\08.ShaderCode</Filter>
     </FxCompile>
     <FxCompile Include="Animation2D.fx">
+      <Filter>Source\08.ShaderCode</Filter>
+    </FxCompile>
+    <FxCompile Include="debug_shape.fx">
       <Filter>Source\08.ShaderCode</Filter>
     </FxCompile>
   </ItemGroup>

@@ -39,3 +39,7 @@ void Safe_Del_Map(map<T1, T2>& _map)
 
 	_map.clear();
 }
+
+void SetDebugRect(const Matrix& _matWorld, Vec4 _vColor, float _fTime);
+
+void SetDebugCircle(const Matrix& _matWorld, Vec4 _vColor, float _fTime);
