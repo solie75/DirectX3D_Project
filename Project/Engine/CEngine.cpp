@@ -8,6 +8,7 @@
 #include "CLevelMgr.h"
 #include "CCameraMgr.h"
 #include "CEditObjMgr.h"
+#include "CCollisionMgr.h"
 
 #include "CMeshRender.h"
 
@@ -67,12 +68,14 @@ void CEngine::EngineTick()
     CLevelMgr::GetInst()->LevelMgrTick();
     CCameraMgr::GetInst()->CameraMgrTick();
     //CEditObjMgr::GetInst()->EditObjMgrProgress()
+    CCollisionMgr::GetInst()->CollisionMgrTick();
 }
 
 void CEngine::EngineFinalTick()
 {
     CLevelMgr::GetInst()->LevelMgrFinalTick(); // Game ObjectÀÇ FinalTick
     CCameraMgr::GetInst()->CameraMgrFinalTick(); // Camera ObjectÀÇ FinalTick ¹× Sort Object
+    
 }
 
 void CEngine::EngineRender()

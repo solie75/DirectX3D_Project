@@ -121,6 +121,12 @@
     <Filter Include="Source\06. Component\05.Collider2D">
       <UniqueIdentifier>{8aeba2a0-dbfb-4dbb-9046-6ef7f2b1d053}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\03.Manager\09.CollisionMgr">
+      <UniqueIdentifier>{a7acf4e1-9f48-450e-bd12-48baaf4cfd83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\05.GameObject\02.Monster">
+      <UniqueIdentifier>{a5fff4a0-21a8-4380-aea9-61e15a49ea2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -253,6 +259,12 @@
     <ClInclude Include="CCollider2D.h">
       <Filter>Source\06. Component\05.Collider2D</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Source\03.Manager\09.CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Source\05.GameObject\02.Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -369,6 +381,12 @@
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>Source\00.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Source\03.Manager\09.CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Source\05.GameObject\02.Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

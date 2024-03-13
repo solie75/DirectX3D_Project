@@ -24,6 +24,7 @@ public:
     void SetOffsetPos(Vec2 _vOffsetPos);
     void SetOffsetScale(Vec2 _vOffsetScale);
     //void SetBoolAbsolute(bool _v);
+    const Matrix& GetColliderWorldMat();
 
     void SetColider2DType(SHAPE_TYPE _type);
 

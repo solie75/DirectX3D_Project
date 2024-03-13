@@ -2,11 +2,13 @@
 #include "CLevel_Test1.h"
 #include "CMeshRender.h"
 #include "CResMgr.h"
+#include "CCollisionMgr.h"
 #include "CCamera.h"
 #include "CTransform.h"
 #include "CAnimator2D.h"
 //#include "CGameObject.h"
 #include "CPlayer.h"
+#include "CMonster.h"
 
 #include "CCameraMoveScript.h"
 
@@ -66,6 +68,11 @@ void CLevel_Test1::LevelInit()
 
     CPlayer* player = new CPlayer;
     AddGameObj(player, (UINT)LAYER_TYPE::LAYER_PLAYER);
+
+    CMonster* monster = new CMonster;
+    AddGameObj(monster, (UINT)LAYER_TYPE::LAYER_MONSTER);
+
+    CCollisionMgr::GetInst()->LayerCheck(UINT(LAYER_TYPE::LAYER_PLAYER), UINT(LAYER_TYPE::LAYER_MONSTER));
 }
 
 void CLevel_Test1::LevelTick()

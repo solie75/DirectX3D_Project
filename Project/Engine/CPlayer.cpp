@@ -62,8 +62,8 @@ void CPlayer::ObjInit()
 	// CCollider2D
 	CCollider2D* tempCD = new CCollider2D;
 	// 절대적인 위치나 크기가 아니라 캐릭터에 대해 비례적으로 적용된다.
-	tempCD->SetOffsetPos(Vec2(1.f, 1.f));
-	tempCD->SetOffsetScale(Vec2(0.5f, 0.5f));
+	tempCD->SetOffsetPos(Vec2(0.f, 0.f));
+	tempCD->SetOffsetScale(Vec2(1.f, 1.f));
 	AddComponent(tempCD);
 }
 

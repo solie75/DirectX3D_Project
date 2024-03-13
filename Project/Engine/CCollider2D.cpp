@@ -56,6 +56,11 @@ void CCollider2D::SetOffsetScale(Vec2 _vOffsetScale)
 	m_vOffsetScale = Vec3(_vOffsetScale.x, _vOffsetScale.y, 1.f);
 }
 
+const Matrix& CCollider2D::GetColliderWorldMat()
+{
+	return m_matWorldCollider2D;
+}
+
 //void CCollider2D::SetBoolAbsolute(bool _v)
 //{
 //	m_bAbsolute = _v;

@@ -35,7 +35,6 @@ float4 PS_DebugShape(VS_DEBUG_OUT _in) : SV_Target
 {
     float4 vOutColor = (float4) 0.f;
     vOutColor = g_vec4_0;
-    //vOutColor = (float4) (1.f, 0.f, 1.f, 1.f);
     return vOutColor;
 }
 
