@@ -49,12 +49,12 @@ HRESULT CMaterial::SaveRes(const wstring& _strFilePath)
 	return S_OK;
 }
 
-void CMaterial::SetShader(Ptr<CShader> _shader)
+void CMaterial::SetShader(Ptr<CGraphicsShader> _shader)
 {
 	m_pShader = _shader;
 }
 
-Ptr<CShader> CMaterial::GetShader()
+Ptr<CGraphicsShader> CMaterial::GetShader()
 {
     return m_pShader;
 }

@@ -64,6 +64,7 @@ void CPlayer::ObjInit()
 	// 절대적인 위치나 크기가 아니라 캐릭터에 대해 비례적으로 적용된다.
 	tempCD->SetOffsetPos(Vec2(0.f, 0.f));
 	tempCD->SetOffsetScale(Vec2(1.f, 1.f));
+
 	AddComponent(tempCD);
 }
 

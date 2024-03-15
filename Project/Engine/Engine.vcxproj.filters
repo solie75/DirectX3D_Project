@@ -127,6 +127,12 @@
     <Filter Include="Source\05.GameObject\02.Monster">
       <UniqueIdentifier>{a5fff4a0-21a8-4380-aea9-61e15a49ea2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\07.Resource\04. Shader\ComputeShader">
+      <UniqueIdentifier>{9a0e0e92-a17d-4783-9e0c-7ae45d7e8650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\07.Resource\04. Shader\GraphicsShader">
+      <UniqueIdentifier>{f034669f-bc66-4d4d-a922-d13760ce5f9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -265,6 +271,12 @@
     <ClInclude Include="CMonster.h">
       <Filter>Source\05.GameObject\02.Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CComputeShader.h">
+      <Filter>Source\07.Resource\04. Shader\ComputeShader</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraphicsShader.h">
+      <Filter>Source\07.Resource\04. Shader\GraphicsShader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -387,6 +399,12 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Source\05.GameObject\02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CComputeShader.cpp">
+      <Filter>Source\07.Resource\04. Shader\ComputeShader</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphicsShader.cpp">
+      <Filter>Source\07.Resource\04. Shader\GraphicsShader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

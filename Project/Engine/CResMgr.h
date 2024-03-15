@@ -2,7 +2,8 @@
 #include "ptr.h"
 #include "CRes.h"
 #include "CMesh.h"
-#include "CShader.h"
+#include "CGraphicsShader.h"
+#include "CComputeShader.h"
 #include "CTexture.h"
 #include "CMaterial.h"
 
@@ -42,8 +43,10 @@ RES_TYPE GetResType()
 {
     if (typeid(T).hash_code() == typeid(CMesh).hash_code())
         return RES_TYPE::MESH;
-    if (typeid(T).hash_code() == typeid(CShader).hash_code())
-        return RES_TYPE::SHADER;
+    if (typeid(T).hash_code() == typeid(CGraphicsShader).hash_code())
+        return RES_TYPE::GRAPHICS_SHADER;
+	if (typeid(T).hash_code() == typeid(CComputeShader).hash_code())
+		return RES_TYPE::COMPUTE_SHADER;
 	if (typeid(T).hash_code() == typeid(CTexture).hash_code())
 		return RES_TYPE::TEXTURE;
 	if (typeid(T).hash_code() == typeid(CMaterial).hash_code())

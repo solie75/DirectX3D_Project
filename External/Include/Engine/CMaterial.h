@@ -1,7 +1,7 @@
 #pragma once
 #include "CRes.h"
 #include "ptr.h"
-#include "CShader.h"
+#include "CGraphicsShader.h"
 #include "CTexture.h"
 
 
@@ -9,7 +9,7 @@ class CMaterial :
     public CRes
 {
 private:
-    Ptr<CShader> m_pShader;
+    Ptr<CGraphicsShader> m_pShader;
     tMtrl_CB m_MtrlConst;
     Ptr<CTexture> m_arrTex[TEX_END];
 
@@ -27,8 +27,8 @@ public:
     virtual HRESULT SaveRes(const wstring& _strFilePath);
 
 public:
-    void SetShader(Ptr<CShader> _shader);
-    Ptr<CShader> GetShader();
+    void SetShader(Ptr<CGraphicsShader> _shader);
+    Ptr<CGraphicsShader> GetShader();
 
     void SetMtrlScalarParam(MATERIAL_SCALAR_PARAM _param, const void* _src);
     void SetMtrlTexParam(MATERIAL_TEX_PARAM _param, const Ptr<CTexture>& _Tex);

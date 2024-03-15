@@ -155,7 +155,7 @@ void CResMgr::CreateDefaultMesh()
 
 void CResMgr::CreateDefaultShader()
 {
-	Ptr<CShader> pShader = nullptr;
+	Ptr<CGraphicsShader> pShader = nullptr;
 	
 	// ============================
 	// Std2DShader
@@ -163,7 +163,7 @@ void CResMgr::CreateDefaultShader()
 	// BlendState           : Mask
 	// DepthStencilState    : Less
 	// ============================
-	pShader = new CShader(RES_TYPE::SHADER);
+	pShader = new CGraphicsShader();
 	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Std2D");
 	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D");
 
@@ -180,7 +180,7 @@ void CResMgr::CreateDefaultShader()
 	// DepthStencilState    : Less
 	// ============================
 
-	pShader = new CShader(RES_TYPE::SHADER);
+	pShader = new CGraphicsShader();
 	pShader->CreateVertexShader(L"shader\\Animation2D.fx", "VS_Ani2D");
 	pShader->CreatePixelShader(L"shader\\Animation2D.fx", "PS_Ani2D");
 	
@@ -198,7 +198,7 @@ void CResMgr::CreateDefaultShader()
 	// BS_TYPE  : Default
 	// g_vec4_0 : OutColor
 	// ==================
-	pShader = new CShader(RES_TYPE::SHADER);
+	pShader = new CGraphicsShader();
 	pShader->CreateVertexShader(L"shader\\debug_shape.fx", "VS_DebugShape");
 	pShader->CreatePixelShader(L"shader\\debug_shape.fx", "PS_DebugShape");
 
@@ -218,7 +218,7 @@ void CResMgr::CreateDefaultMaterial()
 	tempMtrl = new CMaterial();
 
 	// Set Shader
-	tempMtrl->SetShader(FindRes<CShader>(L"Std2DShader"));
+	tempMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
 
 	// Set Texture
 	tempMtrl->SetMtrlTexParam(TEX_0, FindRes<CTexture>(L"Fighter"));
@@ -229,20 +229,20 @@ void CResMgr::CreateDefaultMaterial()
 	Ptr<CMaterial> tempMtrl2 = nullptr;
 	tempMtrl2 = new CMaterial();
 
-	tempMtrl2->SetShader(FindRes<CShader>(L"Std2DShader"));
+	tempMtrl2->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
 	tempMtrl2->SetMtrlTexParam(TEX_1, FindRes<CTexture>(L"Link"));
 
 	AddRes(L"DefaultMtrl2", tempMtrl2);
 	
 	// Animation 2d Mtrl
 	tempMtrl = new CMaterial();
-	tempMtrl->SetShader(FindRes<CShader>(L"Ani2DShader"));
+	tempMtrl->SetShader(FindRes<CGraphicsShader>(L"Ani2DShader"));
 	AddRes(L"Ain2DMtrl", tempMtrl);
 
 
 	// debug shape material
 	tempMtrl = new CMaterial();
-	tempMtrl->SetShader(FindRes<CShader>(L"DebugShapeShader"));
+	tempMtrl->SetShader(FindRes<CGraphicsShader>(L"DebugShapeShader"));
 	AddRes(L"DebugShapeMtrl", tempMtrl);
 }
 
