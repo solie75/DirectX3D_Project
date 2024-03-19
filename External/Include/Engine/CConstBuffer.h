@@ -19,6 +19,7 @@ public:
     void CreateCB(UINT _iElementSize, UINT _iElementCount);
     void SetCBData(void* _pSrc, UINT _iSize = 0);
     void UpdateCBData();
+    void UpdateCBData_CS();
    
     CLONE_DISABLE(CConstBuffer);
 };

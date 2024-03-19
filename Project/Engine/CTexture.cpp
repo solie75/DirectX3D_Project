@@ -71,7 +71,23 @@ HRESULT CTexture::SaveRes(const wstring& _strFilePath)
 
 void CTexture::UpdateTexData(int _iRegisterNum)
 {
+	m_iRecentNum = _iRegisterNum;
 	CONTEXT->PSSetShaderResources(_iRegisterNum, 1, m_SRV.GetAddressOf());
+}
+
+void CTexture::UpdateTexData_CS(int _iRegisterNum, bool _bShaderRes)
+{
+	m_iRecentNum = _iRegisterNum;
+
+	if (_bShaderRes)
+	{
+		CONTEXT->CSSetShaderResources(m_iRecentNum, 1, m_SRV.GetAddressOf());
+	}
+	else
+	{
+		UINT i = -1;
+		CONTEXT->CSSetUnorderedAccessViews(m_iRecentNum, 1, m_UAV.GetAddressOf(), &i);
+	}
 }
 
 void CTexture::ClearTexRegister(int _iRegisterNum)
@@ -83,6 +99,21 @@ void CTexture::ClearTexRegister(int _iRegisterNum)
 	CONTEXT->DSSetShaderResources(_iRegisterNum, 1, &pSRV);
 	CONTEXT->GSSetShaderResources(_iRegisterNum, 1, &pSRV);*/
 	CONTEXT->PSSetShaderResources(_iRegisterNum, 1, &pSRV);
+}
+
+void CTexture::ClearTex_CS(bool _bShaderRes)
+{
+	if (_bShaderRes)
+	{
+		ID3D11ShaderResourceView* pSRV = nullptr;
+		CONTEXT->CSSetShaderResources(m_iRecentNum, 1, &pSRV);
+	}
+	else
+	{
+		ID3D11UnorderedAccessView* pUAV = nullptr;
+		UINT i = -1;
+		CONTEXT->CSSetUnorderedAccessViews(m_iRecentNum, 1, &pUAV, &i);
+	}
 }
 
 //Vec2 CTexture::GetScratchImageSize()
@@ -116,3 +147,52 @@ void CTexture::CreateSRV()
 
 	m_SRV->GetResource((ID3D11Resource**)m_Tex2D.GetAddressOf());
 }
+
+
+HRESULT CTexture::SetTexture2D(UINT _width, UINT _height, DXGI_FORMAT _pixelFormat
+	, UINT _bindFlags, D3D11_USAGE _usage)
+{
+	m_Tex2DDesc.Format = _pixelFormat;
+	m_Tex2DDesc.Width = _width;
+	m_Tex2DDesc.Height = _height;
+	m_Tex2DDesc.ArraySize = 1;
+	m_Tex2DDesc.BindFlags = _bindFlags;
+	m_Tex2DDesc.Usage = _usage;
+
+	if (D3D11_USAGE::D3D11_USAGE_DYNAMIC == _usage)
+	{
+		m_Tex2DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	}
+	else if (D3D11_USAGE::D3D11_USAGE_STAGING == _usage)
+	{
+		m_Tex2DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+	}
+	
+	m_Tex2DDesc.MipLevels = 1; // Create Origin Only
+	m_Tex2DDesc.SampleDesc.Count = 1;
+	m_Tex2DDesc.SampleDesc.Quality = 0;
+
+	if (FAILED(DEVICE->CreateTexture2D(&m_Tex2DDesc, nullptr, m_Tex2D.GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+	// Create View Corresponding to _bindFlag
+	if (m_Tex2DDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
+	{
+		if (FAILED(DEVICE->CreateShaderResourceView(m_Tex2D.Get(), nullptr, m_SRV.GetAddressOf())))
+		{
+			return E_FAIL;
+		}
+	}
+	if (m_Tex2DDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
+	{
+		if (FAILED(DEVICE->CreateUnorderedAccessView(m_Tex2D.Get(), nullptr, m_UAV.GetAddressOf())))
+		{
+			return E_FAIL;
+		}
+	}
+
+	return S_OK;
+}
+

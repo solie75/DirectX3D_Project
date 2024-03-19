@@ -1,9 +1,9 @@
-#ifndef _STD2D
-#define _STD2D
+#ifndef _TEST
+#define _TEST
 
 #include "value.fx"
 
-VS_OUT VS_Std2D(VS_IN _in)
+VS_OUT VS_TEST(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
     
@@ -13,9 +13,9 @@ VS_OUT VS_Std2D(VS_IN _in)
     return output;
 }
 
-float4 PS_Std2D(VS_OUT _in) : SV_Target
+float4 PS_TEST(VS_OUT _in) : SV_Target
 {
-    float4 outputColor = (float4) (1.f, 0.f, 0.f, 1.f);
+    float4 outputColor = (float4) 1.f;
     
     if (g_btex_0 != 0)
     {

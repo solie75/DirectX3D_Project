@@ -12,7 +12,7 @@ private:
 
 protected:
     // Constant data passed to the shader
-    tMtrlConst m_Const;
+    tMtrl_CB m_Const;
 
     // number of Group
     UINT    m_iGroupX;
@@ -29,7 +29,7 @@ public:
     void ExecuteCS();
 
 private:
-    virtual void UpdateData() = 0;
+    virtual void UpdateCSData() = 0;
     virtual void ClearCS() = 0;
 
     CLONE_DISABLE(CComputeShader);

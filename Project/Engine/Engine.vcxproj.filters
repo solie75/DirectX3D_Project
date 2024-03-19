@@ -58,9 +58,6 @@
     <Filter Include="Source\07.Resource\1. Mesh">
       <UniqueIdentifier>{c5f02638-04e6-4f89-ae64-0ba7474de546}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\02.Device\ConstBuffer">
-      <UniqueIdentifier>{87c1805c-792b-49d2-a921-b0dff734afe0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\07.Resource\03. Material">
       <UniqueIdentifier>{849715fa-4ed5-4dd5-921f-2084de3065cf}</UniqueIdentifier>
     </Filter>
@@ -133,6 +130,18 @@
     <Filter Include="Source\07.Resource\04. Shader\GraphicsShader">
       <UniqueIdentifier>{f034669f-bc66-4d4d-a922-d13760ce5f9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\10.Buffer">
+      <UniqueIdentifier>{9f2dd6eb-0093-4245-a86c-e37e08bb2db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\10.Buffer\ConstBuffer">
+      <UniqueIdentifier>{87c1805c-792b-49d2-a921-b0dff734afe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\10.Buffer\StructuredBuffer">
+      <UniqueIdentifier>{311bb9fe-e46e-4efa-9cb4-ad241e2ede33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\07.Resource\04. Shader\ComputeShader\SetColorShader">
+      <UniqueIdentifier>{ae0d67f4-9239-4e8a-8f37-1c6efe0d92e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -191,7 +200,7 @@
     </ClInclude>
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CConstBuffer.h">
-      <Filter>Source\02.Device\ConstBuffer</Filter>
+      <Filter>Source\10.Buffer\ConstBuffer</Filter>
     </ClInclude>
     <ClInclude Include="CMaterial.h">
       <Filter>Source\07.Resource\03. Material</Filter>
@@ -277,6 +286,12 @@
     <ClInclude Include="CGraphicsShader.h">
       <Filter>Source\07.Resource\04. Shader\GraphicsShader</Filter>
     </ClInclude>
+    <ClInclude Include="CStructuredBuffer.h">
+      <Filter>Source\10.Buffer\StructuredBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetColorShader.h">
+      <Filter>Source\07.Resource\04. Shader\ComputeShader\SetColorShader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -317,7 +332,7 @@
     </ClCompile>
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CConstBuffer.cpp">
-      <Filter>Source\02.Device\ConstBuffer</Filter>
+      <Filter>Source\10.Buffer\ConstBuffer</Filter>
     </ClCompile>
     <ClCompile Include="CMaterial.cpp">
       <Filter>Source\07.Resource\03. Material</Filter>
@@ -406,6 +421,12 @@
     <ClCompile Include="CGraphicsShader.cpp">
       <Filter>Source\07.Resource\04. Shader\GraphicsShader</Filter>
     </ClCompile>
+    <ClCompile Include="CStructuredBuffer.cpp">
+      <Filter>Source\10.Buffer\StructuredBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CSetColorShader.cpp">
+      <Filter>Source\07.Resource\04. Shader\ComputeShader\SetColorShader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -423,6 +444,9 @@
       <Filter>Source\08.ShaderCode</Filter>
     </FxCompile>
     <FxCompile Include="debug_shape.fx">
+      <Filter>Source\08.ShaderCode</Filter>
+    </FxCompile>
+    <FxCompile Include="setColor.fx">
       <Filter>Source\08.ShaderCode</Filter>
     </FxCompile>
   </ItemGroup>

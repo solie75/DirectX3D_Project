@@ -21,7 +21,8 @@ public:
 
 private:
 	void CreateDefaultMesh();
-	void CreateDefaultShader();
+	void CreateDefaultGraphicShader();
+	void CreateDefaultComputeShader();
 	void CreateDefaultMaterial();
 	void LoadDefaultTexture();
 

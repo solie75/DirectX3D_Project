@@ -11,6 +11,7 @@
 #include "CMonster.h"
 
 #include "CCameraMoveScript.h"
+#include "CSetColorShader.h"
 
 CLevel_Test1::CLevel_Test1()
     : CLevel(LEVEL_TYPE::LEVEL_TYPE_TEST1)
@@ -26,45 +27,36 @@ void CLevel_Test1::LevelInit()
 {
     CLevel::LevelInit();
 
-    //{   // Main Object
-    //    CGameObject* ObjTest1 = new CGameObject;
+    // compute Shader Test
+    Ptr<CTexture> pTestTex = new CTexture;
+    pTestTex->SetName(L"TestTex");
+    pTestTex->SetTexture2D(100, 100, DXGI_FORMAT_R8G8B8A8_UNORM,
+        D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS, D3D11_USAGE_DEFAULT);
+    CResMgr::GetInst()->AddRes<CTexture>(L"TestTex", pTestTex);
 
-    //    CTransform* tempTransform = new CTransform;
-    //    tempTransform->SetWorldPos(Vec3(0.f, 0.f, 500.f)); // perspective 에서 z 값이 100 일때 와 500 일때
-    //    tempTransform->SetWorldScale(Vec3(100.f, 100.f, 1.f)); // Orthographic 에서 Scale 이 변할때
-    //    ObjTest1->AddComponent(tempTransform);
+    Ptr<CSetColorShader> pCS = (CSetColorShader*)CResMgr::GetInst()->FindRes<CComputeShader>(L"SetColorCS").Get();
+    pCS->SetTargetTexture(CResMgr::GetInst()->FindRes<CTexture>(L"TestTex"));
+    pCS->SetColor(Vec3(0.f, 0.f, 1.f));
+    pCS->ExecuteCS();
 
-    //    CMeshRender* tempMeshRender = new CMeshRender;
-    //    tempMeshRender->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-    //    tempMeshRender->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Ain2DMtrl"));
-    //    tempMeshRender->GetMaterial()->GetShader()->SetDomain(DOMAIN_TYPE::DOMAIN_MASK);
-    //    ObjTest1->AddComponent(tempMeshRender);
+    CGameObject* testObj = new CGameObject;
+    testObj->SetName(L"TestObj");
+    
+    // Transform
+    CTransform* testTF = new CTransform;
+    testTF->SetWorldPos(Vec3(-200.f, 0.f, 0.f));
+    testTF->SetWorldScale(Vec3(100.f, 100.f, 1.f));
+    testObj->AddComponent(testTF);
 
-    //    CAnimator2D* tempAnimator = new CAnimator2D;
-    //    tAtlasData tempAtData;
-    //    tempAnimator->CreateAni2D(L"Will_Idle_Down", tempAtData);
-    //    ObjTest1->AddComponent(tempAnimator);
+    // MeshRender
+    CMeshRender* testMR = new CMeshRender;
+    testMR->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl1"));
+    testMR->GetMaterial()->SetMtrlTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"TestTex"));
+    testMR->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 
-    //    AddGameObj(ObjTest1, (UINT)LAYER_TYPE::LAYER_TEXTURE);
+    testObj->AddComponent(testMR);
 
-    //    tempAnimator->PlayAni2D(L"Will_Idle_Down", true);
-    //}
-    //{   // UI Object
-    //    CGameObject* ObjTest2 = new CGameObject;
-    //    CTransform* tempTransform = new CTransform;
-    //    tempTransform->SetWorldPos(Vec3(100.f, 0.f, 250.f));
-    //    tempTransform->SetWorldScale(Vec3(200.f, 200.f, 1.f));
-    //    ObjTest2->AddComponent(tempTransform);
-
-    //    CMeshRender* tempMeshRender = new CMeshRender;
-    //    tempMeshRender->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-    //    tempMeshRender->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DefaultMtrl1"));
-    //    tempMeshRender->GetMaterial()->GetShader()->SetDomain(DOMAIN_TYPE::DOMAIN_UI);
-
-    //    ObjTest2->AddComponent(tempMeshRender);
-
-    //    AddGameObj(ObjTest2, (UINT)LAYER_TYPE::LAYER_UI);
-    //}
+    AddGameObj(testObj, (UINT)LAYER_TYPE::LAYER_TEST);
 
     CPlayer* player = new CPlayer;
     AddGameObj(player, (UINT)LAYER_TYPE::LAYER_PLAYER);

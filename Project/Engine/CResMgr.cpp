@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CResMgr.h"
 #include "CPathMgr.h"
+#include "CSetColorShader.h"
 
 CResMgr::CResMgr()
 {
@@ -13,7 +14,8 @@ CResMgr::~CResMgr()
 void CResMgr::ResMgrInit()
 {
 	CreateDefaultMesh();
-	CreateDefaultShader();
+	CreateDefaultGraphicShader();
+	CreateDefaultComputeShader();
 	LoadDefaultTexture();
 	CreateDefaultMaterial();
 }
@@ -153,7 +155,7 @@ void CResMgr::CreateDefaultMesh()
 	vecIdx.clear();
 }
 
-void CResMgr::CreateDefaultShader()
+void CResMgr::CreateDefaultGraphicShader()
 {
 	Ptr<CGraphicsShader> pShader = nullptr;
 	
@@ -209,6 +211,16 @@ void CResMgr::CreateDefaultShader()
 	pShader->SetDomain(DOMAIN_TYPE::DOMAIN_MASK);
 
 	AddRes(L"DebugShapeShader", pShader);
+}
+
+void CResMgr::CreateDefaultComputeShader()
+{
+	Ptr<CComputeShader> pCS = nullptr;
+
+	pCS = new CSetColorShader(32, 32, 1);
+	pCS->SetName(L"SetColorCS");
+	pCS->CreateComputeShader(L"shader\\setColor.fx", "CS_SetColor");
+	AddRes(pCS->GetName(), pCS);
 }
 
 void CResMgr::CreateDefaultMaterial()

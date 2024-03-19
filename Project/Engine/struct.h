@@ -61,14 +61,3 @@ struct tDebugShapeInfo
 	Vec3 vWorldRotation;
 	Vec4 vColor;
 };
-
-struct tMtrlConst
-{
-	int arrInt[4];
-	float arrFloat[4];
-	Vec2 arrV2[4];
-	Vec4 arrV4[4];
-	Matrix arrMat[4];
-
-	int arrTex[(UINT)MATERIAL_TEX_PARAM::TEX_END];
-};
