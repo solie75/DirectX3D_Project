@@ -211,6 +211,33 @@ void CResMgr::CreateDefaultGraphicShader()
 	pShader->SetDomain(DOMAIN_TYPE::DOMAIN_MASK);
 
 	AddRes(L"DebugShapeShader", pShader);
+
+	// ============================
+	// ParticleRender
+	// 
+	// RS_TYPE : CULL_NONE
+	// DS_TYPE : NO_WRITE
+	// BS_TYPE : ALPHA_BLEND
+
+	// Parameter
+	// g_int_0 : Particle Index
+	// 
+	// Domain : TRANSPARENT
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"ParticleRenderShader");
+	pShader->CreateVertexShader(L"shader\\particle_render.fx", "VS_ParticleRender");
+	pShader->CreateGeometryShader(L"shader\\particle_render.fx", "GS_ParticleRender");
+	pShader->CreatePixelShader(L"shader\\particle_render.fx", "PS_ParticleRender");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::NO_WRITE);
+	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
+
+	pShader->SetDomain(DOMAIN_TYPE::DOMAIN_TRANSPARENT);
+
+	AddRes(pShader->GetKey(), pShader);
 }
 
 void CResMgr::CreateDefaultComputeShader()
@@ -256,6 +283,11 @@ void CResMgr::CreateDefaultMaterial()
 	tempMtrl = new CMaterial();
 	tempMtrl->SetShader(FindRes<CGraphicsShader>(L"DebugShapeShader"));
 	AddRes(L"DebugShapeMtrl", tempMtrl);
+
+	// Particle Render Material
+	tempMtrl = new CMaterial();
+	tempMtrl->SetShader(FindRes<CGraphicsShader>(L"ParticleRenderShader"));
+	AddRes(L"ParticleRenderMtrl", tempMtrl);
 }
 
 void CResMgr::LoadDefaultTexture()

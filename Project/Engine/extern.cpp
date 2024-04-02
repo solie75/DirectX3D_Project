@@ -2,3 +2,4 @@
 #include "global.h"
 
 tTransform_CB g_transform = {};
+tGlobal GlobalData = {};

@@ -44,6 +44,10 @@ void CTimeMgr::TimeMgrTick()
 
 	// 이전 카운트 값을 현재 카운트로 갱신
 	m_liPrevCount = m_liCurCount;
+
+	// Set Global CB Data
+	GlobalData.DeltaTime = m_fDeltaTime;
+	GlobalData.AccumulateTime += m_fDeltaTime;
 }
 
 void CTimeMgr::TimeMgrRender()

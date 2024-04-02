@@ -91,6 +91,25 @@ void CGraphicsShader::CreatePixelShader(const wstring& _strFileName, const strin
 		, nullptr, m_PS.GetAddressOf());
 }
 
+void CGraphicsShader::CreateGeometryShader(const wstring& _strFileName, const string& _strFuncName)
+{
+	// Set Shader file Path
+	wstring strShaderFilePath = CPathMgr::GetInst()->GetContentPath();
+	strShaderFilePath += _strFileName;
+
+	// PixelShader Compile
+	if (FAILED(D3DCompileFromFile(strShaderFilePath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		, _strFuncName.c_str(), "gs_5_0", 0, 0, m_GSBlob.GetAddressOf(), m_ErrBlob.GetAddressOf())))
+	{
+		MessageBoxA(nullptr, (const char*)m_ErrBlob->GetBufferPointer()
+			, "Geometry Shader Compile Failed!", MB_OK);
+	}
+
+	// Create PixelShader with Compiled Shader Blob
+	DEVICE->CreateGeometryShader(m_GSBlob->GetBufferPointer(), m_GSBlob->GetBufferSize()
+		, nullptr, m_GS.GetAddressOf());
+}
+
 void CGraphicsShader::SetTopology(D3D11_PRIMITIVE_TOPOLOGY _topology)
 {
 	m_eTopology = _topology;

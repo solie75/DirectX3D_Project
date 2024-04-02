@@ -73,9 +73,6 @@
     <Filter Include="Source\06. Component\RenderComponent">
       <UniqueIdentifier>{7b422a2c-3f81-450d-b3e0-abb25b39af59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\06. Component\RenderComponent\MeshRender">
-      <UniqueIdentifier>{82dea319-7a4a-4fb1-a47d-e73e94b00afb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\06. Component\01.Transform">
       <UniqueIdentifier>{c6efc7e2-aba3-410c-ba37-96ffcf90fcc3}</UniqueIdentifier>
     </Filter>
@@ -141,6 +138,15 @@
     </Filter>
     <Filter Include="Source\07.Resource\04. Shader\ComputeShader\SetColorShader">
       <UniqueIdentifier>{ae0d67f4-9239-4e8a-8f37-1c6efe0d92e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\RenderComponent\01.MeshRender">
+      <UniqueIdentifier>{82dea319-7a4a-4fb1-a47d-e73e94b00afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\06. Component\RenderComponent\02.ParticleSystem">
+      <UniqueIdentifier>{6c3d751c-d803-4707-9a1b-ab77ed2f2367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\07.Resource\04. Shader\ComputeShader\ParticleUpdateShader">
+      <UniqueIdentifier>{4303084e-0c16-4875-937e-cbae5e00523b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -218,7 +224,7 @@
       <Filter>Source\06. Component\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CMeshRender.h">
-      <Filter>Source\06. Component\RenderComponent\MeshRender</Filter>
+      <Filter>Source\06. Component\RenderComponent\01.MeshRender</Filter>
     </ClInclude>
     <ClInclude Include="CLevel.h">
       <Filter>Source\04.Level</Filter>
@@ -292,6 +298,12 @@
     <ClInclude Include="CSetColorShader.h">
       <Filter>Source\07.Resource\04. Shader\ComputeShader\SetColorShader</Filter>
     </ClInclude>
+    <ClInclude Include="CParticleUpdateShader.h">
+      <Filter>Source\07.Resource\04. Shader\ComputeShader\ParticleUpdateShader</Filter>
+    </ClInclude>
+    <ClInclude Include="CParticleSystem.h">
+      <Filter>Source\06. Component\RenderComponent\02.ParticleSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -347,7 +359,7 @@
       <Filter>Source\06. Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CMeshRender.cpp">
-      <Filter>Source\06. Component\RenderComponent\MeshRender</Filter>
+      <Filter>Source\06. Component\RenderComponent\01.MeshRender</Filter>
     </ClCompile>
     <ClCompile Include="CLevel.cpp">
       <Filter>Source\04.Level</Filter>
@@ -427,6 +439,12 @@
     <ClCompile Include="CSetColorShader.cpp">
       <Filter>Source\07.Resource\04. Shader\ComputeShader\SetColorShader</Filter>
     </ClCompile>
+    <ClCompile Include="CParticleUpdateShader.cpp">
+      <Filter>Source\07.Resource\04. Shader\ComputeShader\ParticleUpdateShader</Filter>
+    </ClCompile>
+    <ClCompile Include="CParticleSystem.cpp">
+      <Filter>Source\06. Component\RenderComponent\02.ParticleSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -447,6 +465,18 @@
       <Filter>Source\08.ShaderCode</Filter>
     </FxCompile>
     <FxCompile Include="setColor.fx">
+      <Filter>Source\08.ShaderCode</Filter>
+    </FxCompile>
+    <FxCompile Include="particleRender.fx">
+      <Filter>Source\08.ShaderCode</Filter>
+    </FxCompile>
+    <FxCompile Include="struct.fx">
+      <Filter>Source\08.ShaderCode</Filter>
+    </FxCompile>
+    <FxCompile Include="particleUpdate.fx">
+      <Filter>Source\08.ShaderCode</Filter>
+    </FxCompile>
+    <FxCompile Include="func.fx">
       <Filter>Source\08.ShaderCode</Filter>
     </FxCompile>
   </ItemGroup>

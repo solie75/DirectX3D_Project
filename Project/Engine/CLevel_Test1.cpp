@@ -12,6 +12,7 @@
 
 #include "CCameraMoveScript.h"
 #include "CSetColorShader.h"
+#include "CCollider2D.h"
 
 CLevel_Test1::CLevel_Test1()
     : CLevel(LEVEL_TYPE::LEVEL_TYPE_TEST1)
@@ -55,6 +56,14 @@ void CLevel_Test1::LevelInit()
     testMR->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 
     testObj->AddComponent(testMR);
+
+    // Collider
+    CCollider2D* tempCD = new CCollider2D;
+    // 절대적인 위치나 크기가 아니라 캐릭터에 대해 비례적으로 적용된다.
+    tempCD->SetOffsetPos(Vec2(0.f, 0.f));
+    tempCD->SetOffsetScale(Vec2(1.f, 1.f));
+
+    testObj->AddComponent(tempCD);
 
     AddGameObj(testObj, (UINT)LAYER_TYPE::LAYER_TEST);
 

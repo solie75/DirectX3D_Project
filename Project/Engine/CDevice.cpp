@@ -19,6 +19,8 @@ HRESULT CDevice::DeviceInit(HWND _hWnd, UINT _width, UINT _height)
     m_hWnd = _hWnd;
     m_vRTResolution = Vector2(_width, _height);
 
+    GlobalData.Resolution = m_vRTResolution;
+
     int iFlag = 0;
 #ifdef _DEBUG
     iFlag = D3D11_CREATE_DEVICE_DEBUG;
@@ -344,4 +346,7 @@ void CDevice::CreateConstBuffers()
 
     m_arrConstBuffer[(UINT)CB_TYPE::ANIMATION2D] = new CConstBuffer((UINT)CB_TYPE::ANIMATION2D);
     m_arrConstBuffer[(UINT)CB_TYPE::ANIMATION2D]->CreateCB(sizeof(tAnimation_CB), 1);
+
+    m_arrConstBuffer[(UINT)CB_TYPE::GLOBAL] = new CConstBuffer((UINT)CB_TYPE::GLOBAL);
+    m_arrConstBuffer[(UINT)CB_TYPE::GLOBAL]->CreateCB(sizeof(tGlobal), 1);
 }

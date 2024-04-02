@@ -57,6 +57,13 @@ cbuffer ANIMATION2D : register(b2)
     uint CurSpriteNum;
 }
 
+cbuffer GLOBAL : register(b3)
+{
+    float2 g_resolution;
+    float g_deltaTime;
+    float g_AccumulateTime;    
+}
+
 Texture2D g_tex_0 : register(t0);
 Texture2D g_tex_1 : register(t1);
 Texture2D g_tex_2 : register(t2);

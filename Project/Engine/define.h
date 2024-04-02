@@ -83,6 +83,7 @@ enum class CB_TYPE
 	TRANSFORM,
 	MATERIAL,
 	ANIMATION2D,
+	GLOBAL,
 	END,
 };
 
@@ -97,6 +98,7 @@ enum class COMPONENT_TYPE
 
 	// render
 	MESHRENDER,
+	PARTICLESYSTEM,
 
 	// script
 	SCRIPT,
@@ -193,6 +195,21 @@ enum class SB_TYPE
 {
 	READ_ONLY,
 	READ_WRITE,
+};
+
+enum class PARTICLE_MODULE
+{
+	PARTICLE_SPAWN,
+	COLOR_CHANGE,
+	SCALE_CHANGE,
+	ADD_VELOCITY,
+
+	DRAG,
+	NOISE_FORCE,
+	RENDER,
+	DUMMY_3,
+
+	END,
 };
 
 enum MATERIAL_SCALAR_PARAM

@@ -28,8 +28,8 @@ void CSetColorShader::UpdateCSData()
 	m_OutTex->UpdateTexData_CS(0, false);
 
 	// calculate
-	m_iGroupX = (m_OutTex->GetWidth() / m_iGroupPerThreadX) + 1;
-	m_iGroupY = (m_OutTex->GetHeight() / m_iGroupPerThreadY) + 1;
+	m_iGroupX = (m_OutTex->GetWidth() / m_iGroupPerThreadX);
+	m_iGroupY = (m_OutTex->GetHeight() / m_iGroupPerThreadY);
 	m_iGroupZ = 1;
 }
 

@@ -75,7 +75,12 @@ void CEngine::EngineFinalTick()
 {
     CLevelMgr::GetInst()->LevelMgrFinalTick(); // Game ObjectÀÇ FinalTick
     CCameraMgr::GetInst()->CameraMgrFinalTick(); // Camera ObjectÀÇ FinalTick ¹× Sort Object
-    
+
+    // Global CB Bind
+    CConstBuffer* pGlobalCB = CDevice::GetInst()->GetConstBuffer(CB_TYPE::GLOBAL);
+    pGlobalCB->SetCBData(&GlobalData, sizeof(tGlobal));
+    pGlobalCB->UpdateCBData();
+    pGlobalCB->UpdateCBData_CS();
 }
 
 void CEngine::EngineRender()
